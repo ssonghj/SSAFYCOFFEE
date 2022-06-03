@@ -12,5 +12,6 @@
     <color name="main_color_fifty">#ffBAEDF6</color>
     <color name="coupon_color_thirty">#ffD6F4F9</color>
     <color name="level">#ffDC6464</color>
+    <color name="login_user_color">#656668</color>
 
 </resources>

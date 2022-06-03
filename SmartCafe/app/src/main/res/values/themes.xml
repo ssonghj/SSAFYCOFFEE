@@ -22,6 +22,10 @@
         <item name="android:windowFullscreen">true</item>
 
         <item name="android:scaleType">fitXY</item>
+    </style>
 
+    <style name="editText" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorControlNormal">@color/login_user_color</item>
+        <item name="colorAccent">@color/start_color</item>
     </style>
 </resources>
