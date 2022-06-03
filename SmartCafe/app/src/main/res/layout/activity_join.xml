@@ -53,26 +53,25 @@
 
             <EditText
                 android:id="@+id/et_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/round_rectangle_button"
                 android:textColor="@color/black"
                 android:theme="@style/editText"
-                android:layout_width="243dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tv_id"
+                app:layout_constraintEnd_toStartOf="@+id/frame_check_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:drawableEnd="@drawable/round_rectangle_button"/>
+                app:layout_constraintTop_toBottomOf="@+id/tv_id" />
 
             <FrameLayout
                 android:id="@+id/frame_check_btn"
                 android:layout_width="60dp"
-                android:layout_height="25dp"
+                android:layout_height="30dp"
                 android:background="@drawable/round_rectangle_button"
                 android:orientation="vertical"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toBottomOf="@id/et_id"
-                app:layout_constraintEnd_toEndOf="@id/et_id"
-                android:layout_marginBottom="13dp"
-                android:layout_marginEnd="5dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="13dp">
 
                 <TextView
                     android:id="@+id/btn_check"
