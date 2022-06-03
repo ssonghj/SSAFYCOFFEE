@@ -4,15 +4,20 @@
 
     <application
         android:name=".MobileCafeApplication"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
+        <activity
+            android:name=".JoinActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme">
 
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
