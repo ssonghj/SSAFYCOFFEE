@@ -22,12 +22,14 @@
 
     <FrameLayout
         android:id="@+id/frame_join"
-        android:layout_width="274dp"
-        android:layout_height="353dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
         android:background="@drawable/round_rectangle"
         android:orientation="vertical"
         android:elevation="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,12 +45,10 @@
                 android:textColor="@color/black"
                 android:text="아이디"
                 android:textSize="17dp"
-                android:fontFamily="@font/pretendard"
-                android:layout_marginStart="20dp"
+                android:fontFamily="@font/jalnan"
                 android:layout_marginTop="10dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/et_id"/>
 
             <EditText
@@ -92,12 +92,10 @@
                 android:textColor="@color/black"
                 android:text="비밀번호"
                 android:textSize="17dp"
-                android:fontFamily="@font/pretendard"
-                android:layout_marginStart="20dp"
+                android:fontFamily="@font/jalnan"
                 android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/et_id"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/et_pw"/>
 
             <EditText
@@ -117,12 +115,10 @@
                 android:textColor="@color/black"
                 android:text="비밀번호 확인"
                 android:textSize="17dp"
-                android:fontFamily="@font/pretendard"
-                android:layout_marginStart="20dp"
+                android:fontFamily="@font/jalnan"
                 android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/et_pw"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/et_pw_check"/>
 
             <EditText
@@ -142,12 +138,10 @@
                 android:textColor="@color/black"
                 android:text="별명"
                 android:textSize="17dp"
-                android:fontFamily="@font/pretendard"
-                android:layout_marginStart="20dp"
+                android:fontFamily="@font/jalnan"
                 android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/et_pw_check"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/et_nickname"/>
 
             <EditText
@@ -166,7 +160,7 @@
 
     <FrameLayout
         android:id="@+id/frame_join_btn"
-        android:layout_width="258dp"
+        android:layout_width="290dp"
         android:layout_height="37dp"
         android:background="@drawable/round_rectangle_button"
         android:orientation="vertical"
