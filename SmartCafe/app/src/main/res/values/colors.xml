@@ -8,4 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="start_color">#ffE9F3F5</color>
+    <color name="button_color_seventy">#ff97E2EE</color>
+    <color name="main_color_fifty">#ffBAEDF6</color>
+    <color name="coupon_color_thirty">#ffD6F4F9</color>
+    <color name="level">#ffDC6464</color>
+
 </resources>
