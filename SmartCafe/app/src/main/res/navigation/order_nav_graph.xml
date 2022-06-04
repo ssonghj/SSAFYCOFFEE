@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order_nav_graph"
+    app:startDestination="@id/AllFragment">
+
+    <fragment
+        android:id="@+id/AllFragment"
+        android:name="com.ssafy.smartcafe.fragment.AllFragment"
+        android:label="fragment_all"
+        tools:layout="@layout/fragment_all" />
+    <fragment
+        android:id="@+id/CategoryFragment"
+        android:name="com.ssafy.smartcafe.fragment.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/LikeMenuFragment"
+        android:name="com.ssafy.smartcafe.fragment.LikeMenuFragment"
+        android:label="fragment_like_menu"
+        tools:layout="@layout/fragment_like_menu"/>
+</navigation>

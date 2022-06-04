@@ -13,12 +13,12 @@
     <fragment
         android:id="@+id/OrderFragment"
         android:name="com.ssafy.smartcafe.fragment.OrderFragment"
-        android:label="fragment_store"
+        android:label="fragment_order"
         tools:layout="@layout/fragment_order" />
     <fragment
         android:id="@+id/MypageFragment"
         android:name="com.ssafy.smartcafe.fragment.MypageFragment"
-        android:label="fragment_store"
+        android:label="fragment_mypage"
         tools:layout="@layout/fragment_mypage"/>
 
 </navigation>

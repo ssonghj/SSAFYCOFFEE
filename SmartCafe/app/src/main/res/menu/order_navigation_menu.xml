@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/AllFragment"
+        android:title="전체메뉴"/>
+
+    <item
+        android:id="@+id/CategoryFragment"
+        android:title="카테고리별"/>
+
+    <item
+        android:id="@+id/LikeMenuFragment"
+        android:title="찜한 메뉴"/>
+
+</menu>
