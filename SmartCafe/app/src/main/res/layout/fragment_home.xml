@@ -48,6 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_user_name"/>
 
         <TextView
+            android:id="@+id/tv_event_for_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="000님을 위한 이벤트"
@@ -58,8 +59,114 @@
             app:layout_constraintTop_toBottomOf="@id/tv_this_is_ssafycoffee"
             android:layout_marginTop="20dp"/>
 
-        
+        <ImageView
+            android:id="@+id/img_event_banner"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:src="@color/level"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_event_for_user"/>
 
+        <TextView
+            android:id="@+id/tv_recent_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최근 주문한 메뉴"
+            android:textColor="@color/black"
+            android:fontFamily="@font/jalnan"
+            android:textSize="20dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_event_banner"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recent_menu"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_recent_menu"/>
+
+        <TextView
+            android:id="@+id/tv_new_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="새로 들어온 따끈따끈한 신상 메뉴"
+            android:textColor="@color/black"
+            android:fontFamily="@font/jalnan"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_recent_menu"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_new_menu"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_new_menu"/>
+
+        <TextView
+            android:id="@+id/tv_recommend_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="000님 이 메뉴들은 어때요?"
+            android:textColor="@color/black"
+            android:fontFamily="@font/jalnan"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_new_menu"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recommend_menu"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_recommend_menu"/>
+
+        <TextView
+            android:id="@+id/tv_most_sell_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이번주에 가장 많이 팔렸어요!"
+            android:textColor="@color/black"
+            android:fontFamily="@font/jalnan"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_recommend_menu"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_most_sell_menu"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_most_sell_menu"/>
+
+        <TextView
+            android:id="@+id/tv_recommend_desert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이 디저트는 어때요?"
+            android:textColor="@color/black"
+            android:fontFamily="@font/jalnan"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_most_sell_menu"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recommend_desert"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_recommend_desert"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
