@@ -1,10 +1,9 @@
-package com.ssafy.smartcafe
+package com.ssafy.smartcafe.activity
 
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import com.ssafy.smartcafe.R
 
 class JoinActivity : AppCompatActivity() {
 
