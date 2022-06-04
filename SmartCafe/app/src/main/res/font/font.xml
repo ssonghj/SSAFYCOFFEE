@@ -6,4 +6,7 @@
 
     <font android:fontStyle="normal"
         android:font="@font/pretendard"/>
+
+    <font android:fontStyle="normal"
+        android:font="@font/diary"/>
 </font-family>

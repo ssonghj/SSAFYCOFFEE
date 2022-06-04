@@ -11,6 +11,7 @@
         <item name="colorSecondary">@color/button_color_seventy</item>
         <item name="colorSecondaryVariant">@color/button_color_seventy</item>
         <item name="colorOnSecondary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
