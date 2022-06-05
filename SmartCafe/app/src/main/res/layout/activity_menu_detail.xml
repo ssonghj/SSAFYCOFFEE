@@ -185,6 +185,7 @@
             app:layout_constraintBottom_toTopOf="@id/recycler_review"
             app:layout_constraintTop_toBottomOf="@id/seperate_line"/>
 
+        <!--item_simple_review 넣기-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_review"
             android:layout_width="match_parent"
