@@ -28,6 +28,8 @@
             android:layout_height="wrap_content"
             android:queryHint="메뉴를 검색하세요!"
             android:searchHintIcon="@drawable/search"
+            android:backgroundTint="@color/black"
+            android:foregroundTint="@color/black"
             app:searchIcon="@drawable/search"
             android:iconifiedByDefault="false"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +68,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_share"
+        android:id="@+id/btn_shopping_list"
         android:theme="@style/AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

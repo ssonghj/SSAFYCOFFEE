@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.MenuDetailActivity">
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/btn_like"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/favorite"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        tools:ignore="UseAppTint" />
+
+    <ImageView
+        android:id="@+id/img_menu"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:src="@drawable/cafelogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_menu"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/tv_menu_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jalnan"
+            android:text="아메리카노"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/layout_info" />
+
+        <TextView
+            android:id="@+id/tv_fix_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard"
+            android:text="가격"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_menu_name" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jalnan"
+            android:text="4,500원"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_menu_name" />
+
+        <TextView
+            android:id="@+id/tv_fix_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard"
+            android:text="수량"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_fix_price" />
+
+        <TextView
+            android:id="@+id/tv_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/jalnan"
+            android:text="-"
+            android:textColor="@color/button_color_seventy"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintRight_toLeftOf="@id/tv_count"
+            app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/jalnan"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintRight_toLeftOf="@id/tv_plus"
+            app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+        <TextView
+            android:id="@+id/tv_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jalnan"
+            android:text="+"
+            android:textColor="@color/button_color_seventy"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+        <TextView
+            android:id="@+id/tv_fix_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard"
+            android:text="평점"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_fix_count" />
+        <RatingBar
+            android:id="@+id/tv_rating"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:rating="3.5"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:progressTint="@color/button_color_seventy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_count"/>
+
+        <View
+            android:id="@+id/seperate_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#8C918C"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_fix_rating"/>
+
+        <TextView
+            android:id="@+id/tv_review_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="000건의 리뷰가 있어요!"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/jalnan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seperate_line"/>
+
+        <TextView
+            android:id="@+id/tv_more_detail_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="더보기"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/recycler_review"
+            app:layout_constraintTop_toBottomOf="@id/seperate_line"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_review"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_review_info"
+            app:layout_constraintBottom_toTopOf="@id/frame_order_btn"/>
+
+        <FrameLayout
+            android:id="@+id/frame_order_btn"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:background="@drawable/round_rectangle_button"
+            android:orientation="vertical"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="15dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/btn_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주문하기"
+                android:textSize="16dp"
+                android:textColor="#222121"
+                android:fontFamily="@font/jalnan"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

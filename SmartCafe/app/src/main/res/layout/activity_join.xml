@@ -10,10 +10,9 @@
     
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/black"
-        android:background="@drawable/arrow_back_ios_new"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"

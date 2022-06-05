@@ -33,7 +33,12 @@
     </style>
 
     <style name="Widget.MyApp.AutoCompleteTextView.SearchView" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:textColor">#000</item>
+        <item name="colorAccent">#5000</item>
+        <item name="android:textColorPrimary">#5000</item>
         <item name="android:textColorHint">#5000</item>
+        <item name="iconTint">@color/black</item>
+        <item name="colorOnPrimary">#5000</item>
+        <item name="colorOnSecondary">#5000</item>
+        <item name="android:textColorSecondary">#5000</item>
     </style>
 </resources>

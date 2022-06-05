@@ -17,15 +17,16 @@
         <entry key="app/src/main/res/drawable/shopping_bag.xml" value="0.12" />
         <entry key="app/src/main/res/drawable/splash.xml" value="0.12" />
         <entry key="app/src/main/res/font/font.xml" value="0.2222222222222222" />
-        <entry key="app/src/main/res/layout/activity_join.xml" value="0.5186335403726708" />
+        <entry key="app/src/main/res/layout/activity_join.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.12760416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_menu_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_all.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/fragment_like_menu.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/fragment_mypage.xml" value="0.17135416666666667" />
-        <entry key="app/src/main/res/layout/fragment_order.xml" value="0.17135416666666667" />
+        <entry key="app/src/main/res/layout/fragment_order.xml" value="0.3439767779390421" />
         <entry key="app/src/main/res/layout/round_rectangle.xml" value="0.29791666666666666" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/menu/order_navigation_menu.xml" value="0.16458333333333333" />
