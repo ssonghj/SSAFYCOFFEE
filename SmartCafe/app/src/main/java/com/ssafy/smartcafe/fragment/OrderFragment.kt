@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.MenuDetailActivity
+import com.ssafy.smartcafe.activity.ShoppingListActivity
 import com.ssafy.smartcafe.databinding.FragmentOrderBinding
 
 class OrderFragment : Fragment() {
@@ -39,7 +40,7 @@ class OrderFragment : Fragment() {
 
         //임시로 xml확인용
         binding.btnShoppingList.setOnClickListener{
-            var intent = Intent(ctx,MenuDetailActivity::class.java)
+            var intent = Intent(ctx,ShoppingListActivity::class.java)
             startActivity(intent)
         }
 

@@ -13,9 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
         <activity
-            android:name=".activity.MenuReviewActivity"
+            android:name=".activity.DetailCurOrderMenuActivity"
             android:exported="false"
             android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".activity.UserLikeActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".activity.UserRecentOrderListActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ShoppingListActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.UserReviewActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.MenuReviewActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.MenuDetailActivity"
             android:exported="false"
