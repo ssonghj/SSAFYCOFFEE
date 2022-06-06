@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.activity.NotificationActivity
+import com.ssafy.smartcafe.activity.SettingActivity
 import com.ssafy.smartcafe.activity.UserRecentOrderListActivity
 import com.ssafy.smartcafe.activity.UserReviewActivity
 import com.ssafy.smartcafe.databinding.FragmentMypageBinding
@@ -36,6 +38,16 @@ class MypageFragment : Fragment() {
 
         binding.frameOrderList.setOnClickListener{
             val intent = Intent(ctx, UserRecentOrderListActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnNotification.setOnClickListener{
+            val intent = Intent(ctx, NotificationActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnSetting.setOnClickListener{
+            val intent = Intent(ctx, SettingActivity::class.java)
             startActivity(intent)
         }
 
