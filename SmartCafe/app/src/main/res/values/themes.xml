@@ -4,13 +4,13 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <item name="android:textColor">@color/black</item>
         <item name="iconTint">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/button_color_seventy</item>
         <item name="colorSecondaryVariant">@color/button_color_seventy</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <item name="android:textColorSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -40,5 +40,11 @@
         <item name="colorOnPrimary">#5000</item>
         <item name="colorOnSecondary">#5000</item>
         <item name="android:textColorSecondary">#5000</item>
+    </style>
+
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/jalnan</item>
+        <item name="android:textSize">20dp</item>
     </style>
 </resources>

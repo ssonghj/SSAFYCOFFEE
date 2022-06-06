@@ -123,6 +123,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_level_notification"/>
 
+        <!--item ready-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_waiting_menu"
             android:layout_width="0dp"

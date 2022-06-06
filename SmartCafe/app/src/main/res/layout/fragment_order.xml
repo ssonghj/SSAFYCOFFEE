@@ -38,10 +38,10 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
+        android:theme="@style/Widget.BottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        app:popUpToInclusive="true"
         app:menu="@menu/order_navigation_menu"
         app:labelVisibilityMode="labeled"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,8 @@
         app:layout_constraintTop_toBottomOf="@id/frame_searchview"
         app:itemIconTint="@drawable/bottom_nav_color"
         app:itemTextColor="@drawable/bottom_nav_color"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        app:elevation="0dp"/>
 
     <fragment
         android:id="@+id/order_nav_host"

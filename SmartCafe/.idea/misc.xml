@@ -42,6 +42,7 @@
         <entry key="app/src/main/res/layout/item_detail_review.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_menu.xml" value="0.4390131632486979" />
         <entry key="app/src/main/res/layout/item_notification.xml" value="0.13072916666666667" />
+        <entry key="app/src/main/res/layout/item_ready.xml" value="0.13072916666666667" />
         <entry key="app/src/main/res/layout/item_recent_shopping_list.xml" value="0.3572916666666667" />
         <entry key="app/src/main/res/layout/item_shopping_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_simple_review.xml" value="0.33" />
