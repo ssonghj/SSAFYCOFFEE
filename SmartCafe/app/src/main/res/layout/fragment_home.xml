@@ -61,14 +61,34 @@
             app:layout_constraintTop_toBottomOf="@id/tv_this_is_ssafycoffee"
             android:layout_marginTop="20dp"/>
 
-        <ImageView
-            android:id="@+id/img_event_banner"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:src="@color/level"
+        <FrameLayout
+            android:id="@+id/frame_event_banner"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_event_for_user"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_event_for_user"/>
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"/>
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dotsColor="@color/login_user_color"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="16dp"
+                app:dotsSpacing="4dp"
+                app:dotsWidthFactor="2.5"
+                android:layout_gravity="center|bottom"
+                app:selectedDotColor="@color/button_color_seventy"
+                app:progressMode="true"/>
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tv_recent_menu"
@@ -80,7 +100,7 @@
             android:textSize="20dp"
             android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_event_banner"/>
+            app:layout_constraintTop_toBottomOf="@id/frame_event_banner"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_recent_menu"

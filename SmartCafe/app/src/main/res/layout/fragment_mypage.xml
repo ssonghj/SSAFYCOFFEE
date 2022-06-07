@@ -154,21 +154,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_next_level_noti">
 
-            <ImageView
-                android:id="@+id/img_coupon"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/cafelogo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-            <ImageView
-                android:id="@+id/img_no_coupon"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/shape_circle_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_coupon"/>
-
+            <!--리사이클러뷰 5칸 2열로 만들어서 쿠폰 -->
+            <!--쿠폰있으면 coupon item 쓰고 , 없으면 item_no_coupon.xml-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_coupon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
