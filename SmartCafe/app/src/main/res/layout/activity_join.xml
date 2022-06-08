@@ -57,6 +57,7 @@
                 android:drawableEnd="@drawable/round_rectangle_button"
                 android:textColor="@color/black"
                 android:theme="@style/editText"
+                android:singleLine="true"
                 app:layout_constraintEnd_toStartOf="@+id/frame_check_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_id" />
@@ -70,7 +71,8 @@
                 android:elevation="10dp"
                 app:layout_constraintBottom_toBottomOf="@id/et_id"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="13dp">
+                android:layout_marginBottom="13dp"
+                android:layout_marginRight="5dp">
 
                 <TextView
                     android:id="@+id/btn_check"
@@ -78,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:text="중복확인"
                     android:textSize="10dp"
-                    android:textColor="#222121"
+                    android:textColor="@color/login_user_color"
                     android:fontFamily="@font/jalnan"
                     android:layout_gravity="center"/>
             </FrameLayout>
@@ -102,6 +104,7 @@
                 android:theme="@style/editText"
                 android:layout_width="243dp"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 app:layout_constraintTop_toBottomOf="@+id/tv_pw"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -123,6 +126,7 @@
                 android:id="@+id/et_pw_check"
                 android:textColor="@color/black"
                 android:theme="@style/editText"
+                android:singleLine="true"
                 android:layout_width="243dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tv_pw_check"
@@ -148,6 +152,7 @@
                 android:theme="@style/editText"
                 android:layout_width="243dp"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nickname"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
