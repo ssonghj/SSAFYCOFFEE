@@ -53,27 +53,30 @@ class LoginActivity : AppCompatActivity() {
             val response = service.userLogin(inputUser).execute()
 
             if(response.code() == 200){
-                var res = response.body() ?: null
 
-                user = res!!
+                var res = response.body()
 
-                val handler = Handler(Looper.getMainLooper())
-                handler.postDelayed(java.lang.Runnable {
-                    FancyToast.makeText(applicationContext,
-                        "아이디 혹은 비밀번호가 일치하지 않습니다.",
-                        FancyToast.LENGTH_SHORT,
-                        FancyToast.CONFUSING,
-                        false).show()
-                }, 0)
+                if(res == null){
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.postDelayed(java.lang.Runnable {
+                        FancyToast.makeText(applicationContext,
+                            "아이디 혹은 비밀번호가 일치하지 않습니다.",
+                            FancyToast.LENGTH_SHORT,
+                            FancyToast.CONFUSING,
+                            false).show()
+                    }, 0)
+                }else{
 
-                if(user.id == id && user.pass == pass){
-                    val intent = Intent(applicationContext, MainActivity::class.java);
-                    startActivity(intent)
+                    user = res!!
+                    if(user.id == id && user.pass == pass){
+                        val intent = Intent(applicationContext, MainActivity::class.java);
+                        startActivity(intent)
+                    }
                 }
 
                 Log.d(TAG, "getIDPass: ${res}")
             }else{
-                Log.d(TAG, "getIDPass: error code ${response.code()}")
+                Log.d(TAG, "getIDPass: error code")
             }
         }
 

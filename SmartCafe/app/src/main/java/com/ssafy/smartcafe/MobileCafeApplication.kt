@@ -3,8 +3,12 @@ package com.ssafy.smartcafe
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import okhttp3.ResponseBody
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Type
+
 
 class MobileCafeApplication: Application() {
     // Application 인스턴스는 앱이 최초 실행될 때 생성되거나
@@ -30,6 +34,7 @@ class MobileCafeApplication: Application() {
         // 앱이 처음 생성되는 순간, retrofit 인스턴스를 생성
         retrofit = Retrofit.Builder()
             .baseUrl(BOARD_URL)
+            .addConverterFactory(NullOnEmptyConverterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -48,3 +53,17 @@ class PreferenceUtil(context: Context) {
     }
 }
 
+/**
+ * 비어있는(length=0)인 Response를 받았을 경우 처리
+ */
+class NullOnEmptyConverterFactory : Converter.Factory() {
+    override fun responseBodyConverter(type: Type?, annotations: Array<Annotation>?, retrofit: Retrofit?): Converter<ResponseBody, *>? {
+        val delegate = retrofit!!.nextResponseBodyConverter<Any>(this, type!!, annotations!!)
+        return Converter<ResponseBody, Any> {
+            if (it.contentLength() == 0L) return@Converter null
+            delegate.convert(it)
+        }
+    }
+}
+
+class EmptyResponse
