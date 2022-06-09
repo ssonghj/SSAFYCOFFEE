@@ -56,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
 
                 var res = response.body()
 
+                //로그인할 아이디와 비번 값이 없는 경우 토스트 메시지
                 if(res == null){
                     val handler = Handler(Looper.getMainLooper())
                     handler.postDelayed(java.lang.Runnable {
@@ -65,11 +66,12 @@ class LoginActivity : AppCompatActivity() {
                             FancyToast.CONFUSING,
                             false).show()
                     }, 0)
-                }else{
-
+                }
+                //로그인아이디와 비번 있을 경우
+                else{
                     user = res!!
                     if(user.id == id && user.pass == pass){
-                        val intent = Intent(applicationContext, MainActivity::class.java);
+                        val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                     }
                 }

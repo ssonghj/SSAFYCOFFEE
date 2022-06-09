@@ -74,4 +74,10 @@ dependencies {
 
     //토스트 메시지
     implementation 'io.github.shashank02051997:FancyToast:2.0.1'
+
+    //뷰모델
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-livedata:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+
 }

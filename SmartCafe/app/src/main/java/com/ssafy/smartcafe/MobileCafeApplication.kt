@@ -65,5 +65,3 @@ class NullOnEmptyConverterFactory : Converter.Factory() {
         }
     }
 }
-
-class EmptyResponse
