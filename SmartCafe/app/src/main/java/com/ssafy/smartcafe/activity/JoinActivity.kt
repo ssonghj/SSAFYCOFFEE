@@ -17,6 +17,7 @@ import com.shashank.sony.fancytoastlib.FancyToast
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.databinding.ActivityJoinBinding
+import com.ssafy.smartcafe.dto.UserDTO
 import com.ssafy.smartcafe.service.UserService
 import com.ssafy.smartcafe.viewModel.JoinViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -60,8 +61,6 @@ class JoinActivity : AppCompatActivity() {
             val passCheck = binding.etPwCheck.text.toString()
             val nickname = binding.etNickname.text.toString()
 
-            println("getcolor : ${mainViewModel.getColorValue().value}")
-
             //칸이 비었을 경우
             if(id == "" || pass == "" || passCheck == "" || nickname == ""){
                 FancyToast.makeText(applicationContext,
@@ -87,8 +86,13 @@ class JoinActivity : AppCompatActivity() {
                     false).show()
             }
             //정상 회원가입
-            else{
-                //회원넣기 로직
+            else{ //서버에 회원넣기 로직
+
+                val user = UserDTO(id,nickname,pass,0)
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    addUser(user)
+                }
 
                 FancyToast.makeText(applicationContext,
                     "회원가입이 완료되었습니다.",
@@ -129,6 +133,20 @@ class JoinActivity : AppCompatActivity() {
                 Log.d(TAG, "getIDPass: error code")
             }
         }
-
     }
+
+    private suspend fun addUser(user: UserDTO) {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(UserService::class.java)
+            val response = service.userInsert(user).execute()
+
+            if (response.code() == 200) {
+                var res = response.body()!!
+                println("joinSuccess : ${res}")
+            } else {
+                Log.d(TAG, "joinSuccess: error code")
+            }
+        }
+    }
+
 }
