@@ -157,10 +157,13 @@
             <!--리사이클러뷰 5칸 2열로 만들어서 쿠폰 -->
             <!--쿠폰있으면 coupon item 쓰고 , 없으면 item_no_coupon.xml-->
             <androidx.recyclerview.widget.RecyclerView
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="5"
                 android:id="@+id/recycler_coupon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
