@@ -1,5 +1,6 @@
 package com.ssafy.smartcafe.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelLazy
@@ -30,6 +32,7 @@ class JoinActivity : AppCompatActivity() {
         { viewModelStore },
         { defaultViewModelProviderFactory }
     )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
@@ -48,6 +51,52 @@ class JoinActivity : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.Main).launch {
                 checkId(inputId)
+            }
+        }
+
+        binding.frameJoinBtn.setOnClickListener{
+            val id = binding.etId.text.toString()
+            val pass = binding.etPw.text.toString()
+            val passCheck = binding.etPwCheck.text.toString()
+            val nickname = binding.etNickname.text.toString()
+
+            println("getcolor : ${mainViewModel.getColorValue().value}")
+
+            //칸이 비었을 경우
+            if(id == "" || pass == "" || passCheck == "" || nickname == ""){
+                FancyToast.makeText(applicationContext,
+                    "빈칸을 채워주세요",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.CONFUSING,
+                    false).show()
+            }
+            //중복체크 안되어있을 경우
+            else if(mainViewModel.getColorValue().value == 0){
+                FancyToast.makeText(applicationContext,
+                    "아이디 중복체크 해주세요",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.CONFUSING,
+                    false).show()
+            }
+            //비밀번호와 비번 체크 동일하지 않은 경우
+            else if(pass != passCheck){
+                FancyToast.makeText(applicationContext,
+                    "비밀번호가 동일하지 않습니다.",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.CONFUSING,
+                    false).show()
+            }
+            //정상 회원가입
+            else{
+                //회원넣기 로직
+
+                FancyToast.makeText(applicationContext,
+                    "회원가입이 완료되었습니다.",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.SUCCESS,
+                    false).show()
+
+                finish()
             }
         }
     }

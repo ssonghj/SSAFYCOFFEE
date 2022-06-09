@@ -33,6 +33,10 @@ class JoinViewModel:ViewModel() {
         color.postValue(1)
     }
 
+    fun getColorValue(): MutableLiveData<Int> {
+        return this.color
+    }
+
 
 
 
