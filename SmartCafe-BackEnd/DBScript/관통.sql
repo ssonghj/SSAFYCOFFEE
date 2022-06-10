@@ -1,9 +1,10 @@
 drop database if exists ssafy_mobile_cafe;
-select @@global.transaction_isolation, @@transaction_isolation;
-set @@transaction_isolation="read-committed";
+-- select @@global.transaction_isolation, @@transaction_isolation;
+-- set @@transaction_isolation="read-committed";
 
 create database ssafy_mobile_cafe;
 use ssafy_mobile_cafe;
+
 
 create table t_user(
 	id varchar(100) primary key,
@@ -57,6 +58,24 @@ create table t_comment(
     constraint fk_comment_product foreign key(product_id) references t_product(id) on delete cascade
 );
 
+create table t_event(
+	id integer auto_increment primary key,
+    title varchar(100) not null,
+    img varchar(100) not null
+);
+
+create table t_notification(
+	id integer auto_increment primary key,
+    user_id varchar(100) not null,
+    content varchar(300) not null,
+    time timestamp default CURRENT_TIMESTAMP
+);
+
+create table t_likemenu(
+	id integer auto_increment primary key,
+    user_id varchar(100) not null,
+    product_id integer not null
+);
 
 INSERT INTO t_user (id, name, pass, stamps) VALUES ('ssafy01', '김싸피', 'pass01', 5);
 INSERT INTO t_user (id, name, pass, stamps) VALUES ('ssafy02', '황원태', 'pass02', 0);
@@ -69,16 +88,23 @@ INSERT INTO t_user (id, name, pass, stamps) VALUES ('ssafy08', '강석우', 'pas
 INSERT INTO t_user (id, name, pass, stamps) VALUES ('ssafy09', '견본무', 'pass09', 9);
 INSERT INTO t_user (id, name, pass, stamps) VALUES ('ssafy10', '전인성', 'pass10', 20);
 
-INSERT INTO t_product (name, type, price, img) VALUES ('아메리카노', 'coffee', 4100, 'coffee1.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('카페라떼', 'coffee', 4500, 'coffee2.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('카라멜 마끼아또', 'coffee', 4800, 'coffee3.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('카푸치노', 'coffee', 4800, 'coffee4.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('모카라떼', 'coffee', 4800, 'coffee5.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('민트라떼', 'coffee', 4300, 'coffee6.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('화이트 모카라떼', 'coffee', 4800, 'coffee7.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('자몽에이드', 'coffee', 5100, 'coffee8.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('레몬에이드', 'coffee', 5100, 'coffee9.png');
-INSERT INTO t_product (name, type, price, img) VALUES ('초코칩 쿠키', 'cookie', 1500, 'cookie.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('아메리카노', 'coffee', 4100, 'm_americano.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('카페라떼', 'coffee', 4500, 'm_cafe_latte.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('카푸치노', 'coffee', 4800, 'm_capuchino.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('자몽에이드', 'coffee', 4800, 'm_jamong_ade.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('민트초코라떼', 'coffee', 4800, 'm_mint_choco_latte.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('모카라떼', 'coffee', 4300, 'm_mocalatte.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('레몬에이드', 'coffee', 4800, 'm_remon_ade.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('화이트모카라떼', 'coffee', 5100, 'm_white_moca_latte.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('초코케이크', 'desert', 6000, 'd_choco_cake.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('초코칩쿠키', 'desert', 4000, 'd_choco_chip.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('다크초코칩쿠키', 'desert', 4100, 'd_dark_choco_chip.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('망고케이크', 'desert', 4500, 'd_mango_cake.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('오레오케이크', 'desert', 5000, 'd_oreo_cake.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('레드벨벳케이크', 'desert', 5500, 'd_redvelvet_cake.png');
+INSERT INTO t_product (name, type, price, img) VALUES ('티라미수', 'desert', 6000, 'd_tiramisu.png');
+
+
 commit;
 INSERT INTO t_comment (user_id, product_id, rating, comment) VALUES ('ssafy01', 1, 1, '신맛 강한 커피는 좀 별루네요.');
 INSERT INTO t_comment (user_id, product_id, rating, comment) VALUES ('ssafy02', 1, 2, '커피 맛을 좀 신경 써야 할 것 같네요.');
@@ -127,5 +153,24 @@ INSERT INTO t_stamp (user_id, order_id, quantity) VALUES ('ssafy08', 8, 8);
 INSERT INTO t_stamp (user_id, order_id, quantity) VALUES ('ssafy09', 9, 9);
 INSERT INTO t_stamp (user_id, order_id, quantity) VALUES ('ssafy10', 10, 20);
 
+INSERT INTO t_event (title, img) VALUES ("summer1","event1.png");
+INSERT INTO t_event (title, img) VALUES ("summer2","event2.png");
+INSERT INTO t_event (title, img) VALUES ("summer3","event3.png");
+
+INSERT INTO t_notification (user_id, content) VALUES ("ssafy01","주문이 완료되었습니다.");
+INSERT INTO t_notification (user_id, content) VALUES ("ssafy01","주문하신 음식이 준비되었습니다.");
+INSERT INTO t_notification (user_id, content) VALUES ("ssafy02","주문이 완료되었습니다.");
+INSERT INTO t_notification (user_id, content) VALUES ("ssafy02","주문하신 음식이 준비되었습니다.");
+
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy01", 1);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy01", 2);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy01", 3);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy02", 4);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy02", 5);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy02", 6);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy03", 7);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy03", 2);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy04", 11);
+INSERT INTO t_likemenu (user_id, product_id) VALUES ("ssafy04", 10);
 
 commit;
