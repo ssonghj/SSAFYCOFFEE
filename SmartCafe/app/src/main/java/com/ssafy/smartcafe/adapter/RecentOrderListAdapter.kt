@@ -15,7 +15,7 @@ import com.ssafy.smartcafe.dto.RecentOrderDTO
 import java.util.LinkedHashMap
 
 private const val TAG="RecentOrderListAdapter"
-class RecentOrderListAdapter(var context: Context, val resource: Int, objects: LinkedHashMap<Int, MutableList<RecentOrderDTO>>, var mapKey:MutableList<Int>)
+class RecentOrderListAdapter(var context: Context, private val resource: Int, objects: LinkedHashMap<Int, MutableList<RecentOrderDTO>>, var mapKey:MutableList<Int>)
     : RecyclerView.Adapter<HomeHolder>() {
 
     //사용하고자 하는 데이터
@@ -32,7 +32,6 @@ class RecentOrderListAdapter(var context: Context, val resource: Int, objects: L
         //한번에 orderId별로 다 가져와서 두개 이상이면 ~외 ~잔, 이름, 가격 , 날짜 출력
         var curInfo = orderList.getValue(mapKey[position])
 
-
         var img = curInfo[0].img
 
         var resId = context.resources.getIdentifier(
@@ -46,7 +45,7 @@ class RecentOrderListAdapter(var context: Context, val resource: Int, objects: L
         var sum = 0
         var totalQuantity = 0
 
-        Log.d(TAG, "onBindViewHolder: ${curInfo.size}")
+        Log.d(TAG, "onBindViewHolder: ${curInfo}")
         if(curInfo.size >= 2){
             for(i in curInfo.indices){
                 sum += curInfo[i].price * curInfo[i].quantity

@@ -51,7 +51,6 @@ class HomeFragment : Fragment() {
         binding.tvEventForUser.text = LoginActivity.userName+"님을 위한 이벤트"
         binding.tvRecommendMenu.text = LoginActivity.userName+"님 이 메뉴들은 어때요?"
 
-
         //최근내역
         getRecentOrder(binding.root)
         return binding.root
@@ -65,6 +64,7 @@ class HomeFragment : Fragment() {
             var mapKey = mutableListOf<Int>()
 
             for(i in orderList.indices){
+                Log.d(TAG, "homeAdapter: ${orderList[i]}")
                 if(list.isEmpty()){
                     list.add(orderList[i])
                 }else{
@@ -72,14 +72,19 @@ class HomeFragment : Fragment() {
                         list.add(orderList[i])
                     }else if(list[0].o_id != orderList[i].o_id){
                         mapKey.add(list[0].o_id)
-                        map[list[0].o_id] = list
+                        map.put(list[0].o_id,list)
                         list = mutableListOf()
                         list.add(orderList[i])
                     }
                 }
             }
 
-            Log.d(TAG, "homeAdapter: ${list.size}")
+            //다 넣고 나면
+            mapKey.add(list[0].o_id)
+            map.put(list[0].o_id,list)
+            list = mutableListOf()
+
+            Log.d(TAG, "homeAdapter: ${mapKey}")
             println("list : ${list.size}")
 
 
