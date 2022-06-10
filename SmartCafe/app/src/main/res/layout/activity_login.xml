@@ -71,6 +71,7 @@
             android:layout_gravity="center"
             android:singleLine="true"
             android:hint="비밀번호"
+            android:inputType="textPassword"
             android:textColor="@color/black"
             android:theme="@style/editText"
             android:textColorHint="@color/login_user_color"

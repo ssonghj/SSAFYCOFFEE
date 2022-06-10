@@ -25,7 +25,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-const val TAG = "AllFragment"
+private const val TAG = "AllFragment"
 class AllFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var allFragmentAdapter : AllFragmentAdapter
