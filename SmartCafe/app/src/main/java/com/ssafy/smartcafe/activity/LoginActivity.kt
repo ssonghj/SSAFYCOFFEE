@@ -71,6 +71,9 @@ class LoginActivity : AppCompatActivity() {
                 else{
                     user = res!!
                     if(user.id == id && user.pass == pass){
+                        LoginActivity.userId = user.id
+                        LoginActivity.userName = user.name
+                        LoginActivity.userStamp = user.stamps
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                     }
@@ -82,5 +85,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    //현재 사용자 정보를 담아두기 위한 전역변수
+    companion object {
+        var userId = ""
+        var userName = ""
+        var userStamp = 0
     }
 }
