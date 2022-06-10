@@ -1,0 +1,38 @@
+package com.ssafy.smartcafe.adapter
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.dto.ProductDTO
+
+private const val TAG="AllFragmentrAdapter_싸피"
+//전체메뉴 어댑터
+class AllFragmentAdapter(var context: Context, val resource: Int, list:List<ProductDTO>) : RecyclerView.Adapter<AllFragmentHolder>() {
+    //사용하고자 하는 데이터
+    var listData = list
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllFragmentHolder {
+        val view = LayoutInflater.from(parent.context).inflate(resource,parent,false)
+        return AllFragmentHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return listData.size
+    }
+
+    override fun onBindViewHolder(holder: AllFragmentHolder, position: Int) {
+        holder.productName.text = listData[position].name
+        holder.productPrice.text = listData[position].price.toString()
+    }
+}
+
+class AllFragmentHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+    var productImg: ImageView = itemView!!.findViewById(R.id.img_item)
+    var productName: TextView = itemView!!.findViewById(R.id.tv_item_name)
+    var productPrice: TextView = itemView!!.findViewById(R.id.tv_price)
+}
