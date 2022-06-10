@@ -80,9 +80,11 @@ class HomeFragment : Fragment() {
             }
 
             //다 넣고 나면
-            mapKey.add(list[0].o_id)
-            map.put(list[0].o_id,list)
-            list = mutableListOf()
+            if(list.size!=0) {
+                mapKey.add(list[0].o_id)
+                map.put(list[0].o_id, list)
+                list = mutableListOf()
+            }
 
             Log.d(TAG, "homeAdapter: ${mapKey}")
             println("list : ${list.size}")
