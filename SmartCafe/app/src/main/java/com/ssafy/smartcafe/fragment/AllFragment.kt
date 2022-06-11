@@ -53,8 +53,6 @@ class AllFragment : Fragment() {
         //스피너 설정 함수
         setSpinner()
 
-        //인기순대로 메뉴 디폴트로 보이기
-        setAdapter()
 
         return binding.root
     }
@@ -66,34 +64,41 @@ class AllFragment : Fragment() {
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
 
-                //아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
-                when(position) {
-                    //인기순
-                    0 -> {
+                CoroutineScope(Dispatchers.Main).launch {
 
+                    //아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
+                    when (position) {
+                        //인기순
+                        0 -> {
+                            getProductWithSell()
+                        }
+                        //낮은 가격순
+                        1 -> {
+                            getProductWithRowPrice()
+                        }
+                        //높은가격순
+                        2 -> {
+                            getProductWithHighPrice()
+                        }
+                        //리뷰많은순
+                        3 -> {
+                            getProductWithHighCommentCnt()
+                        }
+                        //평점순
+                        else -> {
+                            getProductWithHighRating()
+                        }
                     }
-                    //낮은 가격순
-                    1 -> {
-
-                    }
-                    //높은가격순
-                    2 -> {
-
-                    }
-                    //리뷰많은순
-                    3 ->{
-
-                    }
-                    //평점순
-                    else -> {
-
-                    }
+                    setAdapter()
                 }
                 //끝난 후에는 ui 갱신
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-
+                CoroutineScope(Dispatchers.Main).launch {
+                    getProductWithSell()
+                    setAdapter()
+                }
             }
         }
     }
@@ -102,7 +107,7 @@ class AllFragment : Fragment() {
     private fun setAdapter(){
 
         CoroutineScope(Dispatchers.Main).launch {
-            getProductWithSell()
+//            getProductWithSell()
 
             // 1. ListView 객체 생성
             recyclerView = binding.recyclerAllMenu
@@ -122,6 +127,62 @@ class AllFragment : Fragment() {
         withContext(Dispatchers.IO) {
             val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
             val response = service.selectProductWithSell().execute()
+
+            if (response.code() == 200) {
+                productList = (response.body() as ArrayList<ProductDTO>?)!!
+                println("getProductWithSell : ${productList}")
+            } else {
+                Log.d(TAG, "getProductWithSell: error code")
+            }
+        }
+    }
+
+    private suspend fun getProductWithRowPrice() {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.selectProductWithRowPrice().execute()
+
+            if (response.code() == 200) {
+                productList = (response.body() as ArrayList<ProductDTO>?)!!
+                println("getProductWithSell : ${productList}")
+            } else {
+                Log.d(TAG, "getProductWithSell: error code")
+            }
+        }
+    }
+
+    private suspend fun getProductWithHighPrice() {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.selectProductWithHighPrice().execute()
+
+            if (response.code() == 200) {
+                productList = (response.body() as ArrayList<ProductDTO>?)!!
+                println("getProductWithSell : ${productList}")
+            } else {
+                Log.d(TAG, "getProductWithSell: error code")
+            }
+        }
+    }
+
+    private suspend fun getProductWithHighCommentCnt() {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.selectProductWithHighCommentCnt().execute()
+
+            if (response.code() == 200) {
+                productList = (response.body() as ArrayList<ProductDTO>?)!!
+                println("getProductWithSell : ${productList}")
+            } else {
+                Log.d(TAG, "getProductWithSell: error code")
+            }
+        }
+    }
+
+    private suspend fun getProductWithHighRating() {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.selectProductWithHighRating().execute()
 
             if (response.code() == 200) {
                 productList = (response.body() as ArrayList<ProductDTO>?)!!
