@@ -3,10 +3,17 @@ package com.ssafy.smartcafe.fragment
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelLazy
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
@@ -15,10 +22,13 @@ import com.ssafy.smartcafe.adapter.ProductsListAdapter
 import com.ssafy.smartcafe.databinding.FragmentCategoryBinding
 import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.service.ProductService
+import com.ssafy.smartcafe.viewModel.AllFragmentViewModel
+import com.ssafy.smartcafe.viewModel.JoinViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 private const val TAG = "CategoryFragment"
 class CategoryFragment : Fragment() {
@@ -26,6 +36,12 @@ class CategoryFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var categoryFragmentAdapter : ProductsListAdapter
     private lateinit var productList:List<ProductDTO>
+
+    val mainViewModel: AllFragmentViewModel by ViewModelLazy(
+        AllFragmentViewModel::class,
+        { viewModelStore },
+        { defaultViewModelProviderFactory }
+    )
 
     private lateinit var ctx: Context
 
@@ -39,6 +55,10 @@ class CategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCategoryBinding.inflate(layoutInflater)
+        binding.apply {
+            lifecycleOwner = this@CategoryFragment
+            viewModel = mainViewModel
+        }
 
         CoroutineScope(Dispatchers.Main).launch {
             getAllCoffee()
@@ -46,26 +66,17 @@ class CategoryFragment : Fragment() {
         }
 
         binding.tvDrink.setOnClickListener{
-            binding.tvDrink.currentTextColor.apply {
-                R.color.button_color_seventy
-            }
-            binding.tvDesert.currentTextColor.apply {
-                R.color.login_user_color
-            }
+            //클릭해도 아직 색상 안바뀜 -> 뷰모델 설정해서 post로 바꾸어주어야 할 것 같음.
             CoroutineScope(Dispatchers.Main).launch {
+                mainViewModel.changeDrink()
                 getAllCoffee()
                 setAdapter()
             }
         }
 
         binding.tvDesert.setOnClickListener{
-            binding.tvDrink.currentTextColor.apply {
-                R.color.login_user_color
-            }
-            binding.tvDesert.currentTextColor.apply {
-                R.color.button_color_seventy
-            }
             CoroutineScope(Dispatchers.Main).launch {
+                mainViewModel.changeDesert()
                 getAllDesert()
                 setAdapter()
             }
