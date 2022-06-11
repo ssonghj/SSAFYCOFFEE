@@ -50,4 +50,15 @@ public class ProductServiceImpl implements ProductService {
 		return pDao.selectAllWithHighRating();
 	}
 
+	@Override
+	public List<Product> getAllCoffee() {
+		return pDao.selectCoffee();
+	}
+
+	@Override
+	public List<Product> getAllDesert() {
+		// TODO Auto-generated method stub
+		return pDao.selectDesert();
+	}
+
 }

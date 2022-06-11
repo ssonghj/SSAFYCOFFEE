@@ -31,6 +31,12 @@ public interface ProductService {
 	//모든 상품정보를 평점순 으로 반환 
 	List<Product> getProductWithHighRating();
 	
+	//음료수만 반환
+	List<Product> getAllCoffee();
+	
+	//디저트만 반
+	List<Product> getAllDesert();
+
 
 	/**
 	 * backend 관통 과정에서 추가됨

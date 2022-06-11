@@ -66,4 +66,16 @@ public class ProductRestController {
 		return pService.getProductWithHighRating();
 	}
 	
+	@GetMapping("/coffee")
+	@ApiOperation(value = "전체 커피메뉴를 반환한다.", response = List.class)
+	public List<Product> getAllCoffee() {
+		return pService.getAllCoffee();
+	}
+	
+	@GetMapping("/desert")
+	@ApiOperation(value = "전체 디저트 메뉴를 반환한다.", response = List.class)
+	public List<Product> getAllDesert() {
+		return pService.getAllDesert();
+	}
+	
 }

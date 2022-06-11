@@ -81,9 +81,19 @@
 	<!-- 평점순 -->
 	<select id="selectAllWithHighRating" resultType="Product">
 		select p.id, p.name, p.type, p.price, p.img
-		from t_product p join V1
+		from t_product p left join V1
 		on p.id = V1.product_id
-        order by  V1.sumRating/V1.cnt desc;
+        order by V1.sumRating/V1.cnt desc;
+	</select>
+	
+	<select id="selectCoffee" resultType="Product">
+		select * from t_product
+		where type = "coffee";
+	</select>
+	
+	<select id="selectDesert" resultType="Product">
+		select * from t_product
+		where type = "desert";
 	</select>
 
 </mapper>
