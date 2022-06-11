@@ -35,4 +35,11 @@ interface ProductService {
     @GET("product/highRating")
     fun selectProductWithHighRating(): Call<List<ProductDTO>>
 
+    //모든 음료 반환
+    @GET("product/coffee")
+    fun selectAllCoffee(): Call<List<ProductDTO>>
+
+    //모든 디저트 반환
+    @GET("product/desert")
+    fun selectAllDesert(): Call<List<ProductDTO>>
 }

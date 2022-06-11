@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
-import com.ssafy.smartcafe.adapter.AllFragmentAdapter
+import com.ssafy.smartcafe.adapter.ProductsListAdapter
 import com.ssafy.smartcafe.databinding.FragmentAllBinding
 import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.dto.UserDTO
@@ -31,7 +31,7 @@ import kotlinx.coroutines.withContext
 private const val TAG = "AllFragment"
 class AllFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var allFragmentAdapter : AllFragmentAdapter
+    private lateinit var allFragmentAdapter : ProductsListAdapter
     private lateinit var productList:List<ProductDTO>
 
 
@@ -114,7 +114,7 @@ class AllFragment : Fragment() {
             recyclerView.layoutManager = GridLayoutManager(ctx,3)
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
-            allFragmentAdapter = AllFragmentAdapter(ctx, R.layout.item_menu, productList)
+            allFragmentAdapter = ProductsListAdapter(ctx, R.layout.item_menu, productList)
 
             // 3. ListView와 Adapter 연결
             recyclerView.adapter = allFragmentAdapter

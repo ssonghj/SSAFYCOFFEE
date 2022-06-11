@@ -16,7 +16,7 @@ import com.ssafy.smartcafe.viewModel.AllFragmentViewModel
 
 private const val TAG="AllFragmentrAdapter_싸피"
 //전체메뉴 어댑터
-class AllFragmentAdapter(var context: Context, val resource: Int, list:List<ProductDTO>) : RecyclerView.Adapter<AllFragmentHolder>() {
+class ProductsListAdapter(var context: Context, val resource: Int, list:List<ProductDTO>) : RecyclerView.Adapter<AllFragmentHolder>() {
     //사용하고자 하는 데이터
     var listData = list
 
