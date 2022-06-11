@@ -57,8 +57,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getAllDesert() {
-		// TODO Auto-generated method stub
 		return pDao.selectDesert();
+	}
+
+	@Override
+	public List<Product> getLikeMenu(String user_id) {
+		return pDao.selectUserLikeMenu(user_id);
 	}
 
 }

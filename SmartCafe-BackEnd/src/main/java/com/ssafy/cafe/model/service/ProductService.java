@@ -34,8 +34,11 @@ public interface ProductService {
 	//음료수만 반환
 	List<Product> getAllCoffee();
 	
-	//디저트만 반
+	//디저트만 반환 
 	List<Product> getAllDesert();
+	
+	//찜한 메뉴 반환
+	List<Product> getLikeMenu(String user_id);
 
 
 	/**

@@ -78,4 +78,11 @@ public class ProductRestController {
 		return pService.getAllDesert();
 	}
 	
+	@GetMapping("/userLike/{userId}")
+	@ApiOperation(value = "{userId}에 해당하는 찜한메뉴들 반환한다."
+			+ "이 기능은 상품의 comment를 조회할 때 사용된다.", response = List.class)
+	public List<Product> getLikeMenuOfUser(@PathVariable String userId) {
+		return pService.getLikeMenu(userId);
+	}
+	
 }

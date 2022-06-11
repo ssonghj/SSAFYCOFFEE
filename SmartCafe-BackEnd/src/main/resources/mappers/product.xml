@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.cafe.model.dao.ProductDao">
+
 	<insert id="insert" parameterType="Product">
 		INSERT INTO t_product (name, type, price, img)
 		VALUES (#{name}, #{type}, #{price}, #{img})
@@ -94,6 +95,13 @@
 	<select id="selectDesert" resultType="Product">
 		select * from t_product
 		where type = "desert";
+	</select>
+	
+	<select id="selectUserLikeMenu" parameterType="String" resultType="Product">
+		select p.id, p.name, p.type, p.price, p.img
+		from t_product p join t_likemenu l
+		on p.id = l.product_id
+		where l.user_id = #{userId};	
 	</select>
 
 </mapper>

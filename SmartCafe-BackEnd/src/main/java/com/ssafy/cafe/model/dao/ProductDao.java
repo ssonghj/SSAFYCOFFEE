@@ -34,4 +34,6 @@ public interface ProductDao {
 	List<Product> selectCoffee();
 	
 	List<Product> selectDesert();
+	
+	List<Product> selectUserLikeMenu(String productId);
 }
