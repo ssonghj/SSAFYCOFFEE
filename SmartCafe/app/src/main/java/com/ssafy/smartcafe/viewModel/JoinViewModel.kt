@@ -3,13 +3,8 @@ package com.ssafy.smartcafe.viewModel
 
 import android.graphics.Color
 import android.view.View
-import android.widget.TextView
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ssafy.smartcafe.R
 
 class JoinViewModel:ViewModel() {
 
@@ -36,9 +31,4 @@ class JoinViewModel:ViewModel() {
     fun getColorValue(): MutableLiveData<Int> {
         return this.color
     }
-
-
-
-
-
 }

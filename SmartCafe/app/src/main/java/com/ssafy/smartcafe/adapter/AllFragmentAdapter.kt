@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelLazy
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.databinding.ActivityJoinBinding
+import com.ssafy.smartcafe.databinding.FragmentAllBinding
 import com.ssafy.smartcafe.dto.ProductDTO
+import com.ssafy.smartcafe.viewModel.AllFragmentViewModel
 
 private const val TAG="AllFragmentrAdapter_싸피"
 //전체메뉴 어댑터
@@ -26,8 +30,20 @@ class AllFragmentAdapter(var context: Context, val resource: Int, list:List<Prod
     }
 
     override fun onBindViewHolder(holder: AllFragmentHolder, position: Int) {
+
+        var img = listData[position].img
+
+        var resId = context.resources.getIdentifier(
+            img.substring(0, img.length - 4),
+            "drawable",
+            "com.ssafy.smartcafe"
+        )
+        holder.productImg.setImageResource(resId)
+
+//        viewModel.setName(listData[position].name)
+//        viewModel.setPrice("${listData[position].price}원")
         holder.productName.text = listData[position].name
-        holder.productPrice.text = listData[position].price.toString()
+        holder.productPrice.text = "${listData[position].price}원"
     }
 }
 

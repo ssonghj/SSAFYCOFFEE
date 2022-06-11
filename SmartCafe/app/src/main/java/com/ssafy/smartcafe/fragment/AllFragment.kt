@@ -2,6 +2,7 @@ package com.ssafy.smartcafe.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,7 @@ import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.dto.UserDTO
 import com.ssafy.smartcafe.service.ProductService
 import com.ssafy.smartcafe.service.UserService
+import com.ssafy.smartcafe.viewModel.AllFragmentViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,6 +33,7 @@ class AllFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var allFragmentAdapter : AllFragmentAdapter
     private lateinit var productList:List<ProductDTO>
+
 
     private lateinit var binding:FragmentAllBinding
     private lateinit var ctx:Context
@@ -94,6 +98,7 @@ class AllFragment : Fragment() {
         }
     }
 
+
     private fun setAdapter(){
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -108,6 +113,7 @@ class AllFragment : Fragment() {
 
             // 3. ListView와 Adapter 연결
             recyclerView.adapter = allFragmentAdapter
+
         }
     }
 

@@ -7,12 +7,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelLazy
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.MenuDetailActivity
 import com.ssafy.smartcafe.activity.ShoppingListActivity
 import com.ssafy.smartcafe.databinding.FragmentOrderBinding
+import com.ssafy.smartcafe.viewModel.AllFragmentViewModel
+import com.ssafy.smartcafe.viewModel.JoinViewModel
 
 class OrderFragment : Fragment() {
     private lateinit var ctx: Context
@@ -28,6 +35,7 @@ class OrderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+//        binding = DataBindingUtil.setContentView(this@OrderFragment, R.layout.fragment_order)
         binding = FragmentOrderBinding.inflate(layoutInflater)
 
         // Inflate the layout for this fragment
