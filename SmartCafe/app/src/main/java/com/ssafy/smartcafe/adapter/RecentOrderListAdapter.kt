@@ -61,7 +61,7 @@ class RecentOrderListAdapter(var context: Context, private val resource: Int, ob
         holder.orderPrice.text = "${sum}원"
 
 
-        holder.orderDate.text = curInfo[0].order_time.substring(0,10)
+//        holder.orderDate.text = curInfo[0].order_time.substring(0,10)
 
 //        holder.itemView.setOnClickListener {
 //            //최근 주문 클릭하면
@@ -97,6 +97,6 @@ class HomeHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var productsImg: ImageView = itemView!!.findViewById(R.id.img_item)
     var productsName: TextView = itemView!!.findViewById(R.id.tv_item_name)
     var orderPrice: TextView = itemView!!.findViewById(R.id.tv_item_price)
-    var orderDate: TextView = itemView!!.findViewById(R.id.tv_item_orderDate)
+//    var orderDate: TextView = itemView!!.findViewById(R.id.tv_item_orderDate)
 
 }
