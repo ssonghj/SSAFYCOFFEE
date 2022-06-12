@@ -1,6 +1,7 @@
 package com.ssafy.smartcafe.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelLazy
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.activity.MenuDetailActivity
 import com.ssafy.smartcafe.databinding.ActivityJoinBinding
 import com.ssafy.smartcafe.databinding.FragmentAllBinding
 import com.ssafy.smartcafe.dto.ProductDTO
@@ -39,6 +41,13 @@ class ProductsListAdapter(var context: Context, val resource: Int, list:List<Pro
             "com.ssafy.smartcafe"
         )
         holder.productImg.setImageResource(resId)
+        //메뉴 상세페이지로 넘어가기
+        holder.productImg.setOnClickListener{
+            var intent = Intent(context, MenuDetailActivity::class.java)
+            intent.putExtra("productId", listData[position].id.toString())
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
+        }
 
 //        viewModel.setName(listData[position].name)
 //        viewModel.setPrice("${listData[position].price}원")

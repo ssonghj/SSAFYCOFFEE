@@ -8,34 +8,44 @@
     tools:context=".activity.MenuDetailActivity">
 
     <ImageView
-        android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/back"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageView
-        android:id="@+id/btn_like"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/favorite"
-        android:tint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        tools:ignore="UseAppTint" />
-
-    <ImageView
         android:id="@+id/img_menu"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:src="@drawable/cafelogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="left|top"/>
+
+        <ImageView
+            android:id="@+id/btn_like"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/favorite"
+            android:tint="@color/black"
+            android:layout_gravity="right|top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            tools:ignore="UseAppTint" />
+    </FrameLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_info"
@@ -138,7 +148,7 @@
             android:text="평점"
             android:textColor="@color/black"
             android:textSize="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_fix_count" />
         <RatingBar
@@ -147,7 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:rating="3.5"
+            android:rating="0.0"
             android:numStars="5"
             android:stepSize="0.5"
             android:progressTint="@color/button_color_seventy"
@@ -180,9 +190,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="더보기"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/recycler_review"
             app:layout_constraintTop_toBottomOf="@id/seperate_line"/>
 
         <!--item_simple_review 넣기-->
