@@ -7,15 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity
 import com.ssafy.smartcafe.adapter.NewProductListAdapter
-import com.ssafy.smartcafe.adapter.ProductsListAdapter
 import com.ssafy.smartcafe.adapter.RecentOrderListAdapter
+import com.ssafy.smartcafe.adapter.RecommendedProductListAdapter
 import com.ssafy.smartcafe.databinding.FragmentHomeBinding
 import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.dto.RecentOrderDTO
@@ -36,13 +35,14 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private lateinit var myListView: RecyclerView
-    private lateinit var myListView2: RecyclerView
     private lateinit var recentOrderListAdapter: RecentOrderListAdapter
     private lateinit var newProductListAdapter: NewProductListAdapter
+    private lateinit var recommendedProductListAdapter: RecommendedProductListAdapter
 
 
     private var orderList:List<RecentOrderDTO> = arrayListOf()
     private var newProductList:List<ProductDTO> = arrayListOf()
+    private var recommendedProductList:List<ProductDTO> = arrayListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -65,6 +65,9 @@ class HomeFragment : Fragment() {
 
         //신상메뉴
         getNewProduct(binding.root)
+
+        //추천메뉴
+        getRecommendedProduct(binding.root)
 
         return binding.root
     }
@@ -122,15 +125,32 @@ class HomeFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
 
             // 1. ListView 객체 생성
-            myListView2 = inflater.findViewById(R.id.rv_new_menu)
-            myListView2.layoutManager = LinearLayoutManager(ctx,
+            myListView = inflater.findViewById(R.id.rv_new_menu)
+            myListView.layoutManager = LinearLayoutManager(ctx,
                 LinearLayoutManager.HORIZONTAL, false)
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             newProductListAdapter = NewProductListAdapter(ctx, R.layout.recyclerview_product_list, newProductList)
 
             // 3. ListView와 Adapter 연결
-            myListView2.adapter = newProductListAdapter
+            myListView.adapter = newProductListAdapter
+
+        }
+    }
+
+    private fun recommendedProductAdapter(inflater: View){
+        CoroutineScope(Dispatchers.Main).launch {
+
+            // 1. ListView 객체 생성
+            myListView = inflater.findViewById(R.id.rv_recommend_menu)
+            myListView.layoutManager = LinearLayoutManager(ctx,
+                LinearLayoutManager.HORIZONTAL, false)
+
+            // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
+            recommendedProductListAdapter = RecommendedProductListAdapter(ctx, R.layout.recyclerview_product_list, recommendedProductList)
+
+            // 3. ListView와 Adapter 연결
+            myListView.adapter = recommendedProductListAdapter
 
         }
     }
@@ -176,6 +196,33 @@ class HomeFragment : Fragment() {
                     newProductList = response.body()!!
                     Log.d(TAG, "onResponse: newProductList : {$newProductList}")
                     newProductAdapter(rootview)
+
+                }
+                else {
+                    Log.d(TAG, "shoppingplist - onResponse : Error code ${response.code()}")
+                }
+            }
+            override fun onFailure(call: Call<List<ProductDTO>>, t: Throwable) {
+                t.printStackTrace()
+                Log.d(TAG, "onFailure: 최근 내용 업뎃 오류")
+            }
+        })
+    }
+
+    private fun getRecommendedProduct(rootview:View){
+        val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+        service.selectRecommendedProduct().enqueue(object :
+            Callback<List<ProductDTO>> {
+            override fun onResponse(
+                call: Call<List<ProductDTO>>,
+                response: Response<List<ProductDTO>>
+            ) {
+                //정상일 경우 가져옴
+                if (response.code() == 200) {
+//                    result = response.body()!!
+                    recommendedProductList = response.body()!!
+                    Log.d(TAG, "onResponse: newProductList : {$recommendedProductList}")
+                    recommendedProductAdapter(rootview)
 
                 }
                 else {

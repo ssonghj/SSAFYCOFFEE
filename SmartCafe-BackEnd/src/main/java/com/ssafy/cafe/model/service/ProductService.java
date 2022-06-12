@@ -42,6 +42,9 @@ public interface ProductService {
 
 	//신상 메뉴 반환
 	List<Product> getNewProduct();
+	
+	//추천 메뉴 반환
+	List<Product> getRecommendedProduct();
 
 	/**
 	 * backend 관통 과정에서 추가됨
@@ -50,6 +53,8 @@ public interface ProductService {
 	 * @return
 	 */
 	List<Map<String, Object>> selectWithComment(Integer productId);
+
+	
 
 	
 

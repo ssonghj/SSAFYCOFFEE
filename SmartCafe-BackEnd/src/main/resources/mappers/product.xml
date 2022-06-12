@@ -109,5 +109,12 @@
 		from t_product p
 		order by p.id desc limit 5;	
 	</select>
+	
+	<select id="selectRecommendedProduct" parameterType="String" resultType="Product">
+		select p.id, p.name, p.type, p.price, p.img
+		from t_product p
+		order by rand() limit 5;	
+	</select>
+	
 
 </mapper>

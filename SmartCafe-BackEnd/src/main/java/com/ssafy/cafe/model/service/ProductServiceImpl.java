@@ -69,5 +69,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getNewProduct() {
 		return pDao.selectNewProduct();
 	}
+	
+	@Override
+	public List<Product> getRecommendedProduct() {
+		return pDao.selectRecommendedProduct();
+	}
 
 }

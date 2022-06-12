@@ -50,4 +50,8 @@ interface ProductService {
     //유저의 찜한 메뉴만 반환
     @GET("product/userLike/{userId}")
     fun selectUserLikeMenu(@Path("userId") userId:String): Call<List<ProductDTO>>
+
+    //추천 메뉴 반환
+    @GET("product/recommendedProduct")
+    fun selectRecommendedProduct(): Call<List<ProductDTO>>
 }
