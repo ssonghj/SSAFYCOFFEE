@@ -52,7 +52,8 @@ class ProductsListAdapter(var context: Context, val resource: Int, list:List<Pro
 //        viewModel.setName(listData[position].name)
 //        viewModel.setPrice("${listData[position].price}원")
         holder.productName.text = listData[position].name
-        holder.productPrice.text = "${listData[position].price}원"
+//        holder.productPrice.text = "${listData[position].price}원"
+        holder.productPrice.text = "1000원"
     }
 }
 

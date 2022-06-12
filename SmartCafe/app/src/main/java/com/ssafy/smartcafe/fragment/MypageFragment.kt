@@ -8,23 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.ssafy.smartcafe.MobileCafeApplication
-import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.*
-import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
-import com.ssafy.smartcafe.adapter.RecentOrderListAdapter
 import com.ssafy.smartcafe.databinding.FragmentMypageBinding
-import com.ssafy.smartcafe.dto.RecentOrderDTO
-import com.ssafy.smartcafe.service.OrderService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.LinkedHashMap
 
 
 private const val TAG = "MypageFragment"
