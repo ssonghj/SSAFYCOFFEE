@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.ViewModelLazy
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,9 @@ import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.dto.UserDTO
 import com.ssafy.smartcafe.service.ProductService
 import com.ssafy.smartcafe.service.UserService
+import com.ssafy.smartcafe.viewModel.JoinViewModel
+import com.ssafy.smartcafe.viewModel.MenuDetailViewModel
+import com.ssafy.smartcafe.viewModel.loadImage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,9 +33,20 @@ class MenuDetailActivity : AppCompatActivity() {
     private lateinit var simpleCommentAdapter : SimpleCommentAdapter
     private var productList = arrayListOf<ProductDTO>()
 
+    val mainViewModel: MenuDetailViewModel by ViewModelLazy(
+        MenuDetailViewModel::class,
+        { viewModelStore },
+        { defaultViewModelProviderFactory }
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuDetailBinding.inflate(layoutInflater)
+        binding.apply {
+            lifecycleOwner = this@MenuDetailActivity
+            viewModel = mainViewModel
+        }
+
         setContentView(binding.root)
 
         var product_id = intent!!.getStringExtra("productId")!!.toInt()
@@ -70,6 +85,7 @@ class MenuDetailActivity : AppCompatActivity() {
 
     private fun setData(){
 
+        //이미지는 아직 viewmodel로 못바꿈
         var img = productList[0].img
         var resId = this.resources.getIdentifier(
             img.substring(0, img.length - 4),
@@ -78,12 +94,12 @@ class MenuDetailActivity : AppCompatActivity() {
         )
         binding.imgMenu.setImageResource(resId)
 
-        binding.tvMenuName.text = productList[0].name
-        binding.tvPrice.text = "${productList[0].price}원"
+//        mainViewModel.setImg(img)
 
-        binding.tvRating.rating = (productList[0].avg / 2).toFloat()
-
-        binding.tvReviewInfo.text = "${productList[0].commentCnt}건의 리뷰가 있어요!"
+        mainViewModel.setName(productList[0].name)
+        mainViewModel.setPrice(productList[0].price)
+        mainViewModel.setRating(productList[0].avg/2)
+        mainViewModel.setReviewInfo(productList[0].commentCnt)
 
         if(productList[0].commentCnt == 0){
             binding.recyclerReview.visibility = View.GONE
@@ -93,7 +109,6 @@ class MenuDetailActivity : AppCompatActivity() {
     }
 
     private fun setAdapter(){
-        CoroutineScope(Dispatchers.Main).launch {
             // 1. ListView 객체 생성
             recyclerView = binding.recyclerReview
             recyclerView.layoutManager = LinearLayoutManager(
@@ -106,7 +121,6 @@ class MenuDetailActivity : AppCompatActivity() {
 
             // 3. ListView와 Adapter 연결
             recyclerView.adapter = simpleCommentAdapter
-        }
     }
 
     private suspend fun getProductInfo(id:Int) {
