@@ -38,4 +38,6 @@ public interface ProductDao {
 	List<Product> selectUserLikeMenu(String productId);
 
 	List<Product> selectNewProduct();
+
+	List<Product> selectRecommendedProduct();
 }
