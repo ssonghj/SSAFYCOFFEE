@@ -43,6 +43,10 @@ interface ProductService {
     @GET("product/desert")
     fun selectAllDesert(): Call<List<ProductDTO>>
 
+    //신상 메뉴 반환
+    @GET("product/newProduct")
+    fun selectNewProduct(): Call<List<ProductDTO>>
+
     //유저의 찜한 메뉴만 반환
     @GET("product/userLike/{userId}")
     fun selectUserLikeMenu(@Path("userId") userId:String): Call<List<ProductDTO>>

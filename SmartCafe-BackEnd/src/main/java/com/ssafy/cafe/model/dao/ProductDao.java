@@ -36,4 +36,6 @@ public interface ProductDao {
 	List<Product> selectDesert();
 	
 	List<Product> selectUserLikeMenu(String productId);
+
+	List<Product> selectNewProduct();
 }

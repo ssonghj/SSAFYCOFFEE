@@ -85,4 +85,10 @@ public class ProductRestController {
 		return pService.getLikeMenu(userId);
 	}
 	
+	@GetMapping("/newProduct")
+	@ApiOperation(value = "신상 메뉴를 반환한다.", response = List.class)
+	public List<Product> getNewProduct() {
+		return pService.getNewProduct();
+	}
+	
 }

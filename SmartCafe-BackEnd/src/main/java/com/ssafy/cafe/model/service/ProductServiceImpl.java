@@ -65,4 +65,9 @@ public class ProductServiceImpl implements ProductService {
 		return pDao.selectUserLikeMenu(user_id);
 	}
 
+	@Override
+	public List<Product> getNewProduct() {
+		return pDao.selectNewProduct();
+	}
+
 }

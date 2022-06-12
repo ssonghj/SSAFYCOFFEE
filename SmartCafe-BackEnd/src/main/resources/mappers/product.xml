@@ -103,5 +103,11 @@
 		on p.id = l.product_id
 		where l.user_id = #{userId};	
 	</select>
+	
+	<select id="selectNewProduct" parameterType="String" resultType="Product">
+		select p.id, p.name, p.type, p.price, p.img
+		from t_product p
+		order by p.id desc limit 5;	
+	</select>
 
 </mapper>
