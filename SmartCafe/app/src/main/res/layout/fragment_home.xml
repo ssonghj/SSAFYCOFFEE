@@ -165,7 +165,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_most_sell_menu"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="130dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_most_sell_menu"/>
