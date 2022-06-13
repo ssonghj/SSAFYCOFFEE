@@ -48,8 +48,8 @@ public class OrderRestController {
 		return oService.getLastMonthOrder(id);
 	}
 	
-	@GetMapping("/thisWeek")
-	@ApiOperation(value = "이번주 주문 내역을 반환한다.", response = List.class)
+	@GetMapping("/thisWeekTop3")
+	@ApiOperation(value = "이번주 주문 상품 중 가장 많이 팔린 top3를 반환한다.", response = List.class)
 	public List<Map<String, Object>> getThisWeekOrder() {
 		return oService.getThisWeekOrder();
 	}

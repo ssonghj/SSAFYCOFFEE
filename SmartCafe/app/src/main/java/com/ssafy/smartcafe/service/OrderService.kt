@@ -1,5 +1,6 @@
 package com.ssafy.smartcafe.service
 
+import com.ssafy.smartcafe.dto.OrderDTOwithTotal
 import com.ssafy.smartcafe.dto.RecentOrderDTO
 import retrofit2.Call
 import retrofit2.http.*
@@ -19,4 +20,8 @@ interface OrderService {
     //최근 1개월주문정보 반환
     @GET("order/byUser")
     fun selectRecentOrder(@Query("id") id:String): Call<List<RecentOrderDTO>>
+
+    //이번주 가장 많이 팔린 상품 반환
+    @GET("order/thisWeekTop3")
+    fun selectThisWeekOrder(): Call<List<OrderDTOwithTotal>>
 }
