@@ -116,5 +116,12 @@
 		order by rand() limit 5;	
 	</select>
 	
+	<select id="selectRecommendedDesert" parameterType="String" resultType="Product">
+		select p.id, p.name, p.type, p.price, p.img
+		from t_product p
+		where p.type ="desert"
+		order by rand() limit 5;	
+	</select>
+	
 
 </mapper>

@@ -39,9 +39,6 @@ class NewProductListAdapter(var context: Context, private val resource: Int, lis
 
         holder.productName.text = "${productList[position].name}"
 
-        Log.d(TAG, "onBindViewHolder: ${productList[position].price}원")
-        holder.productPrice.text = "${productList[position].price}원"
-        Log.d(TAG, "onBindViewHolder: ${holder.productPrice}")
 
 //        holder.orderDate.text = curInfo[0].order_time.substring(0,10)
 
@@ -76,7 +73,4 @@ class NewProductListAdapter(var context: Context, private val resource: Int, lis
 class NewProductHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
     var productImg: ImageView = itemView!!.findViewById(R.id.img_item)
     var productName: TextView = itemView!!.findViewById(R.id.tv_item_name)
-    var productPrice: TextView = itemView!!.findViewById(R.id.tv_item_price)
-//    var orderDate: TextView = itemView!!.findViewById(R.id.tv_item_orderDate)
-
 }

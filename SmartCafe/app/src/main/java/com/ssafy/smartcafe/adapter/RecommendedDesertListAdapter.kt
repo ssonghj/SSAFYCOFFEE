@@ -12,23 +12,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.dto.ProductDTO
 
-private const val TAG="RecommendedProductListAdapter"
-class RecommendedProductListAdapter(var context: Context, private val resource: Int, list: List<ProductDTO>) : RecyclerView.Adapter<RecommendedProductHolder>() {
+private const val TAG="RecommendedDesertListAdapter"
+class RecommendedDesertListAdapter(var context: Context, private val resource: Int, list: List<ProductDTO>) : RecyclerView.Adapter<RecommendedDesertHolder>() {
     //사용하고자 하는 데이터
-    private var productList = list
+    private var desertList = list
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedProductHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedDesertHolder {
         val view = LayoutInflater.from(parent.context).inflate(resource,parent,false)
-        return RecommendedProductHolder(view)
+        return RecommendedDesertHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return productList.size
+        return desertList.size
     }
 
-    override fun onBindViewHolder(holder: RecommendedProductHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecommendedDesertHolder, position: Int) {
 
-        var img = productList[position].img
+        var img = desertList[position].img
 
         var resId = context.resources.getIdentifier(
             img.substring(0, img.length - 4),
@@ -37,7 +37,7 @@ class RecommendedProductListAdapter(var context: Context, private val resource: 
         )
         holder.productImg.setImageResource(resId)
 
-        holder.productName.text = "${productList[position].name}"
+        holder.productName.text = "${desertList[position].name}"
 
 
 //        holder.orderDate.text = curInfo[0].order_time.substring(0,10)
@@ -70,8 +70,7 @@ class RecommendedProductListAdapter(var context: Context, private val resource: 
 
 }
 
-class RecommendedProductHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+class RecommendedDesertHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
     var productImg: ImageView = itemView!!.findViewById(R.id.img_item)
     var productName: TextView = itemView!!.findViewById(R.id.tv_item_name)
-
 }

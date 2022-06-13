@@ -97,4 +97,10 @@ public class ProductRestController {
 		return pService.getRecommendedProduct();
 	}
 	
+	@GetMapping("/recommendedDesert")
+	@ApiOperation(value = "디저트 추천 메뉴를 반환한다.", response = List.class)
+	public List<Product> getRecommendedDesert() {
+		return pService.getRecommendedDesert();
+	}
+	
 }
