@@ -12,6 +12,11 @@
         <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/fragment_like_menu.xml" value="0.23385416666666667" />
         <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/fragment_mypage.xml" value="0.36614583333333334" />
         <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/fragment_order.xml" value="0.23385416666666667" />
+        <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/item_notification.xml" value="0.36614583333333334" />
+        <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/item_ready.xml" value="0.36614583333333334" />
+        <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/item_recent_shopping_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/item_shopping_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/item_simple_review.xml" value="0.36614583333333334" />
         <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/item_user_like.xml" value="0.23385416666666667" />
         <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/recyclerview_product_list.xml" value="0.23385416666666667" />
         <entry key="..\:/SSAFY/SSAFYCOFFEE/SmartCafe/app/src/main/res/layout/recyclerview_recent_order_list.xml" value="0.23385416666666667" />

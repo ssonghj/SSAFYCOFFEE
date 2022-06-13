@@ -47,4 +47,10 @@ public class OrderRestController {
 	public List<Map<String, Object>> getLastMonthOrder(String id) {
 		return oService.getLastMonthOrder(id);
 	}
+	
+	@GetMapping("/thisWeek")
+	@ApiOperation(value = "이번주 주문 내역을 반환한다.", response = List.class)
+	public List<Map<String, Object>> getThisWeekOrder() {
+		return oService.getThisWeekOrder();
+	}
 }

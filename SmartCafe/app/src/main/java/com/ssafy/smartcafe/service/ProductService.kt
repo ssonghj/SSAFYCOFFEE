@@ -54,4 +54,8 @@ interface ProductService {
     //추천 메뉴 반환
     @GET("product/recommendedProduct")
     fun selectRecommendedProduct(): Call<List<ProductDTO>>
+    
+    //디저트 추천 메뉴 반환
+    @GET("product/recommendedDesert")
+    fun selectRecommendedDesert(): Call<List<ProductDTO>>
 }

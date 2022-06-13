@@ -14,6 +14,7 @@ import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity
 import com.ssafy.smartcafe.adapter.NewProductListAdapter
 import com.ssafy.smartcafe.adapter.RecentOrderListAdapter
+import com.ssafy.smartcafe.adapter.RecommendedDesertListAdapter
 import com.ssafy.smartcafe.adapter.RecommendedProductListAdapter
 import com.ssafy.smartcafe.databinding.FragmentHomeBinding
 import com.ssafy.smartcafe.dto.ProductDTO
@@ -38,11 +39,13 @@ class HomeFragment : Fragment() {
     private lateinit var recentOrderListAdapter: RecentOrderListAdapter
     private lateinit var newProductListAdapter: NewProductListAdapter
     private lateinit var recommendedProductListAdapter: RecommendedProductListAdapter
+    private lateinit var recommendedDesertListAdapter: RecommendedDesertListAdapter
 
 
     private var orderList:List<RecentOrderDTO> = arrayListOf()
     private var newProductList:List<ProductDTO> = arrayListOf()
     private var recommendedProductList:List<ProductDTO> = arrayListOf()
+    private var recommendedDesertList:List<ProductDTO> = arrayListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -68,6 +71,9 @@ class HomeFragment : Fragment() {
 
         //추천메뉴
         getRecommendedProduct(binding.root)
+
+        //디저트 추천메뉴
+        getRecommendedDesert(binding.root)
 
         return binding.root
     }
@@ -130,7 +136,7 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager.HORIZONTAL, false)
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
-            newProductListAdapter = NewProductListAdapter(ctx, R.layout.recyclerview_product_list, newProductList)
+            newProductListAdapter = NewProductListAdapter(ctx, R.layout.item_ready, newProductList)
 
             // 3. ListView와 Adapter 연결
             myListView.adapter = newProductListAdapter
@@ -147,10 +153,27 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager.HORIZONTAL, false)
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
-            recommendedProductListAdapter = RecommendedProductListAdapter(ctx, R.layout.recyclerview_product_list, recommendedProductList)
+            recommendedProductListAdapter = RecommendedProductListAdapter(ctx, R.layout.item_ready, recommendedProductList)
 
             // 3. ListView와 Adapter 연결
             myListView.adapter = recommendedProductListAdapter
+
+        }
+    }
+
+    private fun recommendedDesertAdapter(inflater: View){
+        CoroutineScope(Dispatchers.Main).launch {
+
+            // 1. ListView 객체 생성
+            myListView = inflater.findViewById(R.id.rv_recommend_desert)
+            myListView.layoutManager = LinearLayoutManager(ctx,
+                LinearLayoutManager.HORIZONTAL, false)
+
+            // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
+            recommendedDesertListAdapter = RecommendedDesertListAdapter(ctx, R.layout.item_ready, recommendedDesertList)
+
+            // 3. ListView와 Adapter 연결
+            myListView.adapter = recommendedDesertListAdapter
 
         }
     }
@@ -223,6 +246,33 @@ class HomeFragment : Fragment() {
                     recommendedProductList = response.body()!!
                     Log.d(TAG, "onResponse: newProductList : {$recommendedProductList}")
                     recommendedProductAdapter(rootview)
+
+                }
+                else {
+                    Log.d(TAG, "shoppingplist - onResponse : Error code ${response.code()}")
+                }
+            }
+            override fun onFailure(call: Call<List<ProductDTO>>, t: Throwable) {
+                t.printStackTrace()
+                Log.d(TAG, "onFailure: 최근 내용 업뎃 오류")
+            }
+        })
+    }
+
+    private fun getRecommendedDesert(rootview:View){
+        val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+        service.selectRecommendedDesert().enqueue(object :
+            Callback<List<ProductDTO>> {
+            override fun onResponse(
+                call: Call<List<ProductDTO>>,
+                response: Response<List<ProductDTO>>
+            ) {
+                //정상일 경우 가져옴
+                if (response.code() == 200) {
+//                    result = response.body()!!
+                    recommendedDesertList = response.body()!!
+                    Log.d(TAG, "onResponse: newProductList : {$recommendedDesertList}")
+                    recommendedDesertAdapter(rootview)
 
                 }
                 else {

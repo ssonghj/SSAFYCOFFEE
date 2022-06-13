@@ -75,4 +75,9 @@ public class ProductServiceImpl implements ProductService {
 		return pDao.selectRecommendedProduct();
 	}
 
+	@Override
+	public List<Product> getRecommendedDesert() {
+		return pDao.selectRecommendedDesert();
+	}
+
 }

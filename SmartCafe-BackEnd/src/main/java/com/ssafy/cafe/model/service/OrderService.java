@@ -54,4 +54,8 @@ public interface OrderService {
 	 * @return
 	 */
 	List<Map<String, Object>> getLastMonthOrder(String id);
+
+	//이번주 주문 내역 불러오기
+	public List<Map<String, Object>> getThisWeekOrder();
+	
 }

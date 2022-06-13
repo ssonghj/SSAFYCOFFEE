@@ -40,4 +40,6 @@ public interface ProductDao {
 	List<Product> selectNewProduct();
 
 	List<Product> selectRecommendedProduct();
+
+	List<Product> selectRecommendedDesert();
 }
