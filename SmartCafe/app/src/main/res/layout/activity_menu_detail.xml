@@ -229,7 +229,7 @@
                     android:id="@+id/btn_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="주문하기"
+                    android:text="장바구니 담기"
                     android:textSize="16dp"
                     android:textColor="#222121"
                     android:fontFamily="@font/jalnan"
