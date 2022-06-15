@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.activity.MenuDetailActivity
 import com.ssafy.smartcafe.dto.ProductDTO
 
 private const val TAG="NewProductListAdapter"
@@ -39,32 +40,13 @@ class NewProductListAdapter(var context: Context, private val resource: Int, lis
 
         holder.productName.text = "${productList[position].name}"
 
-
-//        holder.orderDate.text = curInfo[0].order_time.substring(0,10)
-
-//        holder.itemView.setOnClickListener {
-//            //최근 주문 클릭하면
-//            //tmp_list에 상품 담기게 하자
-//            //상품 담은 뒤에 shoppingListActivity로 넘어가게 한다.
-//            //println("????? : ${listData[position].id}")
-//            Log.d(TAG, "onBindViewHolder: ${curInfo}")
-//
-//            for(i in curInfo.indices){
-//                val orderProduct = OrderDetailDTO(-1,curInfo[i].p_id,Integer.parseInt(curInfo[i].quantity.toString()))
-//
-//                //data class OrderDetailForShoppingList(var img:String,var name: String, var quantity:Int,var price:Int,
-//                //                       var totalprice: Int,var productId: Int)
-//                var newOrderP = OrderDetailForShoppingList(
-//                    curInfo[i].img, curInfo[i].name, curInfo[i].quantity, curInfo[i].price,
-//                    curInfo[i].price*curInfo[i].quantity, curInfo[i].p_id, curInfo[i].o_id
-//                )
-//
-//                tmpOrderList2.add(newOrderP)
-//            }
-//
-//            var intent = Intent(this.context, ShoppingListActivity::class.java)
-//            context.startActivity(intent)
-//        }
+        //메뉴 상세페이지로 넘어가기
+        holder.productImg.setOnClickListener{
+            var intent = Intent(context, MenuDetailActivity::class.java)
+            intent.putExtra("productId", productList[position].id.toString())
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
+        }
     }
 
 
