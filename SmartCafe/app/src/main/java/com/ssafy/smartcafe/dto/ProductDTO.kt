@@ -4,6 +4,7 @@ data class ProductDTO(
     var id:Integer,
     var name:String,
     var type:String,
+    var user_id:String,
     var price:Int,
     var img:String,
     var avg:Float,

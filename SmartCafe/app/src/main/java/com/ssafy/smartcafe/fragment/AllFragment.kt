@@ -114,7 +114,6 @@ class AllFragment : Fragment() {
             recyclerView.layoutManager = GridLayoutManager(ctx,3)
             OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
 
-
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             allFragmentAdapter = ProductsListAdapter(ctx, R.layout.item_menu, productList)
 

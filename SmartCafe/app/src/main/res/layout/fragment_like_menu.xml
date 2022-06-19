@@ -6,10 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.LikeMenuFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_like_menu"
-        android:overScrollMode="never"
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_like_menu"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

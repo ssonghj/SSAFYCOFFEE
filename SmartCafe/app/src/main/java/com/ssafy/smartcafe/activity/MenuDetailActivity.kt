@@ -79,6 +79,9 @@ class MenuDetailActivity : AppCompatActivity() {
         //리뷰 더보기
         binding.tvMoreDetailReview.setOnClickListener{
             val intent = Intent(this, MenuReviewActivity::class.java)
+            intent.putExtra("product_id",product_id.toString())
+            print("product_name : ${productList[0].name}")
+            intent.putExtra("product_name", productList[0].name)
             startActivity(intent)
         }
     }
