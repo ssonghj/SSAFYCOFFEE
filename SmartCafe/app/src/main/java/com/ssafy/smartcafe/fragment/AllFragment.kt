@@ -27,6 +27,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 private const val TAG = "AllFragment"
 class AllFragment : Fragment() {
@@ -107,11 +108,12 @@ class AllFragment : Fragment() {
     private fun setAdapter(){
 
         CoroutineScope(Dispatchers.Main).launch {
-//            getProductWithSell()
 
             // 1. ListView 객체 생성
             recyclerView = binding.recyclerAllMenu
             recyclerView.layoutManager = GridLayoutManager(ctx,3)
+            OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
+
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             allFragmentAdapter = ProductsListAdapter(ctx, R.layout.item_menu, productList)

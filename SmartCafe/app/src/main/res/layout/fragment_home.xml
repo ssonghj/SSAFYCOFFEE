@@ -106,6 +106,7 @@
             android:id="@+id/rv_recent_menu"
             android:layout_width="0dp"
             android:layout_height="150dp"
+            android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_recent_menu"/>
@@ -126,6 +127,7 @@
             android:id="@+id/rv_new_menu"
             android:layout_width="0dp"
             android:layout_height="130dp"
+            android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_new_menu"/>
@@ -146,6 +148,7 @@
             android:id="@+id/rv_recommend_menu"
             android:layout_width="0dp"
             android:layout_height="130dp"
+            android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_recommend_menu"/>
@@ -166,6 +169,7 @@
             android:id="@+id/rv_most_sell_menu"
             android:layout_width="0dp"
             android:layout_height="130dp"
+            android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_most_sell_menu"/>
@@ -186,6 +190,7 @@
             android:id="@+id/rv_recommend_desert"
             android:layout_width="0dp"
             android:layout_height="130dp"
+            android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_recommend_desert"/>

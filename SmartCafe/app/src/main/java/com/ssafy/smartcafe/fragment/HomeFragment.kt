@@ -22,6 +22,7 @@ import com.ssafy.smartcafe.service.ProductService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -120,6 +121,9 @@ class HomeFragment : Fragment() {
 
             myListView.layoutManager = LinearLayoutManager(ctx,
                 LinearLayoutManager.HORIZONTAL, false)
+            OverScrollDecoratorHelper.setUpOverScroll(myListView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
+
+
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             recentOrderListAdapter = RecentOrderListAdapter(ctx, R.layout.recyclerview_recent_order_list,map,mapKey)
@@ -137,6 +141,8 @@ class HomeFragment : Fragment() {
             myListView = inflater.findViewById(R.id.rv_new_menu)
             myListView.layoutManager = LinearLayoutManager(ctx,
                 LinearLayoutManager.HORIZONTAL, false)
+            OverScrollDecoratorHelper.setUpOverScroll(myListView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
+
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             newProductListAdapter = NewProductListAdapter(ctx, R.layout.item_ready, newProductList)
@@ -154,6 +160,8 @@ class HomeFragment : Fragment() {
             myListView = inflater.findViewById(R.id.rv_recommend_menu)
             myListView.layoutManager = LinearLayoutManager(ctx,
                 LinearLayoutManager.HORIZONTAL, false)
+            OverScrollDecoratorHelper.setUpOverScroll(myListView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
+
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             recommendedProductListAdapter = RecommendedProductListAdapter(ctx, R.layout.item_ready, recommendedProductList)
@@ -171,6 +179,8 @@ class HomeFragment : Fragment() {
             myListView = inflater.findViewById(R.id.rv_recommend_desert)
             myListView.layoutManager = LinearLayoutManager(ctx,
                 LinearLayoutManager.HORIZONTAL, false)
+            OverScrollDecoratorHelper.setUpOverScroll(myListView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
+
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             recommendedDesertListAdapter = RecommendedDesertListAdapter(ctx, R.layout.item_ready, recommendedDesertList)
@@ -188,6 +198,8 @@ class HomeFragment : Fragment() {
             myListView = inflater.findViewById(R.id.rv_most_sell_menu)
             myListView.layoutManager = LinearLayoutManager(ctx,
                 LinearLayoutManager.HORIZONTAL, false)
+            OverScrollDecoratorHelper.setUpOverScroll(myListView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
+
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             thisWeekTop3ListAdapter = ThisWeekTop3ListAdapter(ctx, R.layout.item_ready, thisWeekTop3List)
