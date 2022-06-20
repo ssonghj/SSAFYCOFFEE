@@ -77,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
                         LoginActivity.userName = user.name
                         LoginActivity.userStamp = user.stamps
                         val intent = Intent(applicationContext, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
                     }
                 }

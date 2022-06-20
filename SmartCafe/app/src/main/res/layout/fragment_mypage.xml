@@ -64,7 +64,6 @@
             android:id="@+id/frame_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="10dp"
             android:background="@drawable/circle_rectangle_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_notification"
@@ -99,10 +98,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="등급별 혜택"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:fontFamily="@font/notosansmedium"
             android:includeFontPadding="false"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_hello"/>
 
@@ -121,10 +120,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="자세히보기"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:fontFamily="@font/notosansmedium"
             android:includeFontPadding="false"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_level_notification"/>
 

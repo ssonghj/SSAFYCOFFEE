@@ -9,7 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ssafy.smartcafe.activity.*
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.detailList
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.userName
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.userStamp
 import com.ssafy.smartcafe.databinding.FragmentMypageBinding
+import com.ssafy.smartcafe.dto.OrderDetailDTO
 
 
 private const val TAG = "MypageFragment"
@@ -52,7 +57,15 @@ class MypageFragment : Fragment() {
         }
 
         binding.frameLogout.setOnClickListener {
-            Log.d(TAG, "onCreateView: 로그아웃 버튼 클릭")
+            //유저 데이터 초기화
+            userId = ""
+            userName = ""
+            userStamp = 0
+            detailList = arrayListOf()
+
+            var intent = Intent(ctx, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
         
         return binding.root
