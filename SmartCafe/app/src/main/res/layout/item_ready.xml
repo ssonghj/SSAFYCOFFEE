@@ -37,6 +37,8 @@
             android:textSize="16dp"
             android:textColor="@color/black"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/notosansmedium"
+            android:includeFontPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardview_member"/>

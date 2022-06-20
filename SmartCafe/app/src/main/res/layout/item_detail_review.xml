@@ -44,7 +44,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="솔직히 짱~~~~~~~~~~~~~~~~ \n짱짱짱쓰"
-            android:fontFamily="@font/diary"
+            android:fontFamily="@font/notosansmedium"
+            android:includeFontPadding="false"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +60,8 @@
             android:textSize="16dp"
             android:layout_marginRight="10dp"
             android:textColor="@color/black"
+            android:fontFamily="@font/notosansmedium"
+            android:includeFontPadding="false"
             app:layout_constraintRight_toLeftOf="@id/tv_delete"
             app:layout_constraintTop_toBottomOf="@id/tv_review_detail"/>
 
@@ -69,6 +72,8 @@
             android:text="삭제"
             android:textSize="16dp"
             android:textColor="@color/black"
+            android:fontFamily="@font/notosansmedium"
+            android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_review_detail"/>
 

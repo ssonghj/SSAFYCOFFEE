@@ -46,7 +46,8 @@
         android:text="아메리카노 외 2잔"
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/pretendard"
+        android:fontFamily="@font/notosansmedium"
+        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardview_member"/>
@@ -58,7 +59,8 @@
         android:text="25000원"
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/pretendard"
+        android:fontFamily="@font/notosansmedium"
+        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_item_name"/>

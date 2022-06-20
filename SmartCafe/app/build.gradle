@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.ssafy.smartcafe"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -83,5 +83,8 @@ dependencies {
 
     //오버스크롤 
     implementation 'io.github.everythingme:overscroll-decor-android:1.1.1'
+
+    //부트페이
+    implementation 'com.github.bootpay:client_android_java:+'
 
 }

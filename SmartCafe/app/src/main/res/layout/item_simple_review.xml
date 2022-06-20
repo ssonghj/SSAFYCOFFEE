@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="16dp"
+    android:layout_height="19dp"
     android:layout_marginBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
@@ -10,7 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="솔직히 짱"
-        android:fontFamily="@font/pretendard"
+        android:fontFamily="@font/notosansmedium"
+        android:includeFontPadding="false"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

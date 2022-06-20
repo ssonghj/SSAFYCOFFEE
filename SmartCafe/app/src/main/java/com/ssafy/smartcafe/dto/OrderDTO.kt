@@ -7,8 +7,8 @@ data class OrderDTO (
     var datails : List<OrderDetailDTO>,
     var id : Int,
     var orderTable : String,
-    var orderTime : Date,
-    var stamp : List<StampDTO>,
+    var orderTime : String,
+    var stamp : StampDTO,
     var userId :String,
 )
 
