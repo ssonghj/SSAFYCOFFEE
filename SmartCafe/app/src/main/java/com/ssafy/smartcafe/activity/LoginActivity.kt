@@ -12,6 +12,8 @@ import com.shashank.sony.fancytoastlib.FancyToast
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.databinding.ActivityLoginBinding
+import com.ssafy.smartcafe.dto.OrderDTO
+import com.ssafy.smartcafe.dto.OrderDetailDTO
 import com.ssafy.smartcafe.dto.UserDTO
 import com.ssafy.smartcafe.service.UserService
 import kotlinx.coroutines.*
@@ -92,5 +94,6 @@ class LoginActivity : AppCompatActivity() {
         var userId = ""
         var userName = ""
         var userStamp = 0
+        var detailList = arrayListOf<OrderDetailDTO>()
     }
 }

@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.detailList
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
 import com.ssafy.smartcafe.adapter.SimpleCommentAdapter
 import com.ssafy.smartcafe.databinding.ActivityMenuDetailBinding
+import com.ssafy.smartcafe.dto.OrderDetailDTO
 import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.dto.UserLikeDTO
 import com.ssafy.smartcafe.service.ProductService
@@ -121,6 +123,18 @@ class MenuDetailActivity : AppCompatActivity() {
             print("product_name : ${productList[0].name}")
             intent.putExtra("product_name", productList[0].name)
             startActivity(intent)
+        }
+
+        //메뉴 담기
+        binding.frameOrderBtn.setOnClickListener{
+
+            //메뉴 수량
+            var quantity = binding.tvCount.text.toString().toInt()
+            var details = OrderDetailDTO(0,0,product_id,quantity)
+
+            detailList.add(details)
+
+            finish()
         }
     }
 

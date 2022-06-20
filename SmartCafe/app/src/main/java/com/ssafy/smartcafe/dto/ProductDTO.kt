@@ -15,10 +15,9 @@ data class ProductDTO(
     var userName:String,
     var commentCnt:Int)
 
-//data class ProductDTOWithCnt(
-//    var id:Integer,
-//    var name:String,
-//    var type:String,
-//    var price:Int,
-//    var img:String,
-//    var cnt:Integer)
+data class ShoppingListDTO(
+    var name:String,
+    var price:Int,
+    var sumPrice:Int,
+    var img:String,
+    var quantity:Int)

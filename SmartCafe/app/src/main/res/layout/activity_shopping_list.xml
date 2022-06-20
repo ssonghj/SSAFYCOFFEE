@@ -39,15 +39,24 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <!--item_shopping_list 적용-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_user_detail_review"
+        <LinearLayout
+            android:id="@+id/linear_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/frame_buy"
             app:layout_constraintTop_toBottomOf="@id/tv_shopping_title"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_user_detail_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:overScrollMode="never"/>
+
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/frame_buy"
@@ -55,7 +64,6 @@
             android:layout_height="43dp"
             android:background="@drawable/round_rectangle_button"
             android:orientation="vertical"
-            android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginBottom="15dp"

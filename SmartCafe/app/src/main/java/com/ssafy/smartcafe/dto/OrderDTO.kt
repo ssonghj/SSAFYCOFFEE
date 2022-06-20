@@ -3,14 +3,22 @@ package com.ssafy.smartcafe.dto
 import java.util.*
 
 data class OrderDTO (
+    var completed : Char,
+    var datails : List<OrderDetailDTO>,
     var id : Int,
-    var userId :String,
     var orderTable : String,
     var orderTime : Date,
-    var completed : Char,
-//    var datails : List<OrderDetail>,
-    var stamps : Int
-    )
+    var stamp : List<StampDTO>,
+    var userId :String,
+)
+
+data class OrderDetailDTO(
+    var id: Int,
+    var orderId:Int,
+    var productId:Int,
+    var quantity:Int
+)
+
 
 data class OrderDTOwithTotal(
     var img: String,

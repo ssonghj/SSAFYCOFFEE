@@ -10,7 +10,7 @@ import retrofit2.http.*
 interface ProductService {
 
     //메뉴 정보 모두 반환
-    @GET("product")
+    @GET("product/productAll")
     fun selectAllProduct(): Call<List<ProductDTO>>
 
     //메뉴 정보 하나 반환
