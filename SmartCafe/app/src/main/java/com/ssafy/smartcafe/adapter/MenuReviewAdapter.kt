@@ -9,16 +9,23 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
 import com.ssafy.smartcafe.activity.MenuDetailActivity
+import com.ssafy.smartcafe.activity.MenuReviewActivity
 import com.ssafy.smartcafe.dto.ProductDTO
+import com.ssafy.smartcafe.service.CommentService
+import com.ssafy.smartcafe.service.ProductService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val TAG="MenuReviewAdapter"
-class MenuReviewAdapter(var context: Context, private val resource: Int, list: List<ProductDTO>)
+class MenuReviewAdapter(var context: Context, private val resource: Int,var productList: List<ProductDTO>, var product_id: Int)
     : RecyclerView.Adapter<MenuReviewHolder>() {
-    //사용하고자 하는 데이터
-    private var productList = list
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuReviewHolder {
         val view = LayoutInflater.from(parent.context).inflate(resource,parent,false)
@@ -39,13 +46,54 @@ class MenuReviewAdapter(var context: Context, private val resource: Int, list: L
         if(inputUserId != userId){
             holder.btn_modify.visibility = View.GONE
             holder.btn_delete.visibility = View.GONE
+        }
 
-            //클릭시 다른 효과
+        //수정 버튼 클릭시 내용 수정
+        holder.btn_modify.setOnClickListener{
+
+        }
+
+        //삭제 버튼 클릭시 삭제
+        holder.btn_delete.setOnClickListener{
+            CoroutineScope(Dispatchers.Main).launch {
+                deleteComment(productList[position].commentId)
+                getComment(product_id)
+                notifyItemRemoved(position)
+            }
         }
     }
 
+    private suspend fun getComment(product_id:Int) {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.selectProduct(product_id).execute()
 
+            if (response.code() == 200) {
+                productList = (response.body() as ArrayList<ProductDTO>?)!!
+
+                println("MenuReviewAdapter : ${productList}")
+            } else {
+                print("MenuReviewAdapter: error code")
+            }
+        }
+    }
+
+    private suspend fun deleteComment(id:Int){
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(CommentService::class.java)
+            val response = service.deleteComment(id)
+
+            if (response.code() == 200) {
+                var res = response.body()!!
+
+                println("deleteComment : ${res}")
+            } else {
+                print("deleteComment: error code")
+            }
+        }
+    }
 }
+
 
 class MenuReviewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
     var userName: TextView = itemView!!.findViewById(R.id.tv_user_name)

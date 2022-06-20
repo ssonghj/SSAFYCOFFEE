@@ -13,6 +13,7 @@ class MenuDetailViewModel:ViewModel() {
     var price = MutableLiveData("")
     var rating = MutableLiveData(0.0F)
     var reviewInfo = MutableLiveData("0건의 리뷰가 있어요!")
+    var color = MutableLiveData<Int>(0)
 
     fun setImg(simg:String){
         img.postValue(simg)
@@ -29,6 +30,18 @@ class MenuDetailViewModel:ViewModel() {
     }
     fun setReviewInfo(sreview:Int){
         reviewInfo.postValue("${sreview}건의 리뷰가 있어요!")
+    }
+
+    fun setNotLike(){
+        color.postValue(0)
+    }
+
+    fun setLike(){
+        color.postValue(1)
+    }
+
+    fun getHeartColor(): Int? {
+        return this.color.value
     }
 
 }

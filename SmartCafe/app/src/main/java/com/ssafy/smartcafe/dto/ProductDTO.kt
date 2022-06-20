@@ -1,7 +1,7 @@
 package com.ssafy.smartcafe.dto
 
 data class ProductDTO(
-    var id:Integer,
+    var id:Int,
     var name:String,
     var type:String,
     var user_id:String,

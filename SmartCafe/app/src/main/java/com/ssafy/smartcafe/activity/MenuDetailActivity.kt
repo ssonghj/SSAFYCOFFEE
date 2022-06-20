@@ -5,22 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelLazy
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
-import com.ssafy.smartcafe.adapter.ProductsListAdapter
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
 import com.ssafy.smartcafe.adapter.SimpleCommentAdapter
 import com.ssafy.smartcafe.databinding.ActivityMenuDetailBinding
 import com.ssafy.smartcafe.dto.ProductDTO
-import com.ssafy.smartcafe.dto.UserDTO
+import com.ssafy.smartcafe.dto.UserLikeDTO
 import com.ssafy.smartcafe.service.ProductService
-import com.ssafy.smartcafe.service.UserService
-import com.ssafy.smartcafe.viewModel.JoinViewModel
 import com.ssafy.smartcafe.viewModel.MenuDetailViewModel
-import com.ssafy.smartcafe.viewModel.loadImage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,12 +29,23 @@ class MenuDetailActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var simpleCommentAdapter : SimpleCommentAdapter
     private var productList = arrayListOf<ProductDTO>()
+    private var likeMenuList = arrayListOf<ProductDTO>()
+    private var product_id = 0
 
     val mainViewModel: MenuDetailViewModel by ViewModelLazy(
         MenuDetailViewModel::class,
         { viewModelStore },
         { defaultViewModelProviderFactory }
     )
+
+    override fun onResume() {
+        super.onResume()
+        //리뷰 더보기에서 리뷰 삭제시 반영
+        CoroutineScope(Dispatchers.Main).launch {
+            getProductInfo(product_id)
+            setAdapter()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,16 +57,46 @@ class MenuDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        var product_id = intent!!.getStringExtra("productId")!!.toInt()
+        product_id = intent!!.getStringExtra("productId")!!.toInt()
 
         CoroutineScope(Dispatchers.Main).launch {
             getProductInfo(product_id)
+            getAllUserLikeMenu()//찜한 메뉴
             setData()
+
+            //찜한 메뉴일 경우
+            for(i in likeMenuList.indices){
+                if(likeMenuList[i].name == productList[0].name){
+                    mainViewModel.setLike()
+                }
+            }
         }
+
 
         //뒤로가기
         binding.btnBack.setOnClickListener{
             finish()
+        }
+
+        //하트 누르기
+        binding.btnLike.setOnClickListener{
+
+            when {
+                mainViewModel.getHeartColor() == 0 -> {
+                    mainViewModel.setLike()
+                    //서버에 좋아하는 메뉴에 추가
+                    CoroutineScope(Dispatchers.Main).launch {
+                        InsertUserLikeMenu();
+                    }
+                }
+                else -> {
+                    mainViewModel.setNotLike()
+                    //서버에 좋아하는 메뉴에서 삭제
+                    CoroutineScope(Dispatchers.Main).launch {
+                        DeleteUserLikeMenu();
+                    }
+                }
+            }
         }
 
         //수량 증가
@@ -138,6 +176,53 @@ class MenuDetailActivity : AppCompatActivity() {
                 println("MenuDetailActivity : ${res}")
             } else {
                 Log.d(TAG, "MenuDetailActivity: error code")
+            }
+        }
+    }
+
+    private suspend fun getAllUserLikeMenu() {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.selectUserLikeMenu(LoginActivity.userId).execute()
+
+            if (response.code() == 200) {
+                likeMenuList = (response.body() as ArrayList<ProductDTO>?)!!
+
+                println("getAllUserLikeMenu : ${productList}")
+            } else {
+                println("getAllUserLikeMenu: error code")
+            }
+        }
+    }
+
+    private suspend fun InsertUserLikeMenu() {
+        var userLikeDTO = UserLikeDTO(0,userId,product_id)
+
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.insertLikeMenu(userLikeDTO)
+
+            if (response.code() == 200) {
+                var res = response.body()!!
+                println("InsertUserLikeMenu : ${res}")
+            } else {
+                Log.d(TAG, "InsertUserLikeMenu: error code")
+            }
+        }
+    }
+
+    private suspend fun DeleteUserLikeMenu() {
+        var userLikeDTO = UserLikeDTO(0,userId,product_id)
+
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.removeLikeMenu(userLikeDTO)
+
+            if (response.code() == 200) {
+                var res = response.body()!!
+                println("DeleteUserLikeMenu : ${res}")
+            } else {
+                Log.d(TAG, "DeleteUserLikeMenu: error code")
             }
         }
     }

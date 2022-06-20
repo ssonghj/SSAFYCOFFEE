@@ -45,26 +45,26 @@ class MenuReviewActivity : AppCompatActivity() {
         //리뷰 모두 불러오기
         CoroutineScope(Dispatchers.Main).launch {
             getComment(product_id)
-            setAdapter()
+            setAdapter(product_id)
         }
 
     }
 
-    private fun setAdapter(){
+    private fun setAdapter(product_id: Int){
         // 1. ListView 객체 생성
         recyclerView = binding.recyclerDetailReview
         recyclerView.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
         OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
 
         // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
-        menuReviewAdapter = MenuReviewAdapter(applicationContext, R.layout.item_detail_review, productList)
+        menuReviewAdapter = MenuReviewAdapter(applicationContext, R.layout.item_detail_review, productList,product_id)
 
         // 3. ListView와 Adapter 연결
         recyclerView.adapter = menuReviewAdapter
 
     }
 
-    private suspend fun getComment(product_id:Int) {
+     private suspend fun getComment(product_id:Int) {
         withContext(Dispatchers.IO) {
             val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
             val response = service.selectProduct(product_id).execute()
