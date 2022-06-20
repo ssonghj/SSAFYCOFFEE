@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.cafe.model.dao.ProductDao;
 import com.ssafy.cafe.model.dto.Product;
+import com.ssafy.cafe.model.dto.UserLike;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -63,6 +64,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getLikeMenu(String user_id) {
 		return pDao.selectUserLikeMenu(user_id);
+	}
+	
+	@Override
+	public int insertLikeMenu(UserLike userlike) {
+		return pDao.insertUserLikeMenu(userlike);
+	}
+
+	@Override
+	public int removeLikeMenu(UserLike userlike) {
+		return pDao.deleteUserLikeMenu(userlike);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.cafe.model.dto.Product;
+import com.ssafy.cafe.model.dto.UserLike;
 
 public interface ProductService {
 	
@@ -39,6 +40,12 @@ public interface ProductService {
 	
 	//찜한 메뉴 반환
 	List<Product> getLikeMenu(String user_id);
+	
+	//찜한 메뉴 추가
+	int insertLikeMenu(UserLike userlike);
+	
+	//찜한 메뉴 삭제 
+	int removeLikeMenu(UserLike userlike);
 
 	//신상 메뉴 반환
 	List<Product> getNewProduct();

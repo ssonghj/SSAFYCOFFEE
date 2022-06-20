@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.cafe.model.dto.Product;
+import com.ssafy.cafe.model.dto.UserLike;
 
 public interface ProductDao {
 
@@ -36,6 +37,8 @@ public interface ProductDao {
 	List<Product> selectDesert();
 	
 	List<Product> selectUserLikeMenu(String productId);
+	int insertUserLikeMenu(UserLike userlike);
+	int deleteUserLikeMenu(UserLike userlike);
 
 	List<Product> selectNewProduct();
 

@@ -104,6 +104,16 @@
 		where l.user_id = #{userId};	
 	</select>
 	
+	<insert id="insertUserLikeMenu" parameterType="UserLike">
+		INSERT INTO t_likemenu(user_id, product_id)
+		VALUES(#{userId},#{productId});
+	</insert>
+	
+	<delete id="deleteUserLikeMenu" parameterType="UserLike">
+		DELETE FROM t_likemenu
+		WHERE (user_id= #{userId} and product_id = #{productId});
+	</delete>
+	
 	<select id="selectNewProduct" parameterType="String" resultType="Product">
 		select p.id, p.name, p.type, p.price, p.img
 		from t_product p
