@@ -4,7 +4,7 @@ import java.util.*
 
 data class OrderDTO (
     var completed : Char,
-    var datails : List<OrderDetailDTO>,
+    var details : List<OrderDetailDTO>,
     var id : Int,
     var orderTable : String,
     var orderTime : String,

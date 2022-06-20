@@ -4,11 +4,12 @@ import com.ssafy.smartcafe.dto.OrderDTO
 import com.ssafy.smartcafe.dto.OrderDTOwithTotal
 import com.ssafy.smartcafe.dto.RecentOrderDTO
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface OrderService {
     @POST("order")
-    fun insertOrder(@Body orderDTO: OrderDTO): Call<Int>
+    suspend fun insertOrder(@Body orderDTO: OrderDTO): Response<Unit>
 //
 //    //주문상세내역 목록형태로 반환
 //    @GET("order/{orderId}")

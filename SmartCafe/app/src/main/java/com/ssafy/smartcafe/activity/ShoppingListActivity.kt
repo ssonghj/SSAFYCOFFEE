@@ -11,10 +11,7 @@ import com.ssafy.smartcafe.activity.LoginActivity.Companion.detailList
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
 import com.ssafy.smartcafe.adapter.ShoppingListAdapter
 import com.ssafy.smartcafe.databinding.ActivityShoppingListBinding
-import com.ssafy.smartcafe.dto.OrderDTO
-import com.ssafy.smartcafe.dto.ProductDTO
-import com.ssafy.smartcafe.dto.ShoppingListDTO
-import com.ssafy.smartcafe.dto.StampDTO
+import com.ssafy.smartcafe.dto.*
 import com.ssafy.smartcafe.service.OrderService
 import com.ssafy.smartcafe.service.ProductService
 import com.ssafy.smartcafe.util.Utils
@@ -40,6 +37,7 @@ class ShoppingListActivity : AppCompatActivity() {
     private lateinit var shoppingListAdapter : ShoppingListAdapter
     private var allProductList = arrayListOf<ProductDTO>()
     private var needProductList = arrayListOf<ShoppingListDTO>()
+    private lateinit var order:OrderDTO
 
     val application_id = "62b072d0e38c3000235ae5c6"
 
@@ -64,8 +62,9 @@ class ShoppingListActivity : AppCompatActivity() {
         BootpayAnalytics.init(this, application_id)
         binding.frameBuy.setOnClickListener{
             //부트페이 연결
-            goBootpayRequest()
+            goBootpayRequest() //잠깐 주석 처리
             //결제 끝나면 서버로 주문 보내기
+
         }
     }
 
@@ -166,16 +165,12 @@ class ShoppingListActivity : AppCompatActivity() {
                     sum_quantity += detailList[i].quantity
                 }
                 var stamp = StampDTO(0, 0,sum_quantity,userId)
+
                 //서버로 오더내용 보내기
-                var order = OrderDTO('N', detailList, 0, "order_table_01",
-                                date, stamp ,userId)
+                order = OrderDTO('N', detailList, 0, "order_table_01",
+                    date, stamp ,userId)
 
-                CoroutineScope(Dispatchers.Main).launch {
-                    sendOrderInfo(order)
-                }
-
-                //쇼핑내용 지우기
-                detailList.clear()
+                goNext()
 
                 //창닫기
                 finish()
@@ -195,10 +190,18 @@ class ShoppingListActivity : AppCompatActivity() {
             .request();
     }
 
-    private suspend fun sendOrderInfo(order:OrderDTO) {
+    private fun goNext(){
+        CoroutineScope(Dispatchers.Main).launch {
+            sendOrderInfo()
+            //쇼핑내용지우기
+            detailList.clear()
+        }
+    }
+
+    private suspend fun sendOrderInfo() {
         withContext(Dispatchers.IO) {
             val service = MobileCafeApplication.retrofit.create(OrderService::class.java)
-            val response = service.insertOrder(order).execute()
+            val response = service.insertOrder(order)
 
             if (response.code() == 200) {
                 var res = response.body()!!
