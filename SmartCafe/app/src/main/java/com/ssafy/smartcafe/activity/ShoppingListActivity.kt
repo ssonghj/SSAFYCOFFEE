@@ -62,8 +62,30 @@ class ShoppingListActivity : AppCompatActivity() {
         BootpayAnalytics.init(this, application_id)
         binding.frameBuy.setOnClickListener{
             //부트페이 연결
-            goBootpayRequest() //잠깐 주석 처리
+//            goBootpayRequest() //잠깐 주석 처리
+
+
             //결제 끝나면 서버로 주문 보내기
+
+            //주문시간 저장
+            val sdf = Utils.formatter()
+            val date = sdf.format(System.currentTimeMillis())
+
+            //스탬프
+            var sum_quantity = 0
+            for(i in detailList.indices){
+                sum_quantity += detailList[i].quantity
+            }
+            var stamp = StampDTO(0, 0,sum_quantity,userId)
+
+            //서버로 오더내용 보내기
+            order = OrderDTO('N', detailList, 0, "order_table_01",
+                date, stamp ,userId)
+
+            goNext()
+
+            //창닫기
+            finish()
 
         }
     }

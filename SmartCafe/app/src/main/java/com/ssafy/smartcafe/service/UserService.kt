@@ -12,6 +12,10 @@ interface UserService {
     @POST("user")
     fun userInsert(@Body dto: UserDTO) : Call<Unit>
 
+    //간단한 회원정보 리턴
+    @POST("user/simpleInfo")
+    fun getSimpleUserInfo(@Query("id") id: String) : Call<UserDTO>
+
     //회원 정보 조회 (id)
     @POST("user/info")
     fun getUser(@Query("id") id: String): Call<Map<String,Object>>
