@@ -63,6 +63,8 @@ public interface ProductService {
 	 * @return
 	 */
 	List<Map<String, Object>> selectWithComment(Integer productId);
+	
+	List<Map<String, Object>> selectCommentWithUserId(String userId);
 
 	
 

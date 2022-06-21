@@ -91,4 +91,9 @@ public class ProductServiceImpl implements ProductService {
 		return pDao.selectRecommendedDesert();
 	}
 
+	@Override
+	public List<Map<String, Object>> selectCommentWithUserId(String userId) {
+		return pDao.selectCommentWithUserId(userId);
+	}
+
 }

@@ -49,6 +49,19 @@
 		ORDER BY c.id DESC
 	</select>
 	
+	<select id="selectCommentWithUserId" parameterType="String" resultType="map">
+		SELECT p.name, p.price, p.img, p.type, 
+			c.id as commentId, c.user_id, c.rating, c.comment,
+			(SELECT name FROM t_user WHERE id = c.user_Id) userName,
+			(SELECT COUNT(rating) FROM t_comment WHERE product_id = p.id) as commentCnt,
+			(SELECT AVG(rating) FROM t_comment WHERE product_id = p.id) as avg,
+			(SELECT SUM(quantity) FROM t_order_detail WHERE product_id = p.id) as sells
+		FROM t_product p
+		LEFT JOIN t_comment c ON p.id = c.product_id
+		WHERE c.user_id = #{userId}
+		ORDER BY c.id DESC;
+	</select>
+	
 	<!-- 인기순  -->
 	<select id="selectAllWithSellCount" resultType="Product">
 		select p.id, p.name, p.type, p.price, p.img

@@ -42,6 +42,13 @@ public class ProductRestController {
 		return pService.selectWithComment(productId);
 	}
 	
+	@GetMapping("/userComment/{userId}")
+	@ApiOperation(value = "{userId}에 해당하는 상품의 정보를 comment와 함께 반환한다."
+			+ "이 기능은 특정유저의 comment를 조회할 때 사용된다.", response = List.class)
+	public List<Map<String, Object>> getProductWithUserId(@PathVariable String userId) {
+		return pService.selectCommentWithUserId(userId);
+	}
+	
 	@GetMapping("/sellCount")
 	@ApiOperation(value = "전체 상품의 인기순 목록을 반환한다.", response = List.class)
 	public List<Product> getProductListWithSellCount() {
