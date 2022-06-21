@@ -17,6 +17,10 @@ interface ProductService {
     @GET("product/{productId}")
     fun selectProduct(@Path("productId") productId:Int): Call<List<ProductDTO>>
 
+    //유저코멘트 모두 반환
+    @GET("product/userComment/{userId}")
+    fun selectAllProductOfUserComment(@Path("userId") userId:String): Call<List<ProductDTO>>
+
     //메뉴 인기순 반환
     @GET("product/sellCount")
     fun selectProductWithSell(): Call<List<ProductDTO>>

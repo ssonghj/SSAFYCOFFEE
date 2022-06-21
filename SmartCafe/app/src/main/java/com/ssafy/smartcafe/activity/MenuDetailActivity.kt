@@ -24,6 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 private const val TAG = "MenuDetailActivity"
 class MenuDetailActivity : AppCompatActivity() {
@@ -164,18 +165,19 @@ class MenuDetailActivity : AppCompatActivity() {
     }
 
     private fun setAdapter(){
-            // 1. ListView 객체 생성
-            recyclerView = binding.recyclerReview
-            recyclerView.layoutManager = LinearLayoutManager(
-                applicationContext,
-                LinearLayoutManager.VERTICAL, false
-            )
+        // 1. ListView 객체 생성
+        recyclerView = binding.recyclerReview
+        recyclerView.layoutManager = LinearLayoutManager(
+            applicationContext,
+            LinearLayoutManager.VERTICAL, false
+        )
+        OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
 
-            // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
-            simpleCommentAdapter = SimpleCommentAdapter(applicationContext, R.layout.item_simple_review, productList)
+        // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
+        simpleCommentAdapter = SimpleCommentAdapter(applicationContext, R.layout.item_simple_review, productList)
 
-            // 3. ListView와 Adapter 연결
-            recyclerView.adapter = simpleCommentAdapter
+        // 3. ListView와 Adapter 연결
+        recyclerView.adapter = simpleCommentAdapter
     }
 
     private suspend fun getProductInfo(id:Int) {
