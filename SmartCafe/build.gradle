@@ -5,6 +5,14 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.5.30' apply false
 }
 
+subprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

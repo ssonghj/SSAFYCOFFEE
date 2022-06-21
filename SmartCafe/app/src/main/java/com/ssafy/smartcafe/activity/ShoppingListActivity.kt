@@ -62,7 +62,7 @@ class ShoppingListActivity : AppCompatActivity() {
         BootpayAnalytics.init(this, application_id)
         binding.frameBuy.setOnClickListener{
             //부트페이 연결
-//            goBootpayRequest() //잠깐 주석 처리
+            goBootpayRequest() //잠깐 주석 처리
 
 
             //결제 끝나면 서버로 주문 보내기
