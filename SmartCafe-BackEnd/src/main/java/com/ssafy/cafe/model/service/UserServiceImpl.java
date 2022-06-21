@@ -59,4 +59,10 @@ public class UserServiceImpl implements UserService {
 	public boolean isUsedId(String id) {
 		return userDao.select(id) != null;
 	}
+
+	@Override
+	public User select(String id) {
+		return userDao.select(id);
+		
+	}
 }

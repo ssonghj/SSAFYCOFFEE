@@ -38,6 +38,7 @@ public class OrderServiceImpl implements OrderService {
 		// 주문 및 주문 상세 테이블 저장
 		oDao.insert(order);
 		List<OrderDetail> details = order.getDetails();
+		
 		int quantitySum = 0;
 		for(OrderDetail detail: details) {
 			detail.setOrderId(order.getId());

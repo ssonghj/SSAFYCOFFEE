@@ -53,6 +53,12 @@ public class UserRestController {
 	public Boolean isUsedId(String id) {
 		return uService.isUsedId(id);
 	}
+	
+	@PostMapping("/simpleInfo")
+	@ApiOperation(value = "간단한 사용자 정보 반환한다.", response = Boolean.class)
+	public User simpleUserInfo(String id) {
+		return uService.select(id);
+	}
 
 	@PostMapping("/login")
 	@ApiOperation(value = "로그인 처리 후 성공적으로 로그인 되었다면 loginId라는 쿠키를 내려보낸다.", response = User.class)
@@ -112,11 +118,11 @@ public class UserRestController {
 	@PostConstruct
 	public void setup() {
 		levels = new ArrayList<>();
-		levels.add(new Level("씨앗", 10, 50, "seeds.png"));
-		levels.add(new Level("꽃", 15, 125, "flower.png"));
-		levels.add(new Level("열매", 20, 225, "coffee_fruit.png"));
-		levels.add(new Level("커피콩", 25, 350, "coffee_beans.png"));
-		levels.add(new Level("커피나무", Integer.MAX_VALUE, Integer.MAX_VALUE, "coffee_tree.png"));
+		levels.add(new Level("BRONZE", 10, 50, "seeds.png"));
+		levels.add(new Level("SILVER", 10, 100, "flower.png"));
+		levels.add(new Level("GOLD", 10, 150, "coffee_fruit.png"));
+		levels.add(new Level("PLATINUM", 10, 200, "coffee_beans.png"));
+		levels.add(new Level("DIAMOND", Integer.MAX_VALUE, Integer.MAX_VALUE, "coffee_tree.png"));
 	}
 
 	class Level {

@@ -14,13 +14,13 @@ public class Order {
 	private Integer id;
 	private String userId;
 	private String orderTable;
-	private String orderTime;
+	private Date orderTime;
 	private Character completed;
 	private List<OrderDetail> details;
 	private Stamp stamp;
 
 	@Builder
-	public Order(Integer id, String userId, String orderTable, String orderTime, Character complited) {
+	public Order(Integer id, String userId, String orderTable, Date orderTime, Character complited) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -29,7 +29,7 @@ public class Order {
 		this.completed = complited;
 	}
 
-	public Order(String userId, String orderTable, String orderTime, Character complited) {
+	public Order(String userId, String orderTable, Date orderTime, Character complited) {
 		this.userId = userId;
 		this.orderTable = orderTable;
 		this.orderTime = orderTime;
