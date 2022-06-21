@@ -59,6 +59,12 @@ class MypageFragment : Fragment() {
 
         setLevel()
 
+        //준비중인 메뉴 확인
+        binding.tvSeeDetail.setOnClickListener{
+            val intent = Intent(ctx, DetailCurOrderMenuActivity::class.java)
+            startActivity(intent)
+        }
+
         //리뷰 관리
         binding.frameReview.setOnClickListener{
             val intent = Intent(ctx, UserReviewActivity::class.java)
@@ -68,6 +74,11 @@ class MypageFragment : Fragment() {
         //주문내역
         binding.frameOrderList.setOnClickListener{
             val intent = Intent(ctx, UserRecentOrderListActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.frameUserLike.setOnClickListener{
+            val intent = Intent(ctx, UserLikeActivity::class.java)
             startActivity(intent)
         }
 

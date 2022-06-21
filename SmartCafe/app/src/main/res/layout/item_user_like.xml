@@ -19,18 +19,21 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_member"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:elevation="10dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             app:cardCornerRadius="15dp"
+            android:layout_margin="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
 
             <ImageView
                 android:id="@+id/img_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/cafelogo"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +49,7 @@
             android:textColor="@color/black"
             android:fontFamily="@font/notosansmedium"
             android:includeFontPadding="false"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardview_member"/>
