@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
@@ -18,11 +19,12 @@ import com.ssafy.smartcafe.activity.LoginActivity.Companion.detailList
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userName
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userStamp
-import com.ssafy.smartcafe.adapter.ProductsListAdapter
-import com.ssafy.smartcafe.adapter.StampAdapter
+import com.ssafy.smartcafe.adapter.*
 import com.ssafy.smartcafe.databinding.FragmentMypageBinding
 import com.ssafy.smartcafe.dto.OrderDetailDTO
 import com.ssafy.smartcafe.dto.ProductDTO
+import com.ssafy.smartcafe.dto.RecentOrderDTO
+import com.ssafy.smartcafe.service.OrderService
 import com.ssafy.smartcafe.service.ProductService
 import com.ssafy.smartcafe.service.UserService
 import com.ssafy.smartcafe.util.getLevel
@@ -39,7 +41,9 @@ class MypageFragment : Fragment() {
     private lateinit var binding: FragmentMypageBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var stampAdapter : StampAdapter
+    private lateinit var curOrderAdapter : MypageCurOrderAdapter
 
+    private var productList = arrayListOf<RecentOrderDTO>()
     private var stampList = mutableListOf<String>()
     private var stampCnt = 0
 
@@ -107,6 +111,12 @@ class MypageFragment : Fragment() {
             startActivity(intent)
         }
 
+        //주문중인 메뉴들 불러오기
+        CoroutineScope(Dispatchers.Main).launch {
+            getCurOrder()
+            setAdapteOfCurOrder()
+        }
+
         return binding.root
     }
 
@@ -128,6 +138,20 @@ class MypageFragment : Fragment() {
 
             setAdapter()
         }
+    }
+
+    private fun setAdapteOfCurOrder(){
+
+        // 1. ListView 객체 생성
+        recyclerView = binding.recyclerWaitingMenu
+        recyclerView.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
+        OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
+
+        // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
+        curOrderAdapter = MypageCurOrderAdapter(ctx, R.layout.item_ready, productList)
+
+        // 3. ListView와 Adapter 연결
+        recyclerView.adapter = curOrderAdapter
     }
 
     private fun setAdapter(){
@@ -155,6 +179,20 @@ class MypageFragment : Fragment() {
                 println("getUserInfo : ${stampCnt}")
             } else {
                 Log.d(TAG, "getUserInfo: error code")
+            }
+        }
+    }
+
+    private suspend fun getCurOrder() {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(OrderService::class.java)
+            val response = service.selectCurOrder(userId).execute()
+
+            if (response.code() == 200) {
+                productList = (response.body() as ArrayList<RecentOrderDTO>?)!!
+                println("getCurOrder : ${productList}")
+            } else {
+                println("getCurOrder: error code")
             }
         }
     }
