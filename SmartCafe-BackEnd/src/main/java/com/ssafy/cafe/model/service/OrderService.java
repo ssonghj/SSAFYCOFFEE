@@ -58,4 +58,7 @@ public interface OrderService {
 	//이번주 주문 내역 불러오기
 	public List<Map<String, Object>> getThisWeekOrder();
 	
+	//주문중인 메뉴 불러오기 
+	public List<Map<String, Object>> getCurOrder(String userId);
+	
 }

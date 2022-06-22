@@ -33,5 +33,8 @@ public interface OrderDao {
 	List<Map<String, Object>> getLastMonthOrder(String id);
 
 	List<Map<String, Object>> selectThisWeekOrder();
+	
+	//현재 유저가 주문중인 메뉴들 
+	List<Map<String, Object>> selectCurOrder(String userId);
 
 }

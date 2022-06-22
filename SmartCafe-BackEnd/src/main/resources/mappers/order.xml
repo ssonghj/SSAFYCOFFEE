@@ -99,4 +99,15 @@
 		ORDER BY total DESC limit 3;
 	</select>
 	
+	<!-- 현재 주문 중인 내역 -->
+	<select id="selectCurOrder" parameterType="string" resultType="map">
+		SELECT o.o_id, o.user_id, o.order_time, o.completed, d.quantity, 
+			p.id as p_id, p.name, p.img, p.price, p.type
+		FROM t_order o 
+		JOIN t_order_detail d ON d.order_id = o.o_id
+		JOIN t_product p ON d.product_id = p.id
+		WHERE user_id = #{userId} and o.completed = 'N'
+		ORDER BY o.o_id DESC, d.d_id DESC;
+	</select>
+	
 </mapper>

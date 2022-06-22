@@ -53,4 +53,11 @@ public class OrderRestController {
 	public List<Map<String, Object>> getThisWeekOrder() {
 		return oService.getThisWeekOrder();
 	}
+	
+	@GetMapping("/getCurOrder")
+	@ApiOperation(value = "{userId}에 해당하는 현재 주문중인 내역을 반환한다.", response = List.class)
+	public List<Map<String, Object>> getCurOrder(String userId) {
+		return oService.getCurOrder(userId);
+	}
+	
 }
