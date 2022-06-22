@@ -16,8 +16,8 @@ class MobileCafeApplication: Application() {
     // Manifest에 등록해야 한다.
 
 //    private val BOARD_URL = "http://172.30.1.48:9999/rest/"
-//    private val BOARD_URL = "http://192.168.123.101:9999/rest/"
-    private val BOARD_URL = "http://192.168.35.53:9999/rest/"
+    private val BOARD_URL = "http://192.168.123.107:9999/rest/"
+//    private val BOARD_URL = "http://192.168.35.53:9999/rest/"
 //    private val BOARD_URL = "http://172.20.10.10:9999/rest/"
 
 
