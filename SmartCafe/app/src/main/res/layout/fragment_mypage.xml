@@ -8,23 +8,24 @@
 
     <ImageButton
         android:id="@+id/btn_notification"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/notifications"
-        android:scaleType="fitXY"
-        android:background="@color/white"
-        android:layout_marginTop="10dp"
-        app:layout_constraintRight_toLeftOf="@id/btn_setting"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <ImageButton
-        android:id="@+id/btn_setting"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/settings"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/bell"
         android:scaleType="fitXY"
         android:background="@color/white"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
+        app:layout_constraintRight_toLeftOf="@id/btn_setting"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageButton
+        android:id="@+id/btn_setting"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/gear"
+        android:scaleType="fitXY"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -36,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_setting"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="30dp"
+        android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:overScrollMode="never"
