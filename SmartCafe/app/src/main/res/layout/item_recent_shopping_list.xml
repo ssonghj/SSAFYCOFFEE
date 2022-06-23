@@ -19,8 +19,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_member"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:elevation="10dp"
             app:cardCornerRadius="15dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/cafelogo"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아메리카노 외 2건"
-            android:textSize="25dp"
+            android:textSize="16dp"
             android:textColor="@color/black"
             android:fontFamily="@font/notosansmedium"
             android:includeFontPadding="false"
@@ -56,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9600원"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:fontFamily="@font/notosansmedium"
             android:includeFontPadding="false"
             android:textColor="@color/black"
@@ -70,9 +71,10 @@
             android:layout_height="wrap_content"
             android:text="2021.01.01"
             android:fontFamily="@font/notosansmedium"
+            android:textColor="@color/login_user_color"
             android:includeFontPadding="false"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_total_price"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -15,7 +15,9 @@ import com.ssafy.smartcafe.dto.RecentOrderDTO
 import java.util.LinkedHashMap
 
 private const val TAG="RecentOrderListAdapter"
-class RecentOrderListAdapter(var context: Context, private val resource: Int, objects: LinkedHashMap<Int, MutableList<RecentOrderDTO>>, var mapKey:MutableList<Int>)
+class RecentOrderListAdapter(var context: Context, private val resource: Int,
+                             objects: LinkedHashMap<Int, MutableList<RecentOrderDTO>>,
+                             var mapKey:MutableList<Int>)
     : RecyclerView.Adapter<HomeHolder>() {
 
     //사용하고자 하는 데이터

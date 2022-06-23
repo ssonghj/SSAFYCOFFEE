@@ -27,7 +27,11 @@ interface OrderService {
     @GET("order/thisWeekTop3")
     fun selectThisWeekOrder(): Call<List<OrderDTOwithTotal>>
 
-    //최근 1개월주문정보 반환
+    //주문 중인 내용 반환
     @GET("order/getCurOrder")
     fun selectCurOrder(@Query("userId") id:String): Call<List<RecentOrderDTO>>
+
+    //주문했던 내용 반환
+    @GET("order/getPastOrder")
+    fun selectPastOrder(@Query("userId") id:String): Call<List<RecentOrderDTO>>
 }
