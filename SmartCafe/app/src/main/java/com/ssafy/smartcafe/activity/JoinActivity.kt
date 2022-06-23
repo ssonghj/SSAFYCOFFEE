@@ -1,6 +1,8 @@
 package com.ssafy.smartcafe.activity
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -26,9 +28,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 private const val TAG = "JoinActivity"
+
 class JoinActivity : AppCompatActivity() {
+
+    companion object{
+        lateinit var ctx: JoinActivity
+    }
+
     private lateinit var binding: ActivityJoinBinding
-    val mainViewModel: JoinViewModel by ViewModelLazy(
+    private val mainViewModel: JoinViewModel by ViewModelLazy(
         JoinViewModel::class,
         { viewModelStore },
         { defaultViewModelProviderFactory }
@@ -36,6 +44,7 @@ class JoinActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ctx = this
         binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
         binding.apply {
             lifecycleOwner = this@JoinActivity
@@ -105,7 +114,9 @@ class JoinActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun checkId(inputId:String) {
+
+
+    suspend fun checkId(inputId:String) {
         println("inputid : ${inputId}")
 
         withContext(Dispatchers.IO){
@@ -120,10 +131,12 @@ class JoinActivity : AppCompatActivity() {
                 //로그인할 아이디가 이미 사용중인 경우 토스트 메시지
                 if(res){
                     mainViewModel.setUsed()
+                    Log.d(TAG, "checkId: 이미 사용중")
                 }
                 //로그인아이디 사용되지 않은 경우
                 else{
                     mainViewModel.setCanUsed()
+                    Log.d(TAG, "checkId: 사용 가능 아이디")
                 }
 
                 //뷰모델 업데이트
@@ -148,4 +161,5 @@ class JoinActivity : AppCompatActivity() {
             }
         }
     }
+
 }
