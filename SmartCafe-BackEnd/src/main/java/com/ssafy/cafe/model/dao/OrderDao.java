@@ -36,5 +36,8 @@ public interface OrderDao {
 	
 	//현재 유저가 주문중인 메뉴들 
 	List<Map<String, Object>> selectCurOrder(String userId);
+	
+	//현재 유저가 주문 했었던 메뉴들 
+	List<Map<String, Object>> selectPastOrder(String userId);
 
 }

@@ -61,4 +61,7 @@ public interface OrderService {
 	//주문중인 메뉴 불러오기 
 	public List<Map<String, Object>> getCurOrder(String userId);
 	
+	//주문했던 메뉴불러오기 
+	public List<Map<String, Object>> getPastOrder(String userId);
+	
 }

@@ -60,4 +60,10 @@ public class OrderRestController {
 		return oService.getCurOrder(userId);
 	}
 	
+	@GetMapping("/getPastOrder")
+	@ApiOperation(value = "{userId}에 해당하는 주문했던 내역을 반환한다.", response = List.class)
+	public List<Map<String, Object>> getPastOrder(String userId) {
+		return oService.getPastOrder(userId);
+	}
+	
 }

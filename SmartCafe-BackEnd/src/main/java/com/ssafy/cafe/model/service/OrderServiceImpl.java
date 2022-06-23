@@ -89,4 +89,9 @@ public class OrderServiceImpl implements OrderService {
 	public List<Map<String, Object>> getCurOrder(String userId) {
 		return oDao.selectCurOrder(userId);
 	}
+
+	@Override
+	public List<Map<String, Object>> getPastOrder(String userId) {
+		return oDao.selectPastOrder(userId);
+	}
 }
