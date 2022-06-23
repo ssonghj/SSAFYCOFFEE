@@ -22,6 +22,10 @@ import com.ssafy.smartcafe.service.UserService
 import kotlinx.coroutines.*
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import com.ssafy.smartcafe.activity.JoinActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 private const val TAG = "LoginActivity"
@@ -29,8 +33,11 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var user:UserDTO
+    private var idCheck = false
 
-    
+    private lateinit var api_id: String
+    private lateinit var api_nickName: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
@@ -56,9 +63,162 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY))
         }
+// 로그인 정보 확인
+        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+            if (error != null) {
+                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+            }
+            else if (tokenInfo != null) {
+                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                finish()
+            }
+        }
+        val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+            if (error != null) {
+                when {
+                    error.toString() == AuthErrorCause.AccessDenied.toString() -> {
+                        Toast.makeText(this, "접근이 거부 됨(동의 취소)", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.InvalidClient.toString() -> {
+                        Toast.makeText(this, "유효하지 않은 앱", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.InvalidGrant.toString() -> {
+                        Toast.makeText(this, "인증 수단이 유효하지 않아 인증할 수 없는 상태", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.InvalidRequest.toString() -> {
+                        Toast.makeText(this, "요청 파라미터 오류", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.InvalidScope.toString() -> {
+                        Toast.makeText(this, "유효하지 않은 scope ID", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.Misconfigured.toString() -> {
+                        Toast.makeText(this, "설정이 올바르지 않음(android key hash)", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.ServerError.toString() -> {
+                        Toast.makeText(this, "서버 내부 에러", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.Unauthorized.toString() -> {
+                        Toast.makeText(this, "앱이 요청 권한이 없음", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> { // Unknown
+                        Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            else if (token != null) {
 
+                //Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                    UserApiClient.instance.me { user, error ->
+                        if (user != null) {
+                            api_id = user?.kakaoAccount?.email.toString()
+                            api_nickName = user?.kakaoAccount?.profile?.nickname.toString()
+                            var pass = user?.id.toString()
+                            //Log.d(TAG, "onCreate:  비밀번호: $pass")
+                            CoroutineScope(Dispatchers.Main).launch {
+//                                JoinActivity.ctx.checkId(id)
+//                                //autoLogin(id,pass)
+                                checkId(api_id,api_nickName,pass)
+
+                                Log.d(TAG, "onCreate: 로그인 후아이디 중복 체크")
+                            }
+
+
+                        }
+                    }
+
+                LoginActivity.userId = api_id
+                LoginActivity.userName = api_nickName
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY))
+                finish()
+            }
+        }
         binding.frameKakao.setOnClickListener {
+            Log.d(TAG, "onCreate: 카카오로그인 클릭")
             //kakaoLogin()
+            if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
+                LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
+            }else{
+                LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
+            }
+        }
+    }
+
+    //아이디 중복체크
+    private fun checkId(id: String,nickName:String, pw:String):Boolean{
+
+        var answer = false
+        Log.d(TAG, "checkId: 중복체크하는 아이디: $id")
+
+        //토스트만 지우면 됌.
+        CoroutineScope(Dispatchers.Main).launch {
+            //회원 테이블에서 같은 아이디가 있는지 확인한다
+            val service = MobileCafeApplication.retrofit.create(UserService::class.java)
+            service.checkUser(id).enqueue(object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    if (response.code() == 200) {
+                        val res = response.body()!!
+                        if(!res){
+                            //Toast.makeText(this@LoginActivity,"사용 가능한 아이디입니다.",Toast.LENGTH_SHORT).show()
+                            idCheck=true
+                            answer = true
+                            Log.d(TAG, "onResponse: 사용가능한 아이디 $id")
+                            joinServer(id,nickName,pw)
+                        }
+                        else{
+                            //Toast.makeText(this@LoginActivity, "중복되는 아이디입니다.",Toast.LENGTH_SHORT).show()
+                            idCheck=false
+                            answer = false
+                        }
+                    }else{
+                        Log.d(TAG, "onResponse: Error Code ${response.code()}")
+                    }
+                }
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    t.printStackTrace()
+                    Log.d(TAG, "onFailure: 아이디 중복 확인 오류")
+                }
+
+            }
+            )
+        }
+        Log.d(TAG, "checkId: 중복체크 결과 ${answer}")
+        return answer
+    }
+
+    //아이디 회원가입
+    private fun joinServer(id:String, newNickname:String,pw:String){
+        Log.d(TAG, "joinServer: 회원가입 id: $id")
+        CoroutineScope(Dispatchers.Main).launch {
+            //MobileCafeRepository.get().userInsert(UserDTO(newId, newNickname,newPass,0))
+            val service = MobileCafeApplication.retrofit.create(UserService::class.java)
+            service.userInsert(UserDTO(id, newNickname, pw, 0))
+                .enqueue(object : Callback<Unit> {
+                    override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                        //정상일 경우 가져옴
+                        if (response.code() == 200) {
+                            var check = response.body()!!
+                            Log.d(TAG, "onResponse: ${check}")
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "가입 성공.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Log.d(TAG, "가입 오류 - onResponse : Error code ${response.code()}")
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        t.printStackTrace()
+                        Log.d(TAG, "onFailure:  가입 오류")
+
+                    }
+
+                })
         }
     }
 
@@ -119,7 +279,7 @@ class LoginActivity : AppCompatActivity() {
 //                    var id = user?.kakaoAccount?.email.toString()
 //                    var pass = user?.id.toString()
 //                    //Log.d(TAG, "onCreate:  비밀번호: $pass")
-//                    autoLogin(id, pass)
+//                    //autoLogin(id, pass)
 //                    //checkId(id)
 //                }
 //            }
@@ -168,8 +328,10 @@ class LoginActivity : AppCompatActivity() {
 //                            var nickName = user?.kakaoAccount?.profile?.nickname.toString()
 //                            var pass = user?.id.toString()
 //                            //Log.d(TAG, "onCreate:  비밀번호: $pass")
-//                            checkId(id,nickName,pass)
-//                            autoLogin(id,pass)
+//                            CoroutineScope(Dispatchers.Main).launch {
+//                                JoinActivity.ctx.checkId(id)
+//                            }
+//                            //autoLogin(id,pass)
 //                            Log.d(TAG, "onCreate: 로그인 후아이디 중복 체크")
 //
 //                        }
@@ -181,11 +343,7 @@ class LoginActivity : AppCompatActivity() {
 //                finish()
 //            }
 //        }
-//        if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
-//            LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
-//        }else{
-//            LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
-//        }
+//
 //    }
 
     //현재 사용자 정보를 담아두기 위한 전역변수

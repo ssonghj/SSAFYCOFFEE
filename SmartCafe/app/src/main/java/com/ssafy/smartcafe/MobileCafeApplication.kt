@@ -3,6 +3,7 @@ package com.ssafy.smartcafe
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.kakao.sdk.common.KakaoSdk
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -16,8 +17,8 @@ class MobileCafeApplication: Application() {
     // Manifest에 등록해야 한다.
 
 //    private val BOARD_URL = "http://172.30.1.48:9999/rest/"
-    private val BOARD_URL = "http://192.168.123.107:9999/rest/"
-//    private val BOARD_URL = "http://192.168.35.53:9999/rest/"
+//    private val BOARD_URL = "http://192.168.123.107:9999/rest/"
+    private val BOARD_URL = "http://192.168.35.53:9999/rest/"
 //    private val BOARD_URL = "http://172.20.10.10:9999/rest/"
 
 
@@ -30,6 +31,8 @@ class MobileCafeApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        KakaoSdk.init(this,"2b217d71bc66abe6546a80b201c2b438")
 
         // 앱이 처음 생성되는 순간, retrofit 인스턴스를 생성
         retrofit = Retrofit.Builder()

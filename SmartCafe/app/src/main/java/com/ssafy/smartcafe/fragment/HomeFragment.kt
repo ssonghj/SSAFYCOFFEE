@@ -1,17 +1,21 @@
 package com.ssafy.smartcafe.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kakao.sdk.user.UserApiClient
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity
+import com.ssafy.smartcafe.activity.MainActivity
 import com.ssafy.smartcafe.adapter.*
 import com.ssafy.smartcafe.databinding.FragmentHomeBinding
 import com.ssafy.smartcafe.dto.OrderDTOwithTotal
@@ -63,6 +67,19 @@ class HomeFragment : Fragment() {
         binding.tvUserName.text = LoginActivity.userName+"님"
         binding.tvEventForUser.text = LoginActivity.userName+"님을 위한 이벤트"
         binding.tvRecommendMenu.text = LoginActivity.userName+"님 이 메뉴들은 어때요?"
+
+        binding.tvHello.setOnClickListener {
+                UserApiClient.instance.logout { error ->
+                    if (error != null) {
+                        Log.d(TAG, "onCreateView: 로그아웃 실패")
+                    }else {
+                        Log.d(TAG, "onCreateView: 로그아웃 성공")
+                        var intent = Intent(ctx, LoginActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                    }
+                }
+        }
 
         //최근내역
         getRecentOrder(binding.root)
