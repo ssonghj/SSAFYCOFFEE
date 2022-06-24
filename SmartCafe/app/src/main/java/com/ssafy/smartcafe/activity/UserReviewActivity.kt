@@ -25,6 +25,16 @@ class UserReviewActivity : AppCompatActivity() {
     private lateinit var myReviewAdapter : MyReviewAdapter
     private var productList = arrayListOf<ProductDTO>()
 
+    override fun onResume() {
+        super.onResume()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            getAllMyComment()
+            setAdapter()
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserReviewBinding.inflate(layoutInflater)

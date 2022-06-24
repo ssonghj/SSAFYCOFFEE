@@ -1,6 +1,7 @@
 package com.ssafy.smartcafe.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
+import com.ssafy.smartcafe.activity.WriteReviewActivity
 import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.service.CommentService
 import com.ssafy.smartcafe.service.ProductService
@@ -46,7 +48,16 @@ class MyReviewAdapter(var context: Context, private val resource: Int, var produ
 
         //수정 버튼 클릭시 내용 수정
         holder.btn_modify.setOnClickListener{
+            val intent = Intent(context, WriteReviewActivity::class.java)
+            intent.putExtra("modify",true)
+            intent.putExtra("commentId", productList[position].commentId)
+            intent.putExtra("menuName",productList[position].name)
+            intent.putExtra("rating", productList[position].rating.toFloat()/2)
+            intent.putExtra("content",productList[position].comment)
+            intent.putExtra("productId", productList[position].id)
 
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
         }
 
         //삭제 버튼 클릭시 삭제

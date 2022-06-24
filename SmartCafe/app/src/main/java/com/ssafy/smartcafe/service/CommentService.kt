@@ -10,7 +10,7 @@ interface CommentService {
     suspend fun insertComment(@Body comment: CommentDTO) : Response<Unit>
 
     @PUT("comment")
-    suspend fun updateComment(@Body comment: CommentDTO) : Call<Unit>
+    suspend fun updateComment(@Body comment: CommentDTO) : Response<Unit>
 
     @DELETE("comment/{id}")
     suspend fun deleteComment(@Path("id") id: Int) : Response<Unit>

@@ -42,7 +42,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주문 내역"
+            android:text="메뉴"
             android:textSize="25dp"
             android:fontFamily="@font/notosansmedium"
             android:includeFontPadding="false"
@@ -54,7 +54,7 @@
             android:id="@+id/tv_menu_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아메리카노 외 2건"
+            android:text="아메리카노"
             android:textSize="25dp"
             android:fontFamily="@font/notosansmedium"
             android:includeFontPadding="false"
@@ -85,6 +85,7 @@
             android:rating="3.5"
             android:numStars="5"
             android:stepSize="0.5"
+            android:isIndicator="false"
             android:progressTint="@color/button_color_seventy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_menu_name"/>
@@ -123,7 +124,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="후기를 작성해주세요!"
-                android:background="@color/white"/>
+                android:textColorHint="@color/login_user_color"
+                android:background="@color/white"
+                android:textColor="@color/black"/>
         </FrameLayout>
 
         <FrameLayout

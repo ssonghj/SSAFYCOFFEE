@@ -1,19 +1,21 @@
 package com.ssafy.smartcafe.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
-import com.ssafy.smartcafe.activity.MenuDetailActivity
-import com.ssafy.smartcafe.activity.MenuReviewActivity
+import com.ssafy.smartcafe.activity.WriteReviewActivity
 import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.service.CommentService
 import com.ssafy.smartcafe.service.ProductService
@@ -32,6 +34,7 @@ class MenuReviewAdapter(var context: Context, private val resource: Int,var prod
         return MenuReviewHolder(view)
     }
 
+
     override fun getItemCount(): Int {
         return productList.size
     }
@@ -48,9 +51,18 @@ class MenuReviewAdapter(var context: Context, private val resource: Int,var prod
             holder.btn_delete.visibility = View.GONE
         }
 
-        //수정 버튼 클릭시 내용 수정
+        //수정 버튼 클릭시 내용보내서 수정
         holder.btn_modify.setOnClickListener{
+            val intent = Intent(context, WriteReviewActivity::class.java)
+            intent.putExtra("modify",true)
+            intent.putExtra("commentId", productList[position].commentId)
+            intent.putExtra("menuName",productList[position].name)
+            intent.putExtra("rating", productList[position].rating.toFloat()/2)
+            intent.putExtra("content",productList[position].comment)
+            intent.putExtra("productId", product_id)
 
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
         }
 
         //삭제 버튼 클릭시 삭제
