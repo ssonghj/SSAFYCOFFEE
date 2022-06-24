@@ -121,4 +121,17 @@
 		ORDER BY o.o_id DESC, d.d_id DESC;
 	</select>
 	
+	<select id="selectWriteComment" parameterType="string" resultType="map">
+		select * 
+		from t_order o 
+		join t_order_detail od on o.o_id = od.order_id
+		where o.user_id = #{userId} and completed = 'Y' and is_write_review = 'N';
+	</select>
+	
+	<update id="updateIsWriteComment" parameterType="Integer">
+		update t_order_detail
+		set is_write_review='Y' 
+		where d_id = #{dId};
+	</update>
+	
 </mapper>
