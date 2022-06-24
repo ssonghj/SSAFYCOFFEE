@@ -12,6 +12,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kakao.sdk.user.UserApiClient
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.*
@@ -100,15 +101,40 @@ class MypageFragment : Fragment() {
 
         //로그아웃
         binding.frameLogout.setOnClickListener {
-            //유저 데이터 초기화
-            userId = ""
-            userName = ""
-            userStamp = 0
-            detailList = arrayListOf()
 
-            var intent = Intent(ctx, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            //카카오 로그인일 경우
+            if(LoginActivity.loginInfo=="kakaoLogin") {
+                UserApiClient.instance.logout { error ->
+                    if (error != null) {
+                        Log.d(TAG, "onCreateView: 로그아웃 실패")
+                    } else {
+                        Log.d(TAG, "onCreateView: 로그아웃 성공")
+                        //유저 데이터 초기화
+                        userId = ""
+                        userName = ""
+                        userStamp = 0
+                        detailList = arrayListOf()
+
+                        var intent = Intent(ctx, LoginActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                    }
+                }
+            }
+
+            else{
+                //유저 데이터 초기화
+                userId = ""
+                userName = ""
+                userStamp = 0
+                detailList = arrayListOf()
+
+                var intent = Intent(ctx, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+            }
+
+
         }
 
         //주문중인 메뉴들 불러오기
