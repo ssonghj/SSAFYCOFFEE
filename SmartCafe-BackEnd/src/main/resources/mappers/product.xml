@@ -50,7 +50,7 @@
 	</select>
 	
 	<select id="selectCommentWithUserId" parameterType="String" resultType="map">
-		SELECT p.name, p.price, p.img, p.type, 
+		SELECT p.id, p.name, p.price, p.img, p.type, 
 			c.id as commentId, c.user_id, c.rating, c.comment,
 			(SELECT name FROM t_user WHERE id = c.user_Id) userName,
 			(SELECT COUNT(rating) FROM t_comment WHERE product_id = p.id) as commentCnt,
