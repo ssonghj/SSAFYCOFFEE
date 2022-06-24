@@ -15,9 +15,8 @@ import com.ssafy.smartcafe.activity.LoginActivity.Companion.detailList
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
 import com.ssafy.smartcafe.adapter.SimpleCommentAdapter
 import com.ssafy.smartcafe.databinding.ActivityMenuDetailBinding
-import com.ssafy.smartcafe.dto.OrderDetailDTO
-import com.ssafy.smartcafe.dto.ProductDTO
-import com.ssafy.smartcafe.dto.UserLikeDTO
+import com.ssafy.smartcafe.dto.*
+import com.ssafy.smartcafe.service.OrderService
 import com.ssafy.smartcafe.service.ProductService
 import com.ssafy.smartcafe.viewModel.MenuDetailViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -34,6 +33,8 @@ class MenuDetailActivity : AppCompatActivity() {
     private var productList = arrayListOf<ProductDTO>()
     private var likeMenuList = arrayListOf<ProductDTO>()
     private var product_id = 0
+    private var list = arrayListOf<RecentOrderDTOwithComment>()
+    private var d_id = 0
 
     val mainViewModel: MenuDetailViewModel by ViewModelLazy(
         MenuDetailViewModel::class,
@@ -47,6 +48,17 @@ class MenuDetailActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             getProductInfo(product_id)
             setAdapter()
+
+            getWriteComment()
+            //코멘트 쓸거 없으면 버튼 비활성화
+            binding.btnReview.visibility = View.GONE
+            for(i in list.indices){
+                if(list[i].product_id == product_id){
+                    //코멘트 쓸거 있으면 버튼 활성화
+                    binding.btnReview.visibility = View.VISIBLE
+                    d_id = list[i].d_id
+                }
+            }
         }
     }
 
@@ -100,6 +112,30 @@ class MenuDetailActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+
+        CoroutineScope(Dispatchers.Main).launch {
+            getWriteComment()
+
+            //코멘트 쓸거 없으면 버튼 비활성화
+            binding.btnReview.visibility = View.GONE
+            for(i in list.indices){
+                if(list[i].product_id == product_id){
+                    //코멘트 쓸거 있으면 버튼 활성화
+                    binding.btnReview.visibility = View.VISIBLE
+                    d_id = list[i].d_id
+                }
+            }
+        }
+
+        //리뷰쓰기 버튼
+        binding.btnReview.setOnClickListener{
+            val intent = Intent(applicationContext, WriteReviewActivity::class.java)
+            intent.putExtra("menuName", productList[0].name)
+            intent.putExtra("productId",product_id)
+            intent.putExtra("d_id", d_id)
+            startActivity(intent)
         }
 
         //수량 증가
@@ -239,6 +275,20 @@ class MenuDetailActivity : AppCompatActivity() {
                 println("DeleteUserLikeMenu : ${res}")
             } else {
                 Log.d(TAG, "DeleteUserLikeMenu: error code")
+            }
+        }
+    }
+
+    private suspend fun getWriteComment(){
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(OrderService::class.java)
+            val response = service.selectWriteComment(userId).execute()
+
+            if (response.code() == 200) {
+                list = (response.body() as ArrayList<RecentOrderDTOwithComment>?)!!
+                println("getWriteComment : ${list}")
+            } else {
+                Log.d(TAG, "getWriteComment: error code")
             }
         }
     }
