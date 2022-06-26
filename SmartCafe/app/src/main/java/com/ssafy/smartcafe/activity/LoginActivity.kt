@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //키 해시 알아내는 코드(등록 후 삭제!)
+//        //키 해시 알아내는 코드(등록 후 삭제!)
 //        var keyHash = Utility.getKeyHash(this)
 //        Log.d(TAG, "onCreate: 키 해시 : $keyHash")
         

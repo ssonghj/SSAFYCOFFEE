@@ -114,6 +114,7 @@ class MypageFragment : Fragment() {
                         userName = ""
                         userStamp = 0
                         detailList = arrayListOf()
+                        LoginActivity.loginInfo==""
 
                         var intent = Intent(ctx, LoginActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

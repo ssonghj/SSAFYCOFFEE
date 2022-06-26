@@ -93,8 +93,8 @@
 		FROM t_order o
 		JOIN t_order_detail d ON d.order_id = o.o_id
 		JOIN t_product p ON d.product_id = p.id
-		WHERE date(o.order_time) BETWEEN subdate(curdate(),date_format(curdate(),'%w')-1) 
-		AND subdate(curdate(),date_format(curdate(),'%w')-7)
+		WHERE date(o.order_time) 
+		BETWEEN subdate(curdate(),(dayofweek(now())-1)) and adddate(curdate(), (7-(dayofweek(now()))))
 		GROUP BY d.product_id
 		ORDER BY total DESC limit 3;
 	</select>
