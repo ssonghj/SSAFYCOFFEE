@@ -9,10 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kakao.sdk.user.UserApiClient
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.NidOAuthLogin
+import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.*
@@ -121,6 +125,35 @@ class MypageFragment : Fragment() {
                         startActivity(intent)
                     }
                 }
+            }
+
+            //네이버 로그인일 경우
+            else if(LoginActivity.loginInfo=="naverLogin"){
+                userId = ""
+                userName = ""
+                userStamp = 0
+                detailList = arrayListOf()
+                LoginActivity.loginInfo==""
+                NidOAuthLogin().callDeleteTokenApi(ctx, object : OAuthLoginCallback {
+                    override fun onSuccess() {
+                        //Toast.makeText(this@MainActivity, "네이버 아이디 토큰삭제 성공!", Toast.LENGTH_SHORT).show()
+                        Log.d(TAG, "onSuccess: 토큰삭제")
+                    }
+                    override fun onFailure(httpStatus: Int, message: String) {
+                        // 서버에서 토큰 삭제에 실패했어도 클라이언트에 있는 토큰은 삭제되어 로그아웃된 상태입니다.
+                        // 클라이언트에 토큰 정보가 없기 때문에 추가로 처리할 수 있는 작업은 없습니다.
+                        Log.d("naver", "errorCode: ${NaverIdLoginSDK.getLastErrorCode().code}")
+                        Log.d("naver", "errorDesc: ${NaverIdLoginSDK.getLastErrorDescription()}")
+                    }
+                    override fun onError(errorCode: Int, message: String) {
+                        // 서버에서 토큰 삭제에 실패했어도 클라이언트에 있는 토큰은 삭제되어 로그아웃된 상태입니다.
+                        // 클라이언트에 토큰 정보가 없기 때문에 추가로 처리할 수 있는 작업은 없습니다.
+                        onFailure(errorCode, message)
+                    }
+                })
+                var intent = Intent(ctx, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
             }
 
             else{

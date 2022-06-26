@@ -3,4 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="kakao_app_key">2b217d71bc66abe6546a80b201c2b438</string>
+
+    <string name="social_login_info_naver_client_id">TkFflnM7z1DWcNi7t1Ru</string>
+    <string name="social_login_info_naver_client_secret">q05qJWvrJr</string>
+    <string name="social_login_info_naver_client_name">네이버아이디 로그인</string>
 </resources>
