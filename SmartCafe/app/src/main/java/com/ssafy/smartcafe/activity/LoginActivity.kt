@@ -258,14 +258,15 @@ class LoginActivity : AppCompatActivity() {
             override fun onSuccess(response: NidProfileResponse) {
                 val userId = response.profile?.email.toString()
                 val nickname = response.profile?.nickname.toString()
-                val pass = response.profile?.birthday.toString()
+                val pass = response.profile?.id.toString()
                 var tmpUser = UserDTO(userId,"",pass,0)
-                Log.d(TAG, "onSuccess: 네이버 로그인 id : $userId 별명 : $nickname")
+                //Log.d(TAG, "onSuccess: 네이버 로그인 id : $userId 별명 : $nickname")
                 //중복검사하고, 가입 후 로그인 하기
                 CoroutineScope(Dispatchers.Main).launch {
                     checkId(userId,nickname,pass)
                     getIDPass(tmpUser, userId, pass)
                 }
+                
             }
             override fun onFailure(httpStatus: Int, message: String) {
                 val errorCode = NaverIdLoginSDK.getLastErrorCode().code
@@ -289,6 +290,8 @@ class LoginActivity : AppCompatActivity() {
 //                var naverExpiresAt = NaverIdLoginSDK.getExpiresAt().toString()
 //                var naverTokenType = NaverIdLoginSDK.getTokenType()
 //                var naverState = NaverIdLoginSDK.getState().toString()
+
+                Log.d(TAG, "onSuccess: 토큰값 : $naverToken")
 
                 //로그인 유저 정보 가져오기
                 NidOAuthLogin().callProfileApi(profileCallback)
