@@ -94,4 +94,14 @@ public class OrderServiceImpl implements OrderService {
 	public List<Map<String, Object>> getPastOrder(String userId) {
 		return oDao.selectPastOrder(userId);
 	}
+
+	@Override
+	public List<Map<String, Object>> getWriteComment(String userId) {
+		return oDao.selectWriteComment(userId);
+	}
+
+	@Override
+	public int updateIsWriteComment(Integer dId) {
+		return oDao.updateIsWriteComment(dId);
+	}
 }

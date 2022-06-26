@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.cafe.model.dto.Comment;
 import com.ssafy.cafe.model.dto.Order;
 import com.ssafy.cafe.model.service.OrderService;
 
@@ -64,6 +66,18 @@ public class OrderRestController {
 	@ApiOperation(value = "{userId}에 해당하는 주문했던 내역을 반환한다.", response = List.class)
 	public List<Map<String, Object>> getPastOrder(String userId) {
 		return oService.getPastOrder(userId);
+	}
+	
+	@GetMapping("/getWriteComment")
+	@ApiOperation(value = "{userId}에 해당하는 써야할 리뷰들을 반환한다.", response = List.class)
+	public List<Map<String, Object>> getWriteComment(String userId) {
+		return oService.getWriteComment(userId);
+	}
+	
+	@GetMapping("/updateIsWriteComment")
+	@ApiOperation(value = "order_detail 코멘트 여부를 수정한다.", response = List.class)
+	public int update(Integer dId) {
+		return oService.updateIsWriteComment(dId);
 	}
 	
 }

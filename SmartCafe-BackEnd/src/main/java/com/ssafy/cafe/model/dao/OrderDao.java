@@ -39,5 +39,11 @@ public interface OrderDao {
 	
 	//현재 유저가 주문 했었던 메뉴들 
 	List<Map<String, Object>> selectPastOrder(String userId);
+	
+	//
+	List<Map<String, Object>> selectWriteComment(String userId);
+	
+	//
+	int updateIsWriteComment(Integer dId);
 
 }
