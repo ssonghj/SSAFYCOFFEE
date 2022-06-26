@@ -64,4 +64,8 @@ public interface OrderService {
 	//주문했던 메뉴불러오기 
 	public List<Map<String, Object>> getPastOrder(String userId);
 	
+	public List<Map<String, Object>> getWriteComment(String userId);
+	
+	public int updateIsWriteComment(Integer dId);
+	
 }

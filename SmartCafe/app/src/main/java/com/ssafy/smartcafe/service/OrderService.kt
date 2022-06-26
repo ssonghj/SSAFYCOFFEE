@@ -1,8 +1,6 @@
 package com.ssafy.smartcafe.service
 
-import com.ssafy.smartcafe.dto.OrderDTO
-import com.ssafy.smartcafe.dto.OrderDTOwithTotal
-import com.ssafy.smartcafe.dto.RecentOrderDTO
+import com.ssafy.smartcafe.dto.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -34,4 +32,11 @@ interface OrderService {
     //주문했던 내용 반환
     @GET("order/getPastOrder")
     fun selectPastOrder(@Query("userId") id:String): Call<List<RecentOrderDTO>>
+
+    //리뷰 쓸 것들 반환
+    @GET("order/getWriteComment")
+    fun selectWriteComment(@Query("userId")userId: String): Call<List<RecentOrderDTOwithComment>>
+
+    @GET("order/updateIsWriteComment")
+    suspend fun updateWriteComment(@Query("dId") dId: Int) : Response<Unit>
 }

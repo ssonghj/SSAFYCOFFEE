@@ -10,6 +10,7 @@ import com.ssafy.smartcafe.databinding.ActivityWriteReviewBinding
 import com.ssafy.smartcafe.dto.CommentDTO
 import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.service.CommentService
+import com.ssafy.smartcafe.service.OrderService
 import com.ssafy.smartcafe.service.ProductService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,9 +44,9 @@ class WriteReviewActivity : AppCompatActivity() {
 
             val commentId = intent!!.getIntExtra("commentId",0)
             val menuName = intent!!.getStringExtra("menuName")
+            val productId = intent!!.getIntExtra("productId",0)
             var rating = intent!!.getFloatExtra("rating",0.0f)
             var content = intent!!.getStringExtra("content").toString()
-            val productId = intent!!.getIntExtra("productId",0)
 
             binding.tvMenuName.text = menuName
             binding.ratingBar.rating = rating
@@ -54,19 +55,43 @@ class WriteReviewActivity : AppCompatActivity() {
             //수정한 리뷰 업로드
             binding.frameReviewCompleteBtn.setOnClickListener{
                 CoroutineScope(Dispatchers.Main).launch {
-                    var comment = binding.editContent.text.toString()
+                    var content = binding.editContent.text.toString()
                     var rating = (binding.ratingBar.rating * 2).toInt()
 
-                    var modifyComment = CommentDTO(comment, commentId, productId, rating, userId)
+                    var modifyComment = CommentDTO(content, commentId, productId, rating, userId)
                     //commentId 사용해서 ㄱ
                     uploadComment(modifyComment)
+
                     finish()
                 }
             }
         }
         //새로 작성할 경우
         else{
+            binding.tvReviewWriteTitle.text = "리뷰작성"
 
+            val menuName = intent!!.getStringExtra("menuName")
+            val productId = intent!!.getIntExtra("productId",0)
+            val d_id = intent!!.getIntExtra("d_id",-1)
+
+            binding.tvMenuName.text = menuName
+
+            //수정한 리뷰 업로드
+            binding.frameReviewCompleteBtn.setOnClickListener{
+                CoroutineScope(Dispatchers.Main).launch {
+                    var content = binding.editContent.text.toString()
+                    var rating = (binding.ratingBar.rating * 2).toInt()
+
+                    var comment = CommentDTO(content, 0, productId, rating, userId)
+                    //commentId 사용해서 ㄱ
+                    createComment(comment)
+
+                    //order_detail의 is_write_review 값 'Y'로 변경
+                    updateIsWriteComment(d_id)
+
+                    finish()
+                }
+            }
         }
     }
 
@@ -74,6 +99,36 @@ class WriteReviewActivity : AppCompatActivity() {
         withContext(Dispatchers.IO) {
             val service = MobileCafeApplication.retrofit.create(CommentService::class.java)
             val response = service.updateComment(commentDTO)
+
+            if (response.code() == 200) {
+                var res = response.body()
+
+                println("uploadComment : ${res}")
+            } else {
+                print("uploadComment: error code")
+            }
+        }
+    }
+
+    private suspend fun createComment(commentDTO: CommentDTO) {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(CommentService::class.java)
+            val response = service.insertComment(commentDTO)
+
+            if (response.code() == 200) {
+                var res = response.body()
+
+                println("uploadComment : ${res}")
+            } else {
+                print("uploadComment: error code")
+            }
+        }
+    }
+
+    private suspend fun updateIsWriteComment(dId: Int) {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(OrderService::class.java)
+            val response = service.updateWriteComment(dId)
 
             if (response.code() == 200) {
                 var res = response.body()

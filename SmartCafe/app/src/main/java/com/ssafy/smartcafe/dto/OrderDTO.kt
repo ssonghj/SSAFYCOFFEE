@@ -30,7 +30,29 @@ data class OrderDTOwithTotal(
     var total: Int
 )
 
-data class RecentOrderDTO(var img:String, var quantity:Int, var user_id: String, var price:Int, var o_id:Int,
-                     var name:String, var order_time:String, var completed: String, var type:String, var p_id:Int)
+data class RecentOrderDTO(
+    var img:String,
+    var quantity:Int,
+    var user_id: String,
+    var price:Int,
+    var o_id:Int,
+    var name:String,
+    var order_time:String,
+    var completed: String,
+    var type:String,
+    var p_id:Int)
+
+
+data class RecentOrderDTOwithComment(
+    var quantity:Int,
+    var user_id: String,
+    var product_id : Int,
+    var o_id : Int,
+    var d_id : Int,
+    var order_time : String,
+    var completed: String,
+    var order_id:Int,
+    var is_write_comment:String
+    )
 
 
