@@ -68,19 +68,6 @@ class HomeFragment : Fragment() {
         binding.tvEventForUser.text = LoginActivity.userName+"님을 위한 이벤트"
         binding.tvRecommendMenu.text = LoginActivity.userName+"님 이 메뉴들은 어때요?"
 
-        binding.tvHello.setOnClickListener {
-                UserApiClient.instance.logout { error ->
-                    if (error != null) {
-                        Log.d(TAG, "onCreateView: 로그아웃 실패")
-                    }else {
-                        Log.d(TAG, "onCreateView: 로그아웃 성공")
-                        var intent = Intent(ctx, LoginActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        startActivity(intent)
-                    }
-                }
-        }
-
         //최근내역
         getRecentOrder(binding.root)
 
@@ -139,8 +126,6 @@ class HomeFragment : Fragment() {
             myListView.layoutManager = LinearLayoutManager(ctx,
                 LinearLayoutManager.HORIZONTAL, false)
             OverScrollDecoratorHelper.setUpOverScroll(myListView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
-
-
 
             // 2. Adapter 객체 생성(한 행을 위해 반복 생성할 Layout과 데이터 전달)
             recentOrderListAdapter = RecentOrderListAdapter(ctx, R.layout.recyclerview_recent_order_list,map,mapKey)

@@ -266,7 +266,7 @@ class LoginActivity : AppCompatActivity() {
                     checkId(userId,nickname,pass)
                     getIDPass(tmpUser, userId, pass)
                 }
-                
+
             }
             override fun onFailure(httpStatus: Int, message: String) {
                 val errorCode = NaverIdLoginSDK.getLastErrorCode().code
@@ -291,7 +291,7 @@ class LoginActivity : AppCompatActivity() {
 //                var naverTokenType = NaverIdLoginSDK.getTokenType()
 //                var naverState = NaverIdLoginSDK.getState().toString()
 
-                Log.d(TAG, "onSuccess: 토큰값 : $naverToken")
+                //Log.d(TAG, "onSuccess: 토큰값 : $naverToken")
 
                 //로그인 유저 정보 가져오기
                 NidOAuthLogin().callProfileApi(profileCallback)
