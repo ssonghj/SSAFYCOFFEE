@@ -1,6 +1,7 @@
 package com.ssafy.smartcafe.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.activity.MenuDetailActivity
 import com.ssafy.smartcafe.dto.RecentOrderDTO
 import org.w3c.dom.Text
 import java.util.LinkedHashMap
@@ -40,6 +42,7 @@ class CurOrderAdapter(var context: Context, private val resource: Int,var list: 
 
         var sum = list[position].quantity * list[position].price
         holder.sumPrice.text = "${sum}원"
+
     }
 
     override fun getItemCount(): Int {

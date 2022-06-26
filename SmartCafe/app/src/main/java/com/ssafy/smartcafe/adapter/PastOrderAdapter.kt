@@ -1,6 +1,7 @@
 package com.ssafy.smartcafe.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.activity.LoginActivity
+import com.ssafy.smartcafe.activity.MenuDetailActivity
+import com.ssafy.smartcafe.dto.OrderDetailDTO
 import com.ssafy.smartcafe.dto.RecentOrderDTO
 import java.util.LinkedHashMap
 
+private const val TAG = "PastOrderAdapter"
 class PastOrderAdapter(var context: Context, private val resource: Int,
                        var orderList: LinkedHashMap<Int, MutableList<RecentOrderDTO>>,
                        var mapKey:MutableList<Int>)
@@ -58,6 +63,7 @@ class PastOrderAdapter(var context: Context, private val resource: Int,
 
         var arr = curInfo[0].order_time.split("T")
         holder.date.text = arr[0]
+
     }
 
     override fun getItemCount(): Int {
