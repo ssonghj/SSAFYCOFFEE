@@ -121,11 +121,12 @@
 		ORDER BY o.o_id DESC, d.d_id DESC;
 	</select>
 	
+	<!-- 리뷰작성 가능한 상품 불러오기 -->
 	<select id="selectWriteComment" parameterType="string" resultType="map">
 		select * 
 		from t_order o 
 		join t_order_detail od on o.o_id = od.order_id
-		where o.user_id = #{userId} and completed = 'Y' and is_write_review = 'N';
+		where o.user_id = #{userId} and completed = 'Y' and is_write_review = 'N' and o.order_time > now()-interval 1 day;
 	</select>
 	
 	<update id="updateIsWriteComment" parameterType="Integer">
