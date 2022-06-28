@@ -13,6 +13,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
@@ -38,7 +43,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
-
 
 private const val TAG = "MypageFragment"
 class MypageFragment : Fragment() {
@@ -151,6 +155,23 @@ class MypageFragment : Fragment() {
                         onFailure(errorCode, message)
                     }
                 })
+                var intent = Intent(ctx, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+            }
+
+            else if(LoginActivity.loginInfo=="googleLogin") {
+                userId = ""
+                userName = ""
+                userStamp = 0
+                detailList = arrayListOf()
+                LoginActivity.loginInfo == ""
+                Firebase.auth.signOut()
+
+                val opt = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+                val client = GoogleSignIn.getClient(ctx, opt)
+                client.signOut()
+
                 var intent = Intent(ctx, LoginActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)

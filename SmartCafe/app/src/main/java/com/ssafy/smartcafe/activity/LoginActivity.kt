@@ -8,6 +8,12 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
@@ -41,6 +47,10 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var api_id: String
     private lateinit var api_nickName: String
+
+    // firebase authentication 관련
+    private val RC_SIGN_IN: Int = 9001
+    lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -88,6 +98,17 @@ class LoginActivity : AppCompatActivity() {
         binding.frameNaver.setOnClickListener {
             startNaverLogin()
         }
+
+        //구글 로그인
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        binding.frameGoogle.setOnClickListener {
+            signIn()
+        }
+
     }
 
 
@@ -309,6 +330,51 @@ class LoginActivity : AppCompatActivity() {
         }
 
         NaverIdLoginSDK.authenticate(this, oauthLoginCallback)
+    }
+
+    //구글 로그인
+    private fun signIn() {
+        var signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+
+            Log.d(TAG, "onActivityResult: 로그인완료")
+            LoginActivity.loginInfo="googleLogin"
+        }
+
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val email = account?.email.toString()
+            val givenName = account?.givenName.toString()
+            val pass = account?.idToken.toString()
+            Log.d(TAG, "handleSignInResult: $pass")
+
+            var tmpUser = UserDTO(email,"",pass,0)
+
+            //중복검사하고, 가입 후 로그인 하기
+            CoroutineScope(Dispatchers.Main).launch {
+                checkId(email,givenName,pass)
+                getIDPass(tmpUser, email, pass)
+            }
+
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("failed", "signInResult:failed code=" + e.statusCode)
+        }
     }
 
     //현재 사용자 정보를 담아두기 위한 전역변수
