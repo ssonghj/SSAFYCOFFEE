@@ -15,6 +15,7 @@ import com.ssafy.smartcafe.activity.LoginActivity
 import com.ssafy.smartcafe.activity.ShoppingListActivity
 import com.ssafy.smartcafe.dto.OrderDetailDTO
 import com.ssafy.smartcafe.dto.RecentOrderDTO
+import kotlinx.coroutines.CoroutineScope
 import java.util.LinkedHashMap
 
 private const val TAG="RecentOrderListAdapter"
@@ -67,7 +68,6 @@ class RecentOrderListAdapter(var context: Context, private val resource: Int,
 
         //최근 주문 메뉴 장바구니에 넣고 토스트메시지 띄우기
         holder.productsImg.setOnClickListener{
-
             var curInfo = orderList.getValue(mapKey[position])
             for(i in curInfo.indices){
 

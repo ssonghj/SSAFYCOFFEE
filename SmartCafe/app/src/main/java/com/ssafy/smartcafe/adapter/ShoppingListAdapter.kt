@@ -75,7 +75,7 @@ class ShoppingListAdapter(var context: Context, private val resource: Int, var p
         holder.btn_delete.setOnClickListener{
             productList.removeAt(position)
             detailList.removeAt(position)
-            notifyItemChanged(position)
+            notifyDataSetChanged()
         }
     }
 
