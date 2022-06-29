@@ -36,6 +36,11 @@ class LikeMenuFragment : Fragment() {
         ctx = context
     }
 
+    override fun onResume() {
+        super.onResume()
+        setAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
