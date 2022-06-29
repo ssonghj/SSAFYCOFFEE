@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--리소스 관리 파일-->
+    <dimen name="pageMargin">10dp</dimen>
+    <dimen name="pageWidth">10dp</dimen>
+</resources>
