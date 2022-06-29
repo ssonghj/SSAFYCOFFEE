@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.asksira.loopingviewpager.LoopingPagerAdapter
+import com.google.android.material.internal.ViewUtils.getBackgroundColor
 import com.ssafy.smartcafe.R
 
 class ViewPagerAdapter(var context: Context,private val resource: Int, idolList: ArrayList<Int>)
@@ -25,7 +27,7 @@ class ViewPagerAdapter(var context: Context,private val resource: Int, idolList:
         holder.idol.setImageResource(item[position % item.size])
     }
 
-    override fun getItemCount(): Int = item.size
+    override fun getItemCount(): Int = Int.MAX_VALUE
 }
 
 class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

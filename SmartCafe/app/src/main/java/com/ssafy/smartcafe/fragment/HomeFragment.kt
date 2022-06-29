@@ -93,12 +93,13 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
     //이벤트 하드코딩
     var bannerList = arrayListOf(R.drawable.event1, R.drawable.event2, R.drawable.event3)
-    var bannerPosition = bannerList.size
+    var bannerPosition = 0
 
     private var numBanner = bannerList.size
-    private var currentPosition = Int.MAX_VALUE / 2
+    private var currentPosition = 0
     private fun setBanner(){
 
         //overscroll 먹이기
@@ -114,14 +115,15 @@ class HomeFragment : Fragment() {
         binding.viewpager.setPageTransformer(transform)
 
         binding.viewpager.adapter = ViewPagerAdapter(requireContext(), R.layout.item_banner, bannerList)
-        binding.viewpager.setCurrentItem(currentPosition, true)
-        binding.dotsIndicator.setViewPager2(binding.viewpager)
+        binding.viewpager.setCurrentItem(currentPosition, false)
+
+        binding.textViewTotalBanner.text = numBanner.toString()
 
         binding.viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {  //사용자가 스크롤 했을때 position 수정
                 super.onPageSelected(position)
                 bannerPosition = position
-
+                binding.textViewCurrentBanner.text = "${(position%3)+1}" // position이 0부터 시작해서 +
             }
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -142,7 +144,7 @@ class HomeFragment : Fragment() {
     fun scrollJobCreate() {
         job = lifecycleScope.launchWhenResumed {
             delay(1500)
-            binding.viewpager.setCurrentItemWithDuration(++bannerPosition % bannerList.size, 2000)
+            binding.viewpager.setCurrentItemWithDuration(++bannerPosition, 2000)
         }
     }
 

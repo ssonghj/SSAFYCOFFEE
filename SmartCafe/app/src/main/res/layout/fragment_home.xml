@@ -83,20 +83,53 @@
                 android:orientation="horizontal"
                 android:clipChildren="false"
                 android:clipToPadding="false"/>
-            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                android:id="@+id/dots_indicator"
+
+       <LinearLayout
+                android:id="@+id/linear_layout_see_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:dotsColor="@color/main_color_fifty"
-                app:dotsCornerRadius="8dp"
-                app:dotsSize="14dp"
-                app:dotsSpacing="4dp"
-                app:dotsWidthFactor="2.5"
-                android:layout_gravity="center|bottom"
-                app:selectedDotColor="@color/main_color_fifty"
-                app:progressMode="false"
-                android:layout_marginBottom="10dp"/>
+                android:layout_gravity="bottom|center"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/gray_ellipse">
 
+                <TextView
+                android:id="@+id/textView_current_banner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="10dp"
+                android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="/"
+                    android:textSize="10dp"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/textView_total_banner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15"
+                    android:textSize="10dp"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="모두보기"
+                    android:textSize="10dp"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
         </FrameLayout>
 
         <TextView
