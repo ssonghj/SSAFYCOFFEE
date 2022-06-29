@@ -87,13 +87,13 @@
                 android:id="@+id/dots_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:dotsColor="@color/login_user_color"
+                app:dotsColor="@color/main_color_fifty"
                 app:dotsCornerRadius="8dp"
                 app:dotsSize="14dp"
                 app:dotsSpacing="4dp"
                 app:dotsWidthFactor="2.5"
                 android:layout_gravity="center|bottom"
-                app:selectedDotColor="@color/button_color_seventy"
+                app:selectedDotColor="@color/main_color_fifty"
                 app:progressMode="false"
                 android:layout_marginBottom="10dp"/>
 

@@ -1,5 +1,8 @@
 package com.ssafy.smartcafe.fragment
 
+import android.animation.Animator
+import android.animation.TimeInterpolator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +10,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -22,9 +27,7 @@ import com.ssafy.smartcafe.dto.ProductDTO
 import com.ssafy.smartcafe.dto.RecentOrderDTO
 import com.ssafy.smartcafe.service.OrderService
 import com.ssafy.smartcafe.service.ProductService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,6 +53,8 @@ class HomeFragment : Fragment() {
     private var recommendedProductList:List<ProductDTO> = arrayListOf()
     private var recommendedDesertList:List<ProductDTO> = arrayListOf()
     private var thisWeekTop3List:List<OrderDTOwithTotal> = arrayListOf()
+
+    lateinit var job : Job
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -88,9 +93,13 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    //이벤트 하드코딩
+    var bannerList = arrayListOf(R.drawable.event1, R.drawable.event2, R.drawable.event3)
+    var bannerPosition = bannerList.size
+
+    private var numBanner = bannerList.size
+    private var currentPosition = Int.MAX_VALUE / 2
     private fun setBanner(){
-        //이벤트 하드코딩
-        var bannerList = arrayListOf(R.drawable.event1, R.drawable.event2, R.drawable.event3)
 
         //overscroll 먹이기
         binding.viewpager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
@@ -105,7 +114,75 @@ class HomeFragment : Fragment() {
         binding.viewpager.setPageTransformer(transform)
 
         binding.viewpager.adapter = ViewPagerAdapter(requireContext(), R.layout.item_banner, bannerList)
+        binding.viewpager.setCurrentItem(currentPosition, true)
         binding.dotsIndicator.setViewPager2(binding.viewpager)
+
+        binding.viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {  //사용자가 스크롤 했을때 position 수정
+                super.onPageSelected(position)
+                bannerPosition = position
+
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+                when (state) {
+                    ViewPager2.SCROLL_STATE_IDLE ->{
+                        if (!job.isActive) scrollJobCreate()
+                    }
+
+                    ViewPager2.SCROLL_STATE_DRAGGING -> job.cancel()
+
+                    ViewPager2.SCROLL_STATE_SETTLING -> {}
+                }
+            }
+        })
+    }
+
+    fun scrollJobCreate() {
+        job = lifecycleScope.launchWhenResumed {
+            delay(1500)
+            binding.viewpager.setCurrentItemWithDuration(++bannerPosition % bannerList.size, 2000)
+        }
+    }
+
+    //이벤트 배너 빠르게 지나가는 것을 막기 위한 확장함수
+    fun ViewPager2.setCurrentItemWithDuration(
+        item: Int, duration: Long,
+        interpolator: TimeInterpolator = AccelerateDecelerateInterpolator(),
+        pagePxWidth: Int = width // ViewPager2 View 의 getWidth()에서 가져온 기본값
+    ) {
+        val pxToDrag: Int = pagePxWidth * (item - currentItem)
+        val animator = ValueAnimator.ofInt(0, pxToDrag)
+        var previousValue = 0
+
+        animator.addUpdateListener { valueAnimator ->
+            val currentValue = valueAnimator.animatedValue as Int
+            val currentPxToDrag = (currentValue - previousValue).toFloat()
+            fakeDragBy(-currentPxToDrag)
+            previousValue = currentValue
+        }
+
+        animator.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) { beginFakeDrag() }
+            override fun onAnimationEnd(animation: Animator?) { endFakeDrag() }
+            override fun onAnimationCancel(animation: Animator?) { /* Ignored */ }
+            override fun onAnimationRepeat(animation: Animator?) { /* Ignored */ }
+        })
+
+        animator.interpolator = interpolator
+        animator.duration = duration
+        animator.start()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        scrollJobCreate()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
     }
 
     private fun homeAdapter(inflater:View){
