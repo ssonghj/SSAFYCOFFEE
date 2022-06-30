@@ -4,11 +4,28 @@
 
 ## 개발환경
 
+**Mobile** </br>
+[![kotlin Badge](https://img.shields.io/badge/kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white)](https://www.kotlin.org/)
+[![android Badge](https://img.shields.io/badge/android-3DDC84?style=flat-square&logo=android&logoColor=white)](https://android.org/)
+
+**DB** </br>
+[![mysql Badge](https://img.shields.io/badge/mysql-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://mysql.org/)
+
+**Server** </br>
+[![Java Badge](https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white)](https://Java.info/)
+[![SpringBoot Badge](https://img.shields.io/badge/springboot-6DB33F?style=flat-square&logo=Springboot&logoColor=white)](https://www.SpringBoot.org/)
+[![Spring Badge](https://img.shields.io/badge/spring-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://www.Spring.org/)
+
+**Etc** </br>
+[![Firebase Badge](https://img.shields.io/badge/firebase-FFCA28?style=flat-square&logo=firebase&logoColor=white)](https://firebase.com/)
+[![git Badge](https://img.shields.io/badge/git-F05032?style=flat-square&logo=git&logoColor=white)](https://git.com/)
+[![github Badge](https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/)
+
 ## 프로젝트 기획 의도
 
 ## 개발자
 
-[송현진](https://github.com/ssonghj), [배혜연](https://github.com/henginthere)
+[송현진](https://github.com/ssonghj) | [배혜연](https://github.com/henginthere)
 
 ## 기능
  1. 스플래시
