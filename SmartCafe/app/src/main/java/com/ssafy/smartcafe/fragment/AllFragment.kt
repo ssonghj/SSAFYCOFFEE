@@ -88,9 +88,10 @@ class AllFragment : Fragment() {
 
                     //아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
                     when (position) {
-                        //인기순
+                        //인기순(리뷰많은순)
                         0 -> {
-                            getProductWithSell()
+                            //getProductWithSell()
+                            getProductWithHighCommentCnt()
                         }
                         //낮은 가격순
                         1 -> {
@@ -100,9 +101,9 @@ class AllFragment : Fragment() {
                         2 -> {
                             getProductWithHighPrice()
                         }
-                        //리뷰많은순
+                        //이름순
                         3 -> {
-                            getProductWithHighCommentCnt()
+                            getProductOrderbyName()
                         }
                         //평점순
                         else -> {
@@ -203,6 +204,20 @@ class AllFragment : Fragment() {
         withContext(Dispatchers.IO) {
             val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
             val response = service.selectProductWithHighRating().execute()
+
+            if (response.code() == 200) {
+                productList = (response.body() as ArrayList<ProductDTO>?)!!
+                println("getProductWithSell : ${productList}")
+            } else {
+                Log.d(TAG, "getProductWithSell: error code")
+            }
+        }
+    }
+
+    private suspend fun getProductOrderbyName() {
+        withContext(Dispatchers.IO) {
+            val service = MobileCafeApplication.retrofit.create(ProductService::class.java)
+            val response = service.selectProductOrderbyName().execute()
 
             if (response.code() == 200) {
                 productList = (response.body() as ArrayList<ProductDTO>?)!!

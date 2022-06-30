@@ -52,6 +52,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public List<Product> getProductOrderbyName() {
+		return pDao.selectAllOrderbyName();
+	}
+	
+	@Override
 	public List<Product> getAllCoffee() {
 		return pDao.selectCoffee();
 	}
@@ -95,5 +100,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<Map<String, Object>> selectCommentWithUserId(String userId) {
 		return pDao.selectCommentWithUserId(userId);
 	}
+
+
 
 }
