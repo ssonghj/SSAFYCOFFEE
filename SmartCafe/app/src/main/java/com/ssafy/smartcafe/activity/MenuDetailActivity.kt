@@ -195,6 +195,7 @@ class MenuDetailActivity : AppCompatActivity() {
 
         if(productList[0].commentCnt == 0){
             binding.recyclerReview.visibility = View.GONE
+            binding.tvMoreDetailReview.visibility = View.GONE
         }else{
             setAdapter()
         }
