@@ -1,13 +1,18 @@
 package com.ssafy.smartcafe.fragment
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
@@ -70,7 +75,26 @@ class MypageFragment : Fragment() {
 
         binding.tvUserName.text = LoginActivity.userName+"님"
 
+        //등급 설정
         setLevel()
+
+            var dialog = Dialog(ctx)
+            dialog.setContentView(R.layout.dialog_level)
+        //등급별 혜택 다이얼로그
+        binding.frameLevelNotification.setOnClickListener{
+            dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT)
+            //다이얼로그 배경 흰색으로 변경
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.create()
+            dialog.show()
+        }
+
+        dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener{
+            dialog.dismiss()
+        }
+
+
 
         //준비중인 메뉴 확인
         binding.tvSeeDetail.setOnClickListener{

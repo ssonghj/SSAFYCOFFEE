@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@style/AppTheme"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="#00000000"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/btn_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/close"
+        android:layout_gravity="right"
+        app:tint="@color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:background="@color/white"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SSAFYCOFFEE VIP"
+            android:fontFamily="@font/jalnan"
+            android:textSize="32dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메뉴를 주문하면 \n자동으로 등급이 올라가요!"
+            android:fontFamily="@font/notosansmedium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            android:gravity="center"
+            android:includeFontPadding="false"/>
+
+        <ImageView
+            android:id="@+id/img_bronze"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/level_bronze"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle"/>
+
+        <TextView
+            android:id="@+id/tv_bronze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="BRONZE 1~5"
+            android:textSize="16dp"
+            android:textColor="#643629"
+            android:fontFamily="@font/notosansbold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toRightOf="@id/img_bronze"
+            app:layout_constraintTop_toBottomOf="@id/subtitle"/>
+
+        <TextView
+            android:id="@+id/tv_bronze_benefits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanslight"
+            android:includeFontPadding="false"
+            android:text="계산 금액의 1% 할인"
+            app:layout_constraintLeft_toRightOf="@id/img_bronze"
+            app:layout_constraintTop_toBottomOf="@id/tv_bronze"/>
+
+        <ImageView
+            android:id="@+id/img_silver"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/level_silver"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_bronze"/>
+
+        <TextView
+            android:id="@+id/tv_silver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="SILVER 1~5"
+            android:textSize="16dp"
+            android:textColor="#646364"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/notosansbold"
+            app:layout_constraintLeft_toRightOf="@id/img_silver"
+            app:layout_constraintTop_toBottomOf="@id/img_bronze"/>
+
+        <TextView
+            android:id="@+id/tv_silver_benefits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanslight"
+            android:includeFontPadding="false"
+            android:text="계산 금액의 3% 할인"
+            app:layout_constraintTop_toBottomOf="@id/tv_silver"
+            app:layout_constraintLeft_toRightOf="@id/img_silver"/>
+
+        <ImageView
+            android:id="@+id/img_gold"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/level_gold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_silver"/>
+
+        <TextView
+            android:id="@+id/tv_gold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="GOLD 1~5"
+            android:textSize="16dp"
+            android:textColor="#EAD676"
+            android:fontFamily="@font/notosansbold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toRightOf="@id/img_gold"
+            app:layout_constraintTop_toBottomOf="@id/img_silver"/>
+
+        <TextView
+            android:id="@+id/tv_gold_benefits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanslight"
+            android:includeFontPadding="false"
+            android:text="계산 금액의 5% 할인"
+            app:layout_constraintLeft_toRightOf="@id/img_gold"
+            app:layout_constraintTop_toBottomOf="@id/tv_gold"/>
+
+        <ImageView
+            android:id="@+id/img_platinum"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/level_platinum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_gold"/>
+
+        <TextView
+            android:id="@+id/tv_platinum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="PLATINUM 1~5"
+            android:textSize="16dp"
+            android:textColor="#4F5050"
+            android:fontFamily="@font/notosansbold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toRightOf="@id/img_platinum"
+            app:layout_constraintTop_toBottomOf="@id/img_gold"
+            app:layout_constraintBottom_toTopOf="@id/tv_platinum_benefits"/>
+
+        <TextView
+            android:id="@+id/tv_platinum_benefits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanslight"
+            android:includeFontPadding="false"
+            android:text="계산 금액의 7% 할인"
+            app:layout_constraintLeft_toRightOf="@id/img_platinum"
+            app:layout_constraintTop_toBottomOf="@id/tv_platinum"/>
+
+        <ImageView
+            android:id="@+id/img_diamond"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/level_diamond"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_platinum"/>
+
+        <TextView
+            android:id="@+id/tv_diamond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="DIAMOND 1~5"
+            android:textSize="16dp"
+            android:textColor="#807BBB"
+            android:fontFamily="@font/notosansbold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toRightOf="@id/img_diamond"
+            app:layout_constraintTop_toBottomOf="@id/img_platinum"
+            app:layout_constraintBottom_toTopOf="@id/tv_diamond_benefits"/>
+
+        <TextView
+            android:id="@+id/tv_diamond_benefits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanslight"
+            android:includeFontPadding="false"
+            android:text="계산 금액의 10% 할인"
+            app:layout_constraintLeft_toRightOf="@id/img_diamond"
+            app:layout_constraintTop_toBottomOf="@id/tv_diamond"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
