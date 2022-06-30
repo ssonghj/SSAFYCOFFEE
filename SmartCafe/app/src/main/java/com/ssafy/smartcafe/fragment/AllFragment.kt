@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import java.util.Locale.filter
 
 private const val TAG = "AllFragment"
 class AllFragment : Fragment() {
@@ -54,6 +56,23 @@ class AllFragment : Fragment() {
         //스피너 설정 함수
         setSpinner()
 
+        var searchViewTextListener: SearchView.OnQueryTextListener =
+            object : SearchView.OnQueryTextListener {
+                //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
+                override fun onQueryTextSubmit(s: String): Boolean {
+                    return false
+                }
+
+                //텍스트 입력/수정시에 호출
+                override fun onQueryTextChange(s: String): Boolean {
+                    allFragmentAdapter.filter.filter(s)
+
+                    Log.d(TAG, "SearchVies Text is changed : $s")
+                    return false
+                }
+            }
+
+        binding.btnSearch.setOnQueryTextListener(searchViewTextListener)
 
         return binding.root
     }
@@ -193,4 +212,6 @@ class AllFragment : Fragment() {
             }
         }
     }
+
+
 }
