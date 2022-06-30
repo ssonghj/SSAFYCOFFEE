@@ -41,8 +41,9 @@ class ThisWeekTop3ListAdapter(var context: Context, private val resource: Int, l
 
         holder.productName.text = "${top3List[position].name}"
         holder.productImg.setOnClickListener{
+            
             var intent = Intent(context, MenuDetailActivity::class.java)
-            intent.putExtra("productId", top3List[position].id.toString())
+            intent.putExtra("productId", top3List[position].p_id.toString())
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
