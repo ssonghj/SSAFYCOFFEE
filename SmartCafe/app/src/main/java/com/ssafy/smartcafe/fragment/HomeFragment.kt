@@ -433,7 +433,7 @@ class HomeFragment : Fragment() {
                 if (response.code() == 200) {
 //                    result = response.body()!!
                     thisWeekTop3List = response.body()!!
-                    Log.d(TAG, "onResponse: newProductList : {$thisWeekTop3List}")
+                    Log.d(TAG, "onResponse: 이번주 top3 : {$thisWeekTop3List}")
                     thisWeekTop3Adapter(rootview)
 
                 }
