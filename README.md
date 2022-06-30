@@ -8,7 +8,7 @@
 
 ## 개발자
 
-[송현진](https://github.com/ssonghj), [배혜연](https://github.com/henginthere), 
+[송현진](https://github.com/ssonghj), [배혜연](https://github.com/henginthere)
 
 ## 기능
  1. 스플래시
