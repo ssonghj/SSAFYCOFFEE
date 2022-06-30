@@ -50,8 +50,10 @@
  14. 마이페이지 (완료)
  15. 알림 (firebase & springboot 미완성)
 
-## 시스템 구조
-
 ## 디자인(with Figma)
 <img src="https://user-images.githubusercontent.com/40493508/172805909-5b688508-12fc-49a1-b408-0e335a9fbc4d.png" width="1000" height="700">
 
+## ERD
+![ERD](https://user-images.githubusercontent.com/40493508/176717429-98cb6671-6127-4f79-a53f-d37646be2a55.png)
+
+## 시스템 구조
