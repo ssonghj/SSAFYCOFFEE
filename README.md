@@ -54,4 +54,3 @@
 ## 디자인(with Figma)
 <img src="https://user-images.githubusercontent.com/40493508/172805909-5b688508-12fc-49a1-b408-0e335a9fbc4d.png" width="1000" height="700">
 
-## 후기
