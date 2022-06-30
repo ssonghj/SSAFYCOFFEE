@@ -32,6 +32,9 @@ public interface ProductService {
 	//모든 상품정보를 평점순 으로 반환 
 	List<Product> getProductWithHighRating();
 	
+	//모든 상품정보를 이름순으로 반환
+	List<Product> getProductOrderbyName();
+	
 	//음료수만 반환
 	List<Product> getAllCoffee();
 	
@@ -65,6 +68,8 @@ public interface ProductService {
 	List<Map<String, Object>> selectWithComment(Integer productId);
 	
 	List<Map<String, Object>> selectCommentWithUserId(String userId);
+
+	
 
 	
 

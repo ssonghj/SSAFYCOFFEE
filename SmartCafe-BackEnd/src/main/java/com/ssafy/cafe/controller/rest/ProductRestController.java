@@ -79,6 +79,12 @@ public class ProductRestController {
 		return pService.getProductWithHighRating();
 	}
 	
+	@GetMapping("/orderbyName")
+	@ApiOperation(value = "전체 상품의 이름순 목록을 반환한다.", response = List.class)
+	public List<Product> getProductListOrderbyName() {
+		return pService.getProductOrderbyName();
+	}
+	
 	@GetMapping("/coffee")
 	@ApiOperation(value = "전체 커피메뉴를 반환한다.", response = List.class)
 	public List<Product> getAllCoffee() {

@@ -100,6 +100,13 @@
         order by V1.sumRating/V1.cnt desc;
 	</select>
 	
+	<!-- 이름순 -->
+	<select id="selectAllOrderbyName" resultType="Product">
+		select p.id, p.name, p.type, p.price, p.img
+		from t_product p 
+        order by p.name asc;
+	</select>
+	
 	<select id="selectCoffee" resultType="Product">
 		select * from t_product
 		where type = "coffee";

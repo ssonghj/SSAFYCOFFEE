@@ -32,6 +32,8 @@ public interface ProductDao {
 	List<Product> selectAllWithHighCommentCnt();
 	
 	List<Product> selectAllWithHighRating();
+	
+	List<Product> selectAllOrderbyName();
 
 	List<Product> selectCoffee();
 	
@@ -46,4 +48,6 @@ public interface ProductDao {
 	List<Product> selectRecommendedProduct();
 
 	List<Product> selectRecommendedDesert();
+
+
 }

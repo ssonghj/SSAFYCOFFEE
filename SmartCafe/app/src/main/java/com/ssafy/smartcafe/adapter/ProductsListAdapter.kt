@@ -34,7 +34,6 @@ class ProductsListAdapter(var context: Context, val resource: Int, list:List<Pro
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllFragmentHolder {
         val view = LayoutInflater.from(parent.context).inflate(resource, parent, false)
-        Log.d(TAG, "onCreateViewHolder: 됨????")
         return AllFragmentHolder(view)
     }
 
