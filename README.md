@@ -22,9 +22,11 @@
 [![github Badge](https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/)
 
 ## 프로젝트 기획 의도
+- 메뉴 주문이 가능한 모바일 앱 개발
+- 메뉴 후기 작성 및 확인으로 선호도 확인이 가능한 모바일 앱 개발
+- 사용자 친화적 모바일 앱 개발
 
 ## 개발자
-
 [송현진](https://github.com/ssonghj) | [배혜연](https://github.com/henginthere)
 
 ## 기능
