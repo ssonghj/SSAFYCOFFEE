@@ -54,6 +54,6 @@
 <img src="https://user-images.githubusercontent.com/40493508/172805909-5b688508-12fc-49a1-b408-0e335a9fbc4d.png" width="1000" height="700">
 
 ## ERD
-![ERD](https://user-images.githubusercontent.com/40493508/178485397-18fd9940-3235-4ede-b0d2-b3043a036e49.png)
+![ERD](https://user-images.githubusercontent.com/40493508/178485624-36b2bec7-7be6-4d2b-add3-9f1e85048b0b.png)
 
 ## 시스템 구조
