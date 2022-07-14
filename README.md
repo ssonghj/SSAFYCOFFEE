@@ -2,6 +2,8 @@
 
 ## 시연동영상
 
+https://user-images.githubusercontent.com/40493508/179001266-a1cc83a8-2a4e-4c82-ad0e-dde469e44235.mp4
+
 ## 개발환경
 
 **Mobile** </br>
