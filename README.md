@@ -59,3 +59,4 @@ https://user-images.githubusercontent.com/40493508/179001266-a1cc83a8-2a4e-4c82-
 ![ERD](https://user-images.githubusercontent.com/40493508/178485624-36b2bec7-7be6-4d2b-add3-9f1e85048b0b.png)
 
 ## 시스템 구조
+![시스템 구조](https://user-images.githubusercontent.com/40493508/179008082-f844adfb-ea87-40b4-abb5-9f7c23dfca71.png)
