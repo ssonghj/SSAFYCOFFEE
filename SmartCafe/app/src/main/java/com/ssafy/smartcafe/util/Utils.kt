@@ -1,9 +1,14 @@
 package com.ssafy.smartcafe.util
 
+import android.app.Application
+import android.content.Context
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Utils{
+class Utils {
 
     //java의 static method와 동일
     companion object {

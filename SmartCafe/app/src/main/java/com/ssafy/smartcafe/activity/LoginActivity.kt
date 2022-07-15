@@ -1,9 +1,9 @@
 package com.ssafy.smartcafe.activity
 
+import android.app.Application
+import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -384,5 +384,14 @@ class LoginActivity : AppCompatActivity() {
         var userStamp = 0
         var detailList = arrayListOf<OrderDetailDTO>()
         var loginInfo = ""
+
+        fun vibratePhone(application: Application) {
+            val vibrator = application?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            if (Build.VERSION.SDK_INT >= 26) {
+                vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.EFFECT_TICK))
+            } else {
+                vibrator.vibrate(200)
+            }
+        }
     }
 }

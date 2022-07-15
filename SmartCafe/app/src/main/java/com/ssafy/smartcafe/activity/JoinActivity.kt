@@ -3,14 +3,13 @@ package com.ssafy.smartcafe.activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -18,6 +17,7 @@ import androidx.lifecycle.ViewModelLazy
 import com.shashank.sony.fancytoastlib.FancyToast
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.vibratePhone
 import com.ssafy.smartcafe.databinding.ActivityJoinBinding
 import com.ssafy.smartcafe.dto.UserDTO
 import com.ssafy.smartcafe.service.UserService
@@ -65,6 +65,10 @@ class JoinActivity : AppCompatActivity() {
         }
 
         binding.frameJoinBtn.setOnClickListener{
+
+            //버튼 클릭시 진동 (전역변수) -> 모든 버튼에 적용
+            vibratePhone(application)
+
             val id = binding.etId.text.toString()
             val pass = binding.etPw.text.toString()
             val passCheck = binding.etPwCheck.text.toString()
@@ -113,8 +117,6 @@ class JoinActivity : AppCompatActivity() {
             }
         }
     }
-
-
 
     suspend fun checkId(inputId:String) {
         println("inputid : ${inputId}")
