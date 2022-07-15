@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.vibratePhone
 import com.ssafy.smartcafe.adapter.CurOrderAdapter
 import com.ssafy.smartcafe.adapter.PastOrderAdapter
 import com.ssafy.smartcafe.databinding.ActivityUserRecentOrderListBinding
@@ -34,6 +35,7 @@ class UserRecentOrderListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener{
+            vibratePhone(application)
             finish()
         }
 

@@ -13,6 +13,7 @@ import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.detailList
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.vibratePhone
 import com.ssafy.smartcafe.adapter.SimpleCommentAdapter
 import com.ssafy.smartcafe.databinding.ActivityMenuDetailBinding
 import com.ssafy.smartcafe.dto.*
@@ -90,11 +91,13 @@ class MenuDetailActivity : AppCompatActivity() {
 
         //뒤로가기
         binding.btnBack.setOnClickListener{
+            vibratePhone(application)
             finish()
         }
 
         //하트 누르기
         binding.btnLike.setOnClickListener{
+            vibratePhone(application)
 
             when {
                 mainViewModel.getHeartColor() == 0 -> {
@@ -131,6 +134,8 @@ class MenuDetailActivity : AppCompatActivity() {
 
         //리뷰쓰기 버튼
         binding.btnReview.setOnClickListener{
+            vibratePhone(application)
+
             val intent = Intent(applicationContext, WriteReviewActivity::class.java)
             intent.putExtra("menuName", productList[0].name)
             intent.putExtra("productId",product_id)
@@ -140,12 +145,16 @@ class MenuDetailActivity : AppCompatActivity() {
 
         //수량 증가
         binding.tvPlus.setOnClickListener{
+            vibratePhone(application)
+
             var txt = binding.tvCount.text
             var num = Integer.parseInt(txt.toString())
             binding.tvCount.text = (num+1).toString()
         }
         //수량 감소
         binding.tvMinus.setOnClickListener{
+            vibratePhone(application)
+
             var txt = binding.tvCount.text
             var num = Integer.parseInt(txt.toString())
             if(num > 1){
@@ -155,6 +164,9 @@ class MenuDetailActivity : AppCompatActivity() {
 
         //리뷰 더보기
         binding.tvMoreDetailReview.setOnClickListener{
+            vibratePhone(application)
+
+
             val intent = Intent(this, MenuReviewActivity::class.java)
             intent.putExtra("product_id",product_id.toString())
             print("product_name : ${productList[0].name}")
@@ -164,6 +176,7 @@ class MenuDetailActivity : AppCompatActivity() {
 
         //메뉴 담기
         binding.frameOrderBtn.setOnClickListener{
+            vibratePhone(application)
 
             //메뉴 수량
             var quantity = binding.tvCount.text.toString().toInt()

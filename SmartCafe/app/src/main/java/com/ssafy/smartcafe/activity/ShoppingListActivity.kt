@@ -9,6 +9,7 @@ import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.detailList
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.vibratePhone
 import com.ssafy.smartcafe.adapter.ShoppingListAdapter
 import com.ssafy.smartcafe.databinding.ActivityShoppingListBinding
 import com.ssafy.smartcafe.dto.*
@@ -53,6 +54,7 @@ class ShoppingListActivity : AppCompatActivity() {
 
         //뒤로가기
         binding.btnBack.setOnClickListener {
+            vibratePhone(application)
             finish()
         }
 
@@ -64,8 +66,7 @@ class ShoppingListActivity : AppCompatActivity() {
             //부트페이 연결
             goBootpayRequest() //잠깐 주석 처리
 
-            //결제 끝나면 서버로 주문 보내기
-
+            //부트페이 안쓸경우 아래 주석들 해제
             //주문시간 저장
 //            val sdf = Utils.formatter()
 //            val date = sdf.format(System.currentTimeMillis())

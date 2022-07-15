@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.vibratePhone
 import com.ssafy.smartcafe.adapter.ProductsListAdapter
 import com.ssafy.smartcafe.adapter.ShoppingListAdapter
 import com.ssafy.smartcafe.adapter.SimpleCommentAdapter
@@ -33,6 +34,7 @@ class UserLikeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener{
+            vibratePhone(application)
             finish()
         }
 

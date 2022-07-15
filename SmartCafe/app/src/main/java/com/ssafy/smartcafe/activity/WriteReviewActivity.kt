@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.ssafy.smartcafe.MobileCafeApplication
 import com.ssafy.smartcafe.R
 import com.ssafy.smartcafe.activity.LoginActivity.Companion.userId
+import com.ssafy.smartcafe.activity.LoginActivity.Companion.vibratePhone
 import com.ssafy.smartcafe.adapter.MenuReviewAdapter
 import com.ssafy.smartcafe.databinding.ActivityWriteReviewBinding
 import com.ssafy.smartcafe.dto.CommentDTO
@@ -28,6 +29,7 @@ class WriteReviewActivity : AppCompatActivity() {
         val isitModify = intent!!.getBooleanExtra("modify",false)
 
         binding.btnBack.setOnClickListener{
+            vibratePhone(application)
             finish()
         }
 
@@ -54,6 +56,8 @@ class WriteReviewActivity : AppCompatActivity() {
 
             //수정한 리뷰 업로드
             binding.frameReviewCompleteBtn.setOnClickListener{
+                vibratePhone(application)
+
                 CoroutineScope(Dispatchers.Main).launch {
                     var content = binding.editContent.text.toString()
                     var rating = (binding.ratingBar.rating * 2).toInt()
@@ -78,6 +82,8 @@ class WriteReviewActivity : AppCompatActivity() {
 
             //수정한 리뷰 업로드
             binding.frameReviewCompleteBtn.setOnClickListener{
+                vibratePhone(application)
+
                 CoroutineScope(Dispatchers.Main).launch {
                     var content = binding.editContent.text.toString()
                     var rating = (binding.ratingBar.rating * 2).toInt()

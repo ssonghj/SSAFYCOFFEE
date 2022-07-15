@@ -63,6 +63,8 @@ class LoginActivity : AppCompatActivity() {
 //        Log.d(TAG, "onCreate: 키 해시 : $keyHash")
         
         binding.frameLoginBtn.setOnClickListener{
+            vibratePhone(application)
+
             val id = binding.editId.text.toString()
             val pass = binding.editPass.text.toString()
 
@@ -73,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.tvJoin.setOnClickListener {
+            vibratePhone(application)
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY))
         }
@@ -80,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
         //카카오 로그인
         var callback = kakaoLogin()
         binding.frameKakao.setOnClickListener {
+            vibratePhone(application)
 
             if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
                 LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
@@ -96,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
         NaverIdLoginSDK.initialize(this, naverClientId, naverClientSecret , naverClientName)
 
         binding.frameNaver.setOnClickListener {
+            vibratePhone(application)
             startNaverLogin()
         }
 
@@ -106,6 +111,7 @@ class LoginActivity : AppCompatActivity() {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         binding.frameGoogle.setOnClickListener {
+            vibratePhone(application)
             signIn()
         }
 

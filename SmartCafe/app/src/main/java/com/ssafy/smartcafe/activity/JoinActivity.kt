@@ -52,15 +52,28 @@ class JoinActivity : AppCompatActivity() {
         }
 
         binding.ivBack.setOnClickListener {
+            vibratePhone(application)
             finish()
         }
 
         //중복체크 버튼
         binding.frameCheckBtn.setOnClickListener{
+
+            vibratePhone(application)
+
             val inputId = binding.etId.text.toString()
 
-            CoroutineScope(Dispatchers.Main).launch {
-                checkId(inputId)
+            if(inputId == ""){
+                FancyToast.makeText(applicationContext,
+                    "아이디를 입력해주세요",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.CONFUSING,
+                    false).show()
+            }
+            else{
+                CoroutineScope(Dispatchers.Main).launch {
+                    checkId(inputId)
+                }
             }
         }
 
@@ -128,17 +141,14 @@ class JoinActivity : AppCompatActivity() {
             if(response.code() == 200){
 
                 var res = response.body()!!
-                Log.d(TAG, "getIDPass: ${res}")
 
                 //로그인할 아이디가 이미 사용중인 경우 토스트 메시지
                 if(res){
                     mainViewModel.setUsed()
-                    Log.d(TAG, "checkId: 이미 사용중")
                 }
                 //로그인아이디 사용되지 않은 경우
                 else{
                     mainViewModel.setCanUsed()
-                    Log.d(TAG, "checkId: 사용 가능 아이디")
                 }
 
                 //뷰모델 업데이트
